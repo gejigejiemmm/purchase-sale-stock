@@ -1,0 +1,59 @@
+#数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://112.74.58.0:3306/purchase-sale-stock?serverTimezone=Asia/Shanghai&useUnicode=yes
+    username: root
+    password: huyihan
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      query-timeout: 2400
+      # 初始化大小
+      initialSize: 5
+      # 最小
+      minIdle: 5
+      # 最大
+      maxActive: 20
+      # 连接等待时间
+      maxWait: 60000
+      # 检测需要关闭的空白链接
+      timeBetweenEvictionRunsMillis: 60000
+      # 一个连接在池中最小生存时间
+      minEvictableIdleTimeMillis: 300000
+      #
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall,slf4j
+      # PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+      #  通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      connection-init-sqls: set names utf8
+    hikari:
+      connection-init-sql: SET NAMES utf8
+  thymeleaf:
+    cache: false #清理缓存，使用热部署
+    prefix: classpath:/templates/ #扫描 静态资源的路径
+server:
+  port: 80
+
+
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/sqlMapConfig.xml
+
+# 看着单调---,还是彩色的好玩
+#logging:
+#  level:
+#    cn.edu.zzuli: warn
+#  path: /code/log/
+#  pattern:
+#    console: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
+#    file: '%d{yyyy-MM-dd HH:mm} === [%thread] === %-5level === %logger{50} === %msg%n'
