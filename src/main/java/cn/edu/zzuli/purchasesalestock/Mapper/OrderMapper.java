@@ -10,4 +10,6 @@ import java.util.Map;
 public interface OrderMapper {
 
     List<Order> getALlOrders(Map<String, Object> info);
+
+    boolean updateOrder(Map<String, Object> info);
 }

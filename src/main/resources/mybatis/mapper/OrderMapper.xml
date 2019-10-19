@@ -41,10 +41,32 @@
          </where>
     </sql>
 
+    <sql id="updateOrder">
+        UPDATE `order`
+        <set>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="orderPrices != null">
+                 order_prices = #{orderPrices},
+            </if>
+            <if test="orderEndTime != null">
+                order_endTime = #{orderEndTime}
+            </if>
+        </set>
+        WHERE
+        order_id = #{orderId}
+    </sql>
+
+    <!--   List<Order> getALlOrders(Map<String, Object> info); -->
     <select id="getALlOrders" resultMap="order">
        <include refid="getOrder"></include>
     </select>
 
+    <!--  boolean updateOrder(Map<String, Object> info);  -->
+    <update id="updateOrder">
+        <include refid="updateOrder"></include>
+    </update>
 
 
 </mapper>
