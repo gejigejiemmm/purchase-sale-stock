@@ -14,4 +14,20 @@ git clone https://github.com/gejigejiemmm/imgs.git
 
 ## 查看api文档
 浏览器打开  http://localhost/swagger-ui.html
-#### 写 api文档 
+## 写api文档
+#### 使用 @Api 注解标记类
+#### 使用 @ApiOperation 接口描述api接口信息
+示例代码如下：
+```
+@RestController
+@RequestMapping("/order")
+@Api(tags = "订单接口")
+public class OrderController {
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @ApiOperation(value = "条件获取订单信息，默认为查询所有，所有参数都非必须",httpMethod = "GET")
+    public Msg getOrders(){
+      ...
+    }
+  ...
+}
+```
