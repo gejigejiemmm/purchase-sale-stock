@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BinserviceImpl implements BinService {
+public class BinServiceImpl implements BinService {
 
     @Autowired
     BinMapper binMapper;

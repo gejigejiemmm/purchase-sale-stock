@@ -1,5 +1,10 @@
 #数据源
 spring:
+  #热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://112.74.58.0:3306/purchase-sale-stock?serverTimezone=Asia/Shanghai&useUnicode=yes
@@ -48,6 +53,12 @@ mybatis:
   mapper-locations:
     - classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/sqlMapConfig.xml
+
+
+# 配置图片上传路径
+upload:
+  path:
+    Img: /imgs
 
 # 看着单调---,还是彩色的好玩
 #logging:

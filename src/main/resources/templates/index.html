@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
-<h4>halo</h4>
+    <h4>halo</h4>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input id="file" type="file" name="file"/><br>
+        <button id="upload" type="button">upload</button>
+    </form>
+
+    <img src="/img/get/?imgUrl=201910191056320071326096C313F4E5565736F9927FCD36417B8.png" alt="img" id="img">
 </body>
-</html>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.js"></script>
+<script>
+    $(function() {
+
+        $("#upload").click(function() {
+
+            var formData = new FormData($("#uploadForm")[0]);
+            var img = document.getElementById("img")
+
+
+            $.ajax({
+                url : "/img/upload",
+                type : 'POST',
+                cache : false,
+                data : formData,
+                dataType : 'json',
+                processData : false,
+                contentType : false,
+                success : function(result) {
+                    console.log(result)
+                    img.src="/img/get/?imgUrl=" + result.data.url
+                },
+            });
+
+        });
+
+    });
+</script>
