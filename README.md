@@ -44,3 +44,24 @@ public class OrderController {
 <img src="/img/get?imgUrl=201910191210438008569IMG_4197.JPG">
 ```
 - 发送请求的时候一定要看好是 GET ，POST请求
+
+
+## 后端注意事项
+- 时间参数都使用 LocalDateTime 并且使用 @JsonFormat @DateTimeFormat 标注
+```
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime orderCreateTime;
+```
+- 接收时间参数的时候 @DateTimeFormat 格式化时间
+```
+    @RequestParam(value = "orderCreateTime", required = false)
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime orderCreateTime
+```
+- SQL 语句报错时可以在 Application.yaml 文件中开启 debug 注解
+```
+logging:
+  level:
+    cn.edu.zzuli.purchasesalestock.Mapper: debug
+```
+- 项目中 使用 Lombok，如果项目报错 ，去idea 插件库中下载 Lombok 插件
