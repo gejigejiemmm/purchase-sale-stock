@@ -4,25 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--private Integer binId;
     private String binName;
-    private Integer binNo;
-    private String binAdmin;
-    private String binAdminPhone;
-    private String binTips;-->
+    private Integer binAdminId;
+    private String binTips;
+    private String binAddressId;-->
 <mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.BinMapper">
 
     <resultMap id="bin" type="cn.edu.zzuli.purchasesalestock.bean.Bin">
         <id property="binId" column="bin_id"></id>
         <result property="binName" column="bin_name"></result>
-        <result property="binNo" column="bin_no"></result>
-        <result property="binAdmin" column="bin_admin"></result>
-        <result property="binAdminPhone" column="bin_admin_phone"></result>
+        <result property="binAdminId" column="bin_admin_id"></result>
         <result property="binTips" column="bin_tips"></result>
+        <result property="binAddressId" column="bin_address_id"></result>
     </resultMap>
 
     <!--    public List<Bin> getBins();-->
     <select id="getBins" resultMap="bin">
-        SELECT bin_id,bin_name,bin_no,bin_admin,
-        bin_admin_phone,bin_tips FROM bin
+        SELECT bin_id,bin_name,bin_admin_id,bin_tips,
+        bin_address_id FROM bin
     </select>
 
 

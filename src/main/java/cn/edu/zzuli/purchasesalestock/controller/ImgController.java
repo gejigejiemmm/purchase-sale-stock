@@ -2,6 +2,7 @@ package cn.edu.zzuli.purchasesalestock.controller;
 
 import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import cn.edu.zzuli.purchasesalestock.service.ImgService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/img")
+@Api(tags = "图片接口")
 public class ImgController {
 
     @Autowired

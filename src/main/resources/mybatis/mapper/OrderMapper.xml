@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--orderId orderUId orderBinId
+ orderPrices orderStatus orderCreateTime orderEndTime;-->
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper">
+
+
+    <resultMap id="order" type="cn.edu.zzuli.purchasesalestock.bean.Order">
+        <id property="orderId" column="order_id"></id>
+        <result property="orderUId" column="order_uId"></result>
+        <result property="orderBinId" column="order_bin_id"></result>
+        <result property="orderPrices" column="order_prices"></result>
+        <result property="orderStatus" column="order_status"></result>
+        <result property="orderCreateTime" column="order_createTime"></result>
+        <result property="orderEndTime" column="order_endTime"></result>
+    </resultMap>
+    
+    <sql id="getOrder">
+         SELECT * FROM `order`
+         <where>
+             <if test="orderId != null">
+                 order_id = #{orderId}
+             </if>
+             <if test="orderUId != null">
+                 AND order_uId = #{orderUId}
+             </if>
+             <if test="orderBinId != null">
+                 AND order_bin_id = #{orderBinId}
+             </if>
+             <if test="orderStatus != null">
+                 AND order_status = #{orderStatus}
+             </if>
+             <if test="orderCreateTime != null">
+                 AND order_createTime <![CDATA[ >= ]]> #{orderCreateTime}
+             </if>
+             <if test="orderEndTime != null">
+                 AND order_endTime <![CDATA[ <= ]]>  #{orderEndTime}
+             </if>
+         </where>
+    </sql>
+
+    <select id="getALlOrders" resultMap="order">
+       <include refid="getOrder"></include>
+    </select>
+
+
+
+</mapper>

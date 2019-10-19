@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bin")
-@Api(tags = "仓库接口信息")
+@Api(tags = "仓库接口")
 public class BinController {
 
     @Autowired

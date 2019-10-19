@@ -2,6 +2,7 @@ package cn.edu.zzuli.purchasesalestock.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 public class BaseUtils {
 
@@ -48,6 +49,31 @@ public class BaseUtils {
             e.printStackTrace();
         }
         return md5Password;
+    }
+
+    /**
+     * Description: 传入要初始化的map, 之后以键值对的方式成对的传入信息
+     *
+     * @Title: initInfo
+     *
+     * @param info
+     * @param strs
+     */
+    public static void initInfo(Map<String, Object> info, Object... strs) {
+        // 如果不符合键值对规则
+        if (strs.length % 2 != 0) {
+            return;
+        }
+        info.clear();
+        for (int i = 0; i < strs.length; i++) {
+            // 跳过值为空的键值对
+            if (strs[i + 1] == null) {
+                i++;
+                continue;
+            }
+            // 将成对的键值对放入map
+            info.put(strs[i++].toString(), strs[i]);
+        }
     }
 
 }
