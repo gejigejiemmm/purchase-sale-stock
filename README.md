@@ -9,9 +9,9 @@
 
 并且在 项目的 ⁨purchase-sale-stock⁩/⁨target⁩/classes 下
 git 图片仓库
-
+```
 git clone https://github.com/gejigejiemmm/imgs.git
-
+```
 ## 查看api文档
 浏览器打开  http://localhost/swagger-ui.html
 ## 写api文档
@@ -31,3 +31,18 @@ public class OrderController {
   ...
 }
 ```
+## 前端注意事项
+- css js html等静态资源的存放
+
+main/resources/css
+
+main/resources/js
+
+main/resources/templates/*.html
+
+- 获取图片
+/img/get?imgUrl=图片名字
+```
+<img src="/img/get?imgUrl=201910191210438008569IMG_4197.JPG">
+```
+- 发送请求的时候一定要看好是 GET ，POST请求
