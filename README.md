@@ -14,3 +14,4 @@ git clone https://github.com/gejigejiemmm/imgs.git
 
 ## 查看api文档
 浏览器打开  http://localhost/swagger-ui.html
+#### 写 api文档 
