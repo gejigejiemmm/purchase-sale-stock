@@ -9,3 +9,5 @@
 
 并且在 项目的 ⁨purchase-sale-stock⁩/⁨target⁩/classes 下
 git 图片仓库
+
+git clone https://github.com/gejigejiemmm/imgs.git
