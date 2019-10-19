@@ -1,0 +1,38 @@
+.layui-nav{
+    overflow: hidden;
+}
+.layui-nav-box{
+    display: inline-block;
+}
+.nav-btn{
+    display: none;
+}
+.layui-nav-mobiie{
+    height: 122px;
+}
+.layui-nav-pc{
+    height: 65px;
+}
+.nav-btn-status1{
+    transform: rotate(180deg);
+}
+.nav-btn-status2{
+    transform: rotate(0deg);
+}
+
+/* 手机端样式表 */
+@media only screen and (max-width:500px) {
+    /* 下拉按钮显示 */
+    .nav-btn{
+        display: inline-block;
+        line-height: 60px;
+        text-align: center;
+    }
+    .layui-nav-box{
+        display: flex;
+    }
+
+    .layui-nav-box li{
+        flex: 0 0 25%;
+    }
+}
