@@ -34,11 +34,11 @@ public class OrderController {
 ## 前端注意事项
 - css js html等静态资源的存放
 
-main/resources/css
+-- main/resources/css
 
-main/resources/js
+-- main/resources/js
 
-main/resources/templates/*.html
+-- main/resources/templates/*.html
 
 - 获取图片
 /img/get?imgUrl=图片名字
