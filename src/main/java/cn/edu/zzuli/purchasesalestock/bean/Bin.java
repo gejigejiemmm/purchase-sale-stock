@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Bin {
+
     private Integer binId;
     private String binName;
     private Integer binAdminId;
