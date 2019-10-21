@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.ShoppingCartDetailMapper">
+
+    <!-- 简单的字段映射 -->
+    <resultMap id="shoppingCart_detail" type="cn.edu.zzuli.purchasesalestock.bean.ShoppingCart_detail">
+        <id property="shoppingcart_did" column="shoppingcart_did"></id>
+        <result property="shoppingcart_dno" column="shoppingcart_dno"></result>
+        <result property="shoppingcart_dgoodsNumber" column="shoppingcart_dgoodsNumber"></result>
+        <result property="shoppingcart_dgoodsId" column="shoppingcart_dgoodsId"></result>
+        <result property="shoppingcart_dgoodsDate" column="shoppingcart_dgoodsDate"></result>
+        <result property="shoppingcart_dtotlePrice" column="shoppingcart_dtotlePrice"></result>
+    </resultMap>
+
+    <!-- 添加购物车单条记录所用的方法 -->
+    <insert id="additem">
+        insert into
+        shoppingCart_detail
+        (shoppingcart_dno, shoppingcart_dgoodsNumber, shoppingcart_dgoodsId, shoppingcart_dgoodsDate, shoppingcart_dtotlePrice)
+        values (#{shoppingcart_dno}, #{shoppingcart_dgoodsNumber}, #{shoppingcart_dgoodsId}, #{shoppingcart_dgoodsDate}, #{shoppingcart_dtotlePrice})
+    </insert>
+
+    <delete id="deleteitem">
+        delete from
+        shoppingCart_detail
+        where shoppingcart_did = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="shoppingCart_detail">
+        select * from
+        shoppingCart_detail
+        where shoppingcart_dno = #{no}
+    </select>
+</mapper>

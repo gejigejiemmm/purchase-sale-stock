@@ -34,7 +34,7 @@ public class CustomerController{
             return Msg.success();
         }
         else{
-            return Msg.fail();
+            return Msg.fail().add("error", "服务器错误，请联系系统管理员");
         }
     }
 
@@ -52,7 +52,7 @@ public class CustomerController{
             return Msg.success().add("customer", customer);
         }
         else{
-            return Msg.fail();
+            return Msg.fail().add("error", "服务器错误，请联系系统管理员");
         }
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.ShoppingCartMapper">
+
+    <!-- 简单的字段映射 -->
+    <resultMap id="shoppingCart" type="cn.edu.zzuli.purchasesalestock.bean.ShoppingCart">
+        <id property="shoppingCartId" column="shoppingcart_id"></id>
+        <result property="shoppingCartNo" column="shoppingcart_no"></result>
+        <result property="shoppingCartTotlePrice" column="shoppingcart_totlePrice"></result>
+        <result property="shoppingCartDate" column="shoppingcart_date"></result>
+        <result property="shoppingCartPersonId" column="shoppingcart_personId"></result>
+    </resultMap>
+
+    <!-- 添加成员所用的方法 -->
+    <insert id="saveShoppnigCart">
+        insert into
+        shoppingCart
+        (shoppingcart_no, shoppingcart_totlePrice, shoppingcart_date, shoppingcart_personId)
+        values (#{shoppingCartNo}, #{shoppingCartTotlePrice}, #{shoppingCartDate}, #{shoppingCartPersonId})
+    </insert>
+</mapper>
