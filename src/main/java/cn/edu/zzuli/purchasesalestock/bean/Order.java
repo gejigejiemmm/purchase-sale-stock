@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class Order {
@@ -20,7 +21,8 @@ public class Order {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderEndTime;
 
-
+    //订单对应的商品信息
+    private List<Goods> goods;
 
     public Order() {
     }

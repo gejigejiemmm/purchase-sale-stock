@@ -1,6 +1,8 @@
 package cn.edu.zzuli.purchasesalestock.service;
 
+import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import cn.edu.zzuli.purchasesalestock.bean.Order;
+import cn.edu.zzuli.purchasesalestock.bean.OrderDetail;
 import com.github.pagehelper.PageInfo;
 import io.swagger.models.auth.In;
 
@@ -16,4 +18,8 @@ public interface OrderService {
                           Integer orderStatus, LocalDateTime orderCreateTime, LocalDateTime orderEndTime);
 
     boolean updateOrder(Order order);
+
+    OrderDetail getDetail(Integer oDetailId);
+
+    boolean addOrdersAndDetail(Order order,Integer orderType);
 }

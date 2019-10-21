@@ -4,6 +4,9 @@ import cn.edu.zzuli.purchasesalestock.Mapper.GoodsMapper;
 import cn.edu.zzuli.purchasesalestock.bean.Goods;
 import cn.edu.zzuli.purchasesalestock.service.GoodsService;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,23 +43,30 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> getAllGoods(Integer goodsId, String goodsChName, String goodsPinyin,
-                                   String goodsTrivialName, String goodsEnName,Integer goodsBrandId,
-                                   String goodsMolecularFormula,String goodsCas,Integer goodsAvgPrice,
-                                   Integer goodsLowPrice,Integer goodsSalePrice1,Integer goodsPrice) {
+    public PageInfo getAllGoods(Integer p, Integer goodsId, String goodsChName, String goodsPinyin,
+                                   String goodsTrivialName, String goodsEnName, Integer goodsBrandId,
+                                   String goodsMolecularFormula, String goodsCas, Integer goodsAvgPrice,
+                                   Integer goodsLowPrice, Integer goodsSalePrice1, Integer goodsPrice) {
         Map<String,Object> info = new HashMap<>();
+        //开始分页查询，一页有多个
+        PageHelper.startPage(p,8);
+
         BaseUtils.initInfo(info,"goodsId",goodsId,"goodsChName",goodsChName,"goodsPinyin",goodsPinyin
         ,"goodsTrivialName",goodsTrivialName,"goodsEnName",goodsEnName,"goodsBrandId",goodsBrandId,
                 "goodsMolecularFormula",goodsMolecularFormula,"goodsCas",goodsCas,"goodsAvgPrice",goodsAvgPrice,
         "goodsLowPrice",goodsLowPrice,"goodsSalePrice1",goodsSalePrice1,"goodsPrice",goodsPrice);
-        System.out.println(info);
-        return goodsMapper.getAllGoods(info);
+
+        List<Goods> allGoods = goodsMapper.getAllGoods(info);
+        //分页信息
+        PageInfo pageInfo = new PageInfo(allGoods);
+        return pageInfo;
     }
 
 
     @Override
     public boolean updateGoods(Goods goods) {
         Map<String,Object> info = new HashMap<>();
+
         BaseUtils.initInfo(info,"goodsId",goods.getGoodsId(),"goodsChName",goods.getGoodsChName(),
                 "goodsTrivialName",goods.getGoodsTrivialName(),"goodsEnName",goods.getGoodsEnName(),
                 "goodsTypeId",goods.getGoodsTypeId(),"goodsNo",goods.getGoodsNo(),"goodsCas",goods.getGoodsCas(),
@@ -66,8 +76,10 @@ public class GoodsServiceImpl implements GoodsService {
                 goods.getGoodsInitPrice(),"goodsAvgPrice",goods.getGoodsAvgPrice(),"goodsLowPrice",goods.getGoodsLowPrice(),
                 "goodsSalePrice1",goods.getGoodsSalePrice1(),"goodsSalePrice2",goods.getGoodsSalePrice2(),"goodsPrice",
                 goods.getGoodsPrice(),"goodsImageUrl",goods.getGoodsImageUrl());
+
         if (goodsMapper.updateGoods(info))
             return true;
+
         return false;
     }
 }
