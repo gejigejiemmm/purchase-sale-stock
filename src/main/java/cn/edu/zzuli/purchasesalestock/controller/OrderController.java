@@ -24,7 +24,7 @@ public class OrderController {
     //可以使用 Order 直接接收的，但是觉得没这清楚，凑合凑合
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ApiOperation(value = "条件获取订单信息，默认为查询所有，所有参数都非必须",httpMethod = "GET")
-    public Msg getOrders(@RequestParam(value = "customerId",required = false,defaultValue = "1") Integer p,
+    public Msg getOrders(@RequestParam(value = "p",required = false,defaultValue = "1") Integer p,
                          @RequestParam(value = "customerId",required = false) Integer orderUId,
                          @RequestParam(value = "orderBinId",required = false)Integer orderBinId,
                          @RequestParam(value = "orderId",required = false)Integer orderId,
@@ -41,9 +41,12 @@ public class OrderController {
     }
 
     @PostMapping("/add")
-    public Msg addOrders(Order order) {
-        //System.out.println(order);
-        return Msg.success();
+    @ApiOperation(value = "下单",httpMethod = "POST")
+    public Msg addOrders(Order order,@RequestParam("orderType") Integer orderType) {
+        if(orderService.addOrdersAndDetail(order,orderType)) {
+            return Msg.success();
+        }
+        return Msg.fail();
     }
 
     @PostMapping("/update")
@@ -56,6 +59,13 @@ public class OrderController {
         }
 
         return Msg.fail();
+    }
+
+
+    @GetMapping("/detail")
+    @ApiOperation(value = "传入订单号获取订单详情",httpMethod = "GET")
+    public Msg getDetail(Integer oDetailId){
+        return Msg.success().add("detail",orderService.getDetail(oDetailId));
     }
 
 

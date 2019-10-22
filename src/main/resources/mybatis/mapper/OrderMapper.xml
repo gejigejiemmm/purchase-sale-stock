@@ -7,6 +7,7 @@
 <mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper">
 
 
+    <!--   订单信息映射 -->
     <resultMap id="order" type="cn.edu.zzuli.purchasesalestock.bean.Order">
         <id property="orderId" column="order_id"></id>
         <result property="orderUId" column="order_uId"></result>
@@ -15,28 +16,44 @@
         <result property="orderStatus" column="order_status"></result>
         <result property="orderCreateTime" column="order_createTime"></result>
         <result property="orderEndTime" column="order_endTime"></result>
+        <association property="goods" resultMap="cn.edu.zzuli.purchasesalestock.Mapper.GoodsMapper.goods"></association>
+    </resultMap>
+
+    <!--  订单详情映射
+      oDetailId orderId  sendId orderType orderDesc;-->
+    <resultMap id="orderDetail" type="cn.edu.zzuli.purchasesalestock.bean.OrderDetail">
+        <id property="oDetailId" column="odetail_id"></id>
+        <result property="orderId" column="order_id"></result>
+        <result property="sendId" column="order_send_id"></result>
+        <result property="orderType" column="order_type"></result>
+        <result property="orderDesc" column="order_desc"></result>
+        <association property="order" resultMap="order"> </association>
     </resultMap>
     
     <sql id="getOrder">
-         SELECT * FROM `order`
+        SELECT * FROM `order` o
+        JOIN orderitems i
+        ON o.order_id = i.item_order_id
+        JOIN goodsInformation g
+        ON g.goods_id = i.item_goods_id
          <where>
              <if test="orderId != null">
-                 order_id = #{orderId}
+                 o.order_id = #{orderId}
              </if>
              <if test="orderUId != null">
-                 AND order_uId = #{orderUId}
+                 AND o.order_uId = #{orderUId}
              </if>
              <if test="orderBinId != null">
-                 AND order_bin_id = #{orderBinId}
+                 AND o.order_bin_id = #{orderBinId}
              </if>
              <if test="orderStatus != null">
-                 AND order_status = #{orderStatus}
+                 AND o.order_status = #{orderStatus}
              </if>
              <if test="orderCreateTime != null">
-                 AND order_createTime <![CDATA[ >= ]]> #{orderCreateTime}
+                 AND o.order_createTime <![CDATA[ >= ]]> #{orderCreateTime}
              </if>
              <if test="orderEndTime != null">
-                 AND order_endTime <![CDATA[ <= ]]>  #{orderEndTime}
+                 AND o.order_endTime <![CDATA[ <= ]]>  #{orderEndTime}
              </if>
          </where>
     </sql>
@@ -68,5 +85,25 @@
         <include refid="updateOrder"></include>
     </update>
 
+    <!--  OrderDetail getDetail(Integer oDetailId);  -->
+    <select id="getDetail" resultMap="orderDetail">
+        SELECT * FROM order_detail d
+        JOIN `order` o
+        ON d.order_id = o.order_id
+        JOIN orderitems i
+        ON o.order_id = i.item_order_id
+        JOIN goodsInformation g
+        ON g.goods_id = i.item_goods_id
+        WHERE d.odetail_id = #{oDetailId}
+    </select>
+
+    <!--   boolean addOrder(OrderDetail orderDetail); -->
+    <insert id="addOrder" parameterType="cn.edu.zzuli.purchasesalestock.bean.OrderDetail">
+        INSERT INTO `order`
+        VALUES(null,#{order.orderUId},#{order.orderBinId},#{order.orderPrices},
+        #{order.orderStatus},#{order.orderCreateTime},null);
+        INSERT INTO order_detail
+        VALUES(null,LAST_INSERT_ID(),#{sendId},#{orderType},null);
+    </insert>
 
 </mapper>

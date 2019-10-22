@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.GoodsMapper">
+
+<!--goodsId goodsChName goodsTrivialName goodsEnName goodsTypeId
+goodsNo  goodsCas goodsPinyin goodsMolecularFormula goodsBrandId goodsModelId
+goodsUnit goodsForm goodsCondition goodsBin goodsLocation goodsInitPrice
+goodsAvgPrice goodsLowPrice  goodsSalePrice1 goodsSalePrice2 goodsPrice goodsImageUrl
+goodsProducersId goodsSupplierId;-->
+
+    <!-- 商品信息的添加 -->
+    <insert id="addGoods" useGeneratedKeys="true" keyProperty="goodsId"
+            parameterType="cn.edu.zzuli.purchasesalestock.bean.Goods">
+        insert into `goodsInformation`
+        (goods_chName,goods_trivialName,goods_enName,goods_typeId,goods_no,
+        goods_cas,goods_pinyin,goods_molecularFormula,goods_brandId,goods_modelId,
+        goods_unit,goods_form,goods_condition,goods_bin,goods_location,goods_initPrice
+        ,goods_avgPrice,goods_lowPrice,goods_salePrice1,goods_salePrice2,goods_price,
+        goods_imageUrl,goods_producersId,goods_supplierId)
+        values (#{goodsChName},#{goodsTrivialName},#{goodsEnName},#{goodsTypeId},
+        #{goodsNo},#{goodsCas},#{goodsPinyin},#{goodsMolecularFormula},#{goodsBrandId},#{goodsModelId}
+        ,#{goodsUnit},#{goodsForm},#{goodsCondition},#{goodsBin},#{goodsLocation},#{goodsInitPrice}
+        ,#{goodsAvgPrice},#{goodsLowPrice},#{goodsSalePrice1},#{goodsSalePrice2},#{goodsPrice}
+        ,#{goodsImageUrl},#{goodsProducersId},#{goodsSupplierId})
+    </insert>
+
+    <!-- 根据商品中文名称查询 -->
+    <resultMap id="goods" type="cn.edu.zzuli.purchasesalestock.bean.Goods">
+        <id property="goodsId" column="goods_id" ></id>
+        <result property="goodsChName" column="goods_chName"></result>
+        <result property="goodsTrivialName" column="goods_trivialName"></result>
+        <result property="goodsEnName" column="goods_enName"></result>
+        <result property="goodsTypeId" column="goods_typeId"></result>
+        <result property="goodsNo" column="goods_no"></result>
+        <result property="goodsCas" column="goods_cas"></result>
+
+        <result property="goodsPinyin" column="goods_pinyin"></result>
+        <result property="goodsMolecularFormula" column="goods_molecularFormula"></result>
+        <result property="goodsBrandId" column="goods_brandId"></result>
+        <result property="goodsModelId" column="goods_modelId"></result>
+
+        <result property="goodsUnit" column="goods_unit"></result>
+        <result property="goodsForm" column="goods_form"></result>
+        <result property="goodsCondition" column="goods_condition"></result>
+        <result property="goodsBin" column="goods_bin"></result>
+        <result property="goodsLocation" column="goods_location"></result>
+        <result property="goodsInitPrice" column="goods_initPrice"></result>
+        <result property="goodsAvgPrice" column="goods_avgPrice"></result>
+        <result property="goodsLowPrice" column="goods_lowPrice"></result>
+
+        <result property="goodsSalePrice1" column="goods_salePrice1"></result>
+        <result property="goodsSalePrice2" column="goods_salePrice2"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsImageUrl" column="goods_imageUrl"></result>
+        <result property="goodsProducersId" column="goods_producersId"></result>
+        <result property="goodsSupplierId" column="goods_supplierId"></result>
+
+    </resultMap>
+    <select id="getGoodsByChName" resultMap="goods" >
+    select * from `goodsInformation` where goods_chName=#{goodsChName}
+    </select>
+    <!-- 根据商品id删除 -->
+    <delete id="delGoodsById" parameterType="cn.edu.zzuli.purchasesalestock.bean.Goods" >
+
+        delete from `goodsInformation` where goods_id=#{goodsId}
+    </delete>
+
+
+
+
+<!-- 根据传入商品的 条件-->
+    <resultMap id="getGoods" type="cn.edu.zzuli.purchasesalestock.bean.Goods">
+        <id property="goodsId" column="goods_id" ></id>
+        <result property="goodsChName" column="goods_chName"></result>
+        <result property="goodsTrivialName" column="goods_trivialName"></result>
+        <result property="goodsEnName" column="goods_enName"></result>
+        <result property="goodsTypeId" column="goods_typeId"></result>
+        <result property="goodsNo" column="goods_no"></result>
+        <result property="goodsCas" column="goods_cas"></result>
+
+        <result property="goodsPinyin" column="goods_pinyin"></result>
+        <result property="goodsMolecularFormula" column="goods_molecularFormula"></result>
+        <result property="goodsBrandId" column="goods_brandId"></result>
+        <result property="goodsModelId" column="goods_modelId"></result>
+
+        <result property="goodsUnit" column="goods_unit"></result>
+        <result property="goodsForm" column="goods_form"></result>
+        <result property="goodsCondition" column="goods_condition"></result>
+        <result property="goodsBin" column="goods_bin"></result>
+        <result property="goodsLocation" column="goods_location"></result>
+        <result property="goodsInitPrice" column="goods_initPrice"></result>
+        <result property="goodsAvgPrice" column="goods_avgPrice"></result>
+        <result property="goodsLowPrice" column="goods_lowPrice"></result>
+
+        <result property="goodsSalePrice1" column="goods_salePrice1"></result>
+        <result property="goodsSalePrice2" column="goods_salePrice2"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsImageUrl" column="goods_imageUrl"></result>
+        <result property="goodsProducersId" column="goods_producersId"></result>
+        <result property="goodsSupplierId" column="goods_supplierId"></result>
+    </resultMap>
+    <sql id="getGoods">
+        SELECT  * FROM  `goodsInformation`
+        <where>
+            <if test="goodsId!=null">
+                goods_id=#{goodsId}
+            </if>
+            <if test="goodsChName!=null">
+               AND goods_chName=#{goodsChName}
+            </if>
+            <if test="goodsPinyin!=null">
+                AND  goods_pinyin=#{goodsPinyin}
+            </if>
+            <if test="goodsTrivialName!=null">
+                AND  goods_trivialName=#{goodsTrivialName}
+            </if>
+            <if test="goodsEnName!=null">
+                AND  goods_enName=#{goodsEnName}
+            </if>
+            <if test="goodsBrandId!=null">
+                AND goods_brandId=#{goodsBrandId}
+            </if>
+            <if test="goodsMolecularFormula!=null">
+                AND goods_molecularFormula=#{goodsMolecularFormula}
+            </if>
+            <if test="goodsCas!=null">
+                AND goods_cas=#{goodsCas}
+            </if>
+            <if test="goodsAvgPrice!=null">
+                AND goods_avgPrice=#{goodsAvgPrice}
+            </if>
+            <if test="goodsLowPrice!=null">
+                AND goods_lowPrice=#{goodsLowPrice}
+            </if>
+            <if test="goodsSalePrice1!=null">
+                AND goods_salePrice1=#{goodsSalePrice1}
+            </if>
+            <if test="goodsPrice!=null">
+                AND goods_price=#{goodsPrice}
+            </if>
+        </where>
+
+    </sql>
+    <select id="getAllGoods" resultMap="getGoods">
+        <include refid="getGoods"></include>
+    </select>
+
+<!--   更新goods   -->
+  <sql id="updateGoods">
+        UPDATE `goodsInformation`
+            <trim prefix="SET" suffixOverrides=",">
+                <if test="goodsChName!=null">
+                    goods_chName=#{goodsChName},
+                </if>
+                <if test="goodsTrivialName!=null">
+                    goods_trivialName=#{goodsTrivialName},
+                </if>
+                <if test="goodsEnName!=null">
+                    goods_enName=#{goodsEnName},
+                </if>
+                <if test="goodsTypeId!=null">
+                    goods_typeId=#{goodsTypeId},
+                </if>
+                <if test="goodsNo!=null">
+                    goods_no=#{goodsNo},
+                </if>
+                <if test="goodsCas!=null">
+                    goods_cas=#{goodsCas},
+                </if>
+                <if test="goodsPinyin!=null">
+                    goods_pinyin=#{goodsPinyin},
+                </if>
+                 <if test="goodsMolecularFormula!=null">
+                     goods_molecularFormula=#{goodsMolecularFormula},
+                </if>
+                <if test="goodsUnit!=null">
+                    goods_unit=#{goodsUnit},
+                </if>
+                <if test="goodsBrandId!=null">
+                     goods_brandId=#{goodsBrandId},
+                </if>
+                <if test="goodsForm!=null">
+                    goods_form=#{goodsForm},
+                </if>
+                <if test="goodsCondition!=null">
+                    goods_condition=#{goodsCondition},
+                </if>
+                <if test="goodsLocation!=null">
+                    goods_location=#{goodsLocation},
+                </if>
+                <if test="goodsInitPrice!=null">
+                    goods_initPrice=#{goodsInitPrice},
+                </if>
+                <if test="goodsAvgPrice!=null">
+                    goods_avgPrice=#{goodsAvgPrice},
+                </if>
+                <if test="goodsLowPrice!=null">
+                    goods_lowPrice=#{goodsLowPrice},
+                </if>
+                <if test="goodsSalePrice1!=null">
+                    goods_salePrice1=#{goodsSalePrice1},
+                </if>
+                <if test="goodsSalePrice2!=null">
+                    goods_salePrice2=#{goodsSalePrice2},
+                </if>
+                <if test="goodsPrice!=null">
+                    goods_price=#{goodsPrice},
+                </if>
+                <if test="goodsImageUrl!=null">
+                    goods_imageUrl=#{goodsImageUrl},
+                </if>
+            </trim>
+            WHERE goods_id=#{goodsId}
+  </sql>
+
+    <update id="updateGoods">
+        <include refid="updateGoods"></include>
+    </update>
+</mapper>

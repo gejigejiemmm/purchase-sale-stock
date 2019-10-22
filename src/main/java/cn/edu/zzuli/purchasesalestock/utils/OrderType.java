@@ -1,14 +1,21 @@
 package cn.edu.zzuli.purchasesalestock.utils;
 
-public enum OrderStatus {
+public enum OrderType {
+    //配送状态
     BEFORE("商家已接单，请等待配货",100),
     BEGIN("正在派送中",200),
-    END("派送已完成",900);
+    END("派送已完成",233),
+
+    //支付状态
+    NO_PAY("尚未支付",300),
+    ALI_PAY("支付宝支付",333),
+    SUM_PAY("超过额度结算",335);
+
 
     private String msg;
     private int status;
 
-    private OrderStatus(String msg, int status) {
+    private OrderType(String msg, int status) {
         this.msg = msg;
         this.status = status;
     }
@@ -22,7 +29,7 @@ public enum OrderStatus {
     }
 
     public static String getMsgByStatus(Integer status) {
-        for (OrderStatus order : OrderStatus.values()) {
+        for (OrderType order : OrderType.values()) {
             if(order.getStatus() == status)
                 return order.getMsg();
         }
