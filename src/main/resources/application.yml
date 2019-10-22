@@ -6,7 +6,7 @@ spring:
       enabled: true
       additional-paths: src/main/java
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://112.74.58.0:3306/purchase-sale-stock?serverTimezone=Asia/Shanghai&useUnicode=yes&allowMultiQueries=true
     username: root
     password: huyihan

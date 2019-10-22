@@ -42,8 +42,9 @@ public class OrderController {
 
     @PostMapping("/add")
     @ApiOperation(value = "下单",httpMethod = "POST")
-    public Msg addOrders(Order order,@RequestParam("orderType") Integer orderType) {
-        if(orderService.addOrdersAndDetail(order,orderType)) {
+    public Msg addOrders(Order order,@RequestParam("orderType") Integer orderType,
+                         String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
+        if(orderService.addOrdersAndDetail(order,orderType,orderIphone,orderCuslocation,goodsId,goodsCounts)) {
             return Msg.success();
         }
         return Msg.fail();
@@ -64,8 +65,8 @@ public class OrderController {
 
     @GetMapping("/detail")
     @ApiOperation(value = "传入订单号获取订单详情",httpMethod = "GET")
-    public Msg getDetail(Integer oDetailId){
-        return Msg.success().add("detail",orderService.getDetail(oDetailId));
+    public Msg getDetail(Integer orderId){
+        return Msg.success().add("detail",orderService.getDetail(orderId));
     }
 
 

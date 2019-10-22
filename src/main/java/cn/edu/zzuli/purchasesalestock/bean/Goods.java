@@ -31,6 +31,9 @@ public class Goods {
     private String goodsProducersId;
     private String goodsSupplierId;
 
+    //在订单中的个数
+    private Integer goodsCountsInOrder;
+
     public Goods(){}
 
     public Goods

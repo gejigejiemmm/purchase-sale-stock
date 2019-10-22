@@ -21,5 +21,6 @@ public interface OrderService {
 
     OrderDetail getDetail(Integer oDetailId);
 
-    boolean addOrdersAndDetail(Order order,Integer orderType);
+    boolean addOrdersAndDetail(Order order,Integer orderType,String orderIphone,
+                               String orderCuslocation,Integer goodsId, Integer goodsCounts);
 }

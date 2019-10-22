@@ -17,14 +17,19 @@ public class OrderDetail{
     private Integer orderType;
     private String orderDesc;
 
+    private String orderIphone;
+    private String orderCuslocation;
+
     public OrderDetail(){}
 
-    public OrderDetail(Integer oDetailId, Integer orderId, Order order, Integer sendId, Integer orderType, String orderDesc) {
+    public OrderDetail(Integer oDetailId, Integer orderId, Order order, Integer sendId, Integer orderType, String orderDesc, String orderIphone, String orderCuslocation) {
         this.oDetailId = oDetailId;
         this.orderId = orderId;
         this.order = order;
         this.sendId = sendId;
         this.orderType = orderType;
         this.orderDesc = orderDesc;
+        this.orderIphone = orderIphone;
+        this.orderCuslocation = orderCuslocation;
     }
 }

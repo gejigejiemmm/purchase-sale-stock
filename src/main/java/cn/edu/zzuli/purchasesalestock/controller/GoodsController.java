@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @Api(tags = "商品接口")
+@RequestMapping("/goods")
 public class GoodsController {
 
     @Autowired

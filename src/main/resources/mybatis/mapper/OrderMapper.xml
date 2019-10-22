@@ -25,6 +25,8 @@
         <id property="oDetailId" column="odetail_id"></id>
         <result property="orderId" column="order_id"></result>
         <result property="sendId" column="order_send_id"></result>
+        <result property="orderCuslocation" column="order_customer_location"></result>
+        <result property="orderIphone" column="order_iphone"></result>
         <result property="orderType" column="order_type"></result>
         <result property="orderDesc" column="order_desc"></result>
         <association property="order" resultMap="order"> </association>
@@ -85,7 +87,7 @@
         <include refid="updateOrder"></include>
     </update>
 
-    <!--  OrderDetail getDetail(Integer oDetailId);  -->
+    <!--  OrderDetail getDetail(Integer orderId);  -->
     <select id="getDetail" resultMap="orderDetail">
         SELECT * FROM order_detail d
         JOIN `order` o
@@ -94,16 +96,34 @@
         ON o.order_id = i.item_order_id
         JOIN goodsInformation g
         ON g.goods_id = i.item_goods_id
-        WHERE d.odetail_id = #{oDetailId}
+        WHERE d.order_id = #{orderId}
     </select>
 
     <!--   boolean addOrder(OrderDetail orderDetail); -->
-    <insert id="addOrder" parameterType="cn.edu.zzuli.purchasesalestock.bean.OrderDetail">
+    <insert id="addOrder" parameterType="cn.edu.zzuli.purchasesalestock.bean.Order"
+            useGeneratedKeys="true" keyProperty="orderId">
         INSERT INTO `order`
-        VALUES(null,#{order.orderUId},#{order.orderBinId},#{order.orderPrices},
-        #{order.orderStatus},#{order.orderCreateTime},null);
+        VALUES(null,#{orderUId},#{orderBinId},#{orderPrices},
+        #{orderStatus},#{orderCreateTime},null);
+    </insert>
+
+    <!--  boolean addOrderDetail(OrderDetail orderDetail);  -->
+    <insert id="addOrderDetail" parameterType="cn.edu.zzuli.purchasesalestock.bean.OrderDetail">
         INSERT INTO order_detail
-        VALUES(null,LAST_INSERT_ID(),#{sendId},#{orderType},null);
+            VALUES(null,#{orderId},#{sendId},#{orderCuslocation},#{orderIphone},#{orderType},null);
+    </insert>
+
+    <!--    boolean addOrderItems(@Param("list") List<ShoppingCart_detail> goosDetails,@Param("orderId") Integer orderId);-->
+    <insert id="addOrderItems">
+        INSERT INTO orderitems(item_goods_id,item_goods_count,item_order_id)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.shoppingcart_dgoodsId},
+            #{item.shoppingcart_dgoodsNumber},
+            #{orderId}
+            )
+        </foreach>
     </insert>
 
 </mapper>
