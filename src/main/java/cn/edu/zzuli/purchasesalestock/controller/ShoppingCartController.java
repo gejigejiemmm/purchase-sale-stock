@@ -47,7 +47,13 @@ public class ShoppingCartController {
         }
     }
 
-
+    /*
+     *  time:2019/10/21 19:43
+     *  author:肖明珂
+     *  target:实现用户购物车中条目信息的查看（所有）
+     *  status:测试已经没有问题
+     *  description：用户可以查看购物车中所有的商品（需要传入购物车对应的no也可以是用户id+100二者等价）
+     */
     @RequestMapping("/getallitems")
     public Msg getallitems(@RequestParam(value = "no", required = true) Integer id){
         Collection<ShoppingCart_detail> result = detailService.getAll(id);
