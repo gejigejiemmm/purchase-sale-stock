@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class ShoppingCartDetailService {
@@ -22,7 +23,7 @@ public class ShoppingCartDetailService {
         return mapper.deleteitem(id);
     }
 
-    public Collection<Integer> getAll(Integer no){
+    public List<ShoppingCart_detail> getAll(Integer no){
         return mapper.getAll(no);
     }
 

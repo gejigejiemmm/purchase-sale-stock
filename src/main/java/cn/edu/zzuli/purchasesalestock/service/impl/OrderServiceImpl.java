@@ -1,6 +1,7 @@
 package cn.edu.zzuli.purchasesalestock.service.impl;
 
 import cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper;
+import cn.edu.zzuli.purchasesalestock.Mapper.ShoppingCartDetailMapper;
 import cn.edu.zzuli.purchasesalestock.bean.*;
 import cn.edu.zzuli.purchasesalestock.service.OrderService;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
@@ -22,6 +23,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderMapper orderMapper;
+
+    @Autowired
+    ShoppingCartDetailMapper shoppingCartDetailMapper;
 
     /**
      * 条件查询订单 根据 参数查询
@@ -84,28 +88,70 @@ public class OrderServiceImpl implements OrderService {
             if(!(initOrderInfo(order,orderType,orderIphone,orderCuslocation,detail))){
                 return false;
             }
-            //获取商品 id
-            //根据 该用户收款位置 所对应的仓库
-            //去对应的仓库减库存，修改订单的所属仓库  这三行应该放在配货的时候修改！！！！！！！
+
+            //减少用户存款 ---没必要？毕竟单点？ 考虑一下
+
+            //根据 该用户收款位置 所对应的仓库  鸽子halo
+            //去对应的仓库减库存，修改订单的所属仓库  这应该放在配货的时候修改！！！！！！！
 
             //初始化 商品详情信息，考虑面向的用户更多的是通过购物车方式下单
-            //这里直接把信息封装到 ShoppingCart_detail 实体类里边
+            //这里直接把信息封装到 ShoppingCart_detail 实体类里边  这里虽然麻烦了。方便了购物车下单
             ShoppingCart_detail item = new ShoppingCart_detail();
             item.setShoppingcart_dgoodsId(goodsId);
             item.setShoppingcart_dgoodsNumber(goodsCounts);
             List<ShoppingCart_detail> list =  new ArrayList();
             list.add(item);
 
+            //如果是老师代付，去修改老师的数据 （写完登陆接口再补） 鸽子halo
             //添加订单和订单详情  和 商品详情表
             if(orderMapper.addOrderDetail(detail) &&
                     orderMapper.addOrderItems( list,detail.getOrderId())) {
+                //记得清空购物车，等接口 鸽子halo
                 return true;
             }
         }
         return false;
     }
 
+    /**
+     * 通过购物车的方式下单
+     * 这是个批量下单
+     * 有若干商品，每个商品可以有若干个
+     *
+     * 逻辑同上面的 addOrdersAndDetail
+     * @return
+     */
+    @Transactional
+    public boolean addFromShoppingcart(Order order,Integer orderType,String orderIphone,
+                                       String orderCuslocation,Integer goodsId, Integer goodsCounts) {
+        if(order != null && orderType != null) {
+            OrderDetail detail = new OrderDetail();
+            if (!(initOrderInfo(order, orderType, orderIphone, orderCuslocation, detail))) {
+                return false;
+            }
 
+            //从用户购物车里获取所有商品信息
+            //购物车 no 并不是 购物车的id 而是 用户id + 100
+            List<ShoppingCart_detail> list = shoppingCartDetailMapper.getAll(order.getOrderUId()+100);
+            System.out.println(list);
+            //添加订单和订单详情  和 商品详情表
+            if(orderMapper.addOrderDetail(detail) &&
+                    orderMapper.addOrderItems( list,detail.getOrderId())) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+
+    /**
+     * 初始化订单信息
+     *
+     * 建议 一个方法 最多不要超过15行，超过最后提取出来
+     * 能复用的代码也可以提取出来
+     */
     public boolean initOrderInfo(Order order,Integer orderType,String orderIphone,
                         String orderCuslocation,OrderDetail detail ){
         //因为这个时候 订单还没开始  配货所以甚至订单状态为 BEFORE  (订单状态)

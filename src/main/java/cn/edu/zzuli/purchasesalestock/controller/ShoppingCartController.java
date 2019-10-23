@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @RequestMapping("/shoppingCart")
 @RestController
@@ -32,7 +33,7 @@ public class ShoppingCartController {
      *  status:测试已经没有问题
      *  description：用户注册完成以后，用户购物车自动创建，使用用户作为连接，no用作流水单号，用于单个物品与购物车连接的纽带
      */
-    @RequestMapping("/addCart")
+    @RequestMapping(value = "/addCart",method = RequestMethod.POST)
     @ApiOperation(value = "初始化创建购物车",httpMethod = "POST")
     public Msg addShoppingCart(@RequestParam(value = "uid", required = false) Integer uid){
         ShoppingCart cart = new ShoppingCart();
@@ -56,10 +57,10 @@ public class ShoppingCartController {
      *  status:测试已经没有问题
      *  description：用户可以查看购物车中所有的商品（需要传入购物车对应的no也可以是用户id+100二者等价）
      */
-    @RequestMapping("/getallitems")
+    @RequestMapping(value = "/getallitems",method = RequestMethod.GET)
     @ApiOperation(value = "查询用户购物车数据",httpMethod = "GET")
     public Msg getallitems(@RequestParam(value = "no", required = true) Integer id){
-        Collection<Integer> result = detailService.getAll(id);
+        List<ShoppingCart_detail> result = detailService.getAll(id);
         if(result==null){
             return Msg.success().add("error", "暂无数据");
         }
@@ -68,7 +69,7 @@ public class ShoppingCartController {
         }
     }
 
-    @RequestMapping("/additem")
+    @RequestMapping(value = "/additem",method = RequestMethod.POST)
     @ApiOperation(value = "在购物车中添加一条记录",httpMethod = "POST")
     public Msg additem(ShoppingCart_detail detail){
         detail.setShoppingcart_dgoodsDate(LocalDateTime.now());
@@ -81,7 +82,7 @@ public class ShoppingCartController {
         }
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     @ApiOperation(value = "删除购物车中的某一条记录",httpMethod = "POST")
     public Msg deleteitem(@RequestParam(value = "did", required = true) Integer did){
         boolean result = detailService.deleteitem(did);
@@ -93,7 +94,7 @@ public class ShoppingCartController {
         }
     }
 
-    @RequestMapping("/decrease")
+    @RequestMapping(value = "/decrease",method = RequestMethod.POST)
     @ApiOperation(value = "购物车中的某一条记录的购买数量减一",httpMethod = "POST")
     public Msg decreaseProduce(@RequestParam(value = "detailid", required = true) Integer id){
         ShoppingCart_detail detail = detailService.getOneById(id);
@@ -113,7 +114,7 @@ public class ShoppingCartController {
     }
 
 
-    @RequestMapping("/increase")
+    @RequestMapping(value = "/increase",method = RequestMethod.POST)
     @ApiOperation(value = "购物车中的某一条记录的购买数量加一",httpMethod = "POST")
     public Msg increaseProduce(@RequestParam(value = "detailid", required = true) Integer id){
         ShoppingCart_detail detail = detailService.getOneById(id);

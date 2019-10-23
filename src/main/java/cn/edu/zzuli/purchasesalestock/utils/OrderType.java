@@ -7,9 +7,10 @@ public enum OrderType {
     END("派送已完成",233),
 
     //支付状态
-    NO_PAY("尚未支付",300),
+    TEACHER_AND_NO_PAY("导师代付（暂未支付）",300),
     ALI_PAY("支付宝支付",333),
     SUM_PAY("超过额度结算",335);
+
 
 
     private String msg;

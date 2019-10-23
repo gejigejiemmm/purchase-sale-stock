@@ -23,4 +23,7 @@ public interface OrderService {
 
     boolean addOrdersAndDetail(Order order,Integer orderType,String orderIphone,
                                String orderCuslocation,Integer goodsId, Integer goodsCounts);
+
+    boolean addFromShoppingcart(Order order,Integer orderType,String orderIphone,
+                                String orderCuslocation,Integer goodsId, Integer goodsCounts);
 }

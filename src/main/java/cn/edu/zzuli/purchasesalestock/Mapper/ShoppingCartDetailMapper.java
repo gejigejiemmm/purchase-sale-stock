@@ -5,6 +5,7 @@ import cn.edu.zzuli.purchasesalestock.bean.ShoppingCart_detail;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;
+import java.util.List;
 
 @Mapper
 public interface ShoppingCartDetailMapper {
@@ -13,7 +14,7 @@ public interface ShoppingCartDetailMapper {
 
     public boolean deleteitem(Integer id);
 
-    public Collection<Integer> getAll(Integer no);
+    public List<ShoppingCart_detail> getAll(Integer no);
 
     public ShoppingCart_detail getOneById(Integer id);
 

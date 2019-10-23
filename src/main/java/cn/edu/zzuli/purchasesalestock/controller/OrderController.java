@@ -41,7 +41,7 @@ public class OrderController {
     }
 
     @PostMapping("/add")
-    @ApiOperation(value = "下单",httpMethod = "POST")
+    @ApiOperation(value = "用户单点下单",httpMethod = "POST")
     public Msg addOrders(Order order,@RequestParam("orderType") Integer orderType,
                          String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
         if(orderService.addOrdersAndDetail(order,orderType,orderIphone,orderCuslocation,goodsId,goodsCounts)) {
@@ -69,6 +69,14 @@ public class OrderController {
         return Msg.success().add("detail",orderService.getDetail(orderId));
     }
 
-
+    @PostMapping("/addFromShoppingcart")
+    @ApiOperation(value = "从购物车批量下单",httpMethod = "POST")
+    public Msg addFromShoppingcart(Order order,@RequestParam("orderType") Integer orderType,
+                         String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
+        if(orderService.addFromShoppingcart(order,orderType,orderIphone,orderCuslocation,goodsId,goodsCounts)) {
+            return Msg.success();
+        }
+        return Msg.fail();
+    }
 
 }

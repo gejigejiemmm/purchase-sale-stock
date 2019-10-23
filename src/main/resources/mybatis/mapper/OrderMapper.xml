@@ -100,6 +100,8 @@
     </select>
 
     <!--   boolean addOrder(OrderDetail orderDetail); -->
+    <!--  开启注解  三条 INSERT 一起发送成功！！！但是... LAST_INSERT_ID() 只能获取前一条插入的 id 对于都需要orderId的
+     addOrderDetail，addOrderItems来讲行不通，啧啧啧，炸裂！-->
     <insert id="addOrder" parameterType="cn.edu.zzuli.purchasesalestock.bean.Order"
             useGeneratedKeys="true" keyProperty="orderId">
         INSERT INTO `order`

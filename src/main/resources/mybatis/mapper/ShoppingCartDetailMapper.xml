@@ -28,8 +28,8 @@
         where shoppingcart_did = #{id}
     </delete>
 
-    <select id="getAll">
-        select shoppingcart_dgoodsId from
+    <select id="getAll" resultMap="shoppingCart_detail">
+        select shoppingcart_dgoodsId,shoppingcart_dgoodsNumber from
         shoppingCart_detail
         where shoppingcart_dno = #{no}
     </select>
