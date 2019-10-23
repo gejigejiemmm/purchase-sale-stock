@@ -23,4 +23,12 @@ public class CustomerserviceImpl {
     public Customer selectById(Integer id){
         return mapper.selectById(id);
     }
+
+    public Integer selectNumber(){
+        return mapper.selectNumber();
+    }
+
+    public Customer selectByNo(Integer no) {
+        return mapper.selectByNo(no);
+    }
 }

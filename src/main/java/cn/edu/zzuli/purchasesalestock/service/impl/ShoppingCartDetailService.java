@@ -22,7 +22,7 @@ public class ShoppingCartDetailService {
         return mapper.deleteitem(id);
     }
 
-    public Collection<ShoppingCart_detail> getAll(Integer no){
+    public Collection<Integer> getAll(Integer no){
         return mapper.getAll(no);
     }
 }

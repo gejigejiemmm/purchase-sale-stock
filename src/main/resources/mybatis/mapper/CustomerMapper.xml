@@ -44,5 +44,16 @@
         where customer_id = #{id}
     </select>
 
+    <select id="selectNumber" resultType="Integer">
+        select COUNT(*) FROM
+        customer
+    </select>
+
+    <select id="selectByNo" resultMap="customer">
+        select * from
+        customer
+        where customer_no = #{no}
+    </select>
+
 
 </mapper>

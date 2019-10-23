@@ -13,5 +13,5 @@ public interface ShoppingCartDetailMapper {
 
     public boolean deleteitem(Integer id);
 
-    public Collection<ShoppingCart_detail> getAll(Integer no);
+    public Collection<Integer> getAll(Integer no);
 }

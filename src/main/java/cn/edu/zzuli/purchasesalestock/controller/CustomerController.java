@@ -3,13 +3,17 @@ package cn.edu.zzuli.purchasesalestock.controller;
 
 import cn.edu.zzuli.purchasesalestock.bean.Customer;
 import cn.edu.zzuli.purchasesalestock.bean.Msg;
+import cn.edu.zzuli.purchasesalestock.bean.ShoppingCart;
 import cn.edu.zzuli.purchasesalestock.service.impl.CustomerserviceImpl;
+import cn.edu.zzuli.purchasesalestock.service.impl.ShoppingCartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/customer")
@@ -19,18 +23,30 @@ public class CustomerController{
     @Autowired
     private CustomerserviceImpl service;
 
+    @Autowired
+    private ShoppingCartService cartService;
+
 
     /*
     *  time:2019/10/19 17:15
     *  author:肖明珂
-    *  target:实现用户的添加
+    *  target:实现用户的添加同时为每一个用户初始化创建一个购物车实体
     *  status:测试已经没有问题
      */
     @PostMapping(value = "/addCustomer")
     @ApiOperation(value = "添加用户",httpMethod = "POST")
     public Msg addCustomer(Customer customer){
+        customer.setCustomerNo(90001+service.selectNumber()); //用户编号的生成90001加上数据库中用户的数目
+        Integer no = 90001+service.selectNumber();
         boolean result = service.saveCustomer(customer);
-        if(result){
+        Customer cc = service.selectByNo(no);//取出用户，初始化购物车需要用到用户id
+        ShoppingCart cart = new ShoppingCart();//初始化购物车实体类
+        cart.setShoppingCartPersonId(cc.getCustomerId());//使用id 建立起购物车和用户之间的关联
+        cart.setShoppingCartNo(cc.getCustomerId()+100);
+        cart.setShoppingCartTotlePrice(0);
+        cart.setShoppingCartDate(LocalDateTime.now());
+        boolean result1 = cartService.saveShoppnigCart(cart);//保存创建好的购物车
+        if(result&&result1){
             return Msg.success();
         }
         else{

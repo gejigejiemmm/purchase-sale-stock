@@ -12,4 +12,8 @@ public interface CustomerMapper {
     public boolean updateCustomer(Customer customer);
 
     public Customer selectById(Integer id);
+
+    public Integer selectNumber();
+
+    public Customer selectByNo(Integer no);
 }
