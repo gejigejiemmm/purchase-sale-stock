@@ -14,4 +14,8 @@ public interface ShoppingCartDetailMapper {
     public boolean deleteitem(Integer id);
 
     public Collection<Integer> getAll(Integer no);
+
+    public ShoppingCart_detail getOneById(Integer id);
+
+    public boolean updateDetailNumber(ShoppingCart_detail detail);
 }

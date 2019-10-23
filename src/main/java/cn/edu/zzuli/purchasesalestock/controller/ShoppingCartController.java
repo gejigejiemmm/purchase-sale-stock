@@ -93,4 +93,44 @@ public class ShoppingCartController {
         }
     }
 
+    @RequestMapping("/decrease")
+    @ApiOperation(value = "购物车中的某一条记录的购买数量减一",httpMethod = "POST")
+    public Msg decreaseProduce(@RequestParam(value = "detailid", required = true) Integer id){
+        ShoppingCart_detail detail = detailService.getOneById(id);
+        if((detail!=null)&&(detail.getShoppingcart_dgoodsNumber()>0)){
+            detail.setShoppingcart_dgoodsNumber(detail.getShoppingcart_dgoodsNumber()-1);
+            boolean result = detailService.updateDetailNumber(detail);
+            if(result){
+                return Msg.success();
+            }
+            else{
+                return Msg.fail().add("error", "系统繁忙，请稍后重试！");
+            }
+        }else{
+            return Msg.fail().add("error", "商品数量为零，不可减少！");
+        }
+
+    }
+
+
+    @RequestMapping("/increase")
+    @ApiOperation(value = "购物车中的某一条记录的购买数量加一",httpMethod = "POST")
+    public Msg increaseProduce(@RequestParam(value = "detailid", required = true) Integer id){
+        ShoppingCart_detail detail = detailService.getOneById(id);
+        if(detail!=null){
+            detail.setShoppingcart_dgoodsNumber(detail.getShoppingcart_dgoodsNumber()+1);
+            boolean result = detailService.updateDetailNumber(detail);
+            if(result){
+                return Msg.success();
+            }
+            else{
+                return Msg.fail().add("error", "系统繁忙，请稍后重试！");
+            }
+        }else{
+            return Msg.fail().add("error", "商品数量为零，不可减少！");
+        }
+
+    }
+
+
 }

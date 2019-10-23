@@ -25,4 +25,12 @@ public class ShoppingCartDetailService {
     public Collection<Integer> getAll(Integer no){
         return mapper.getAll(no);
     }
+
+    public ShoppingCart_detail getOneById(Integer id){
+        return mapper.getOneById(id);
+    }
+
+    public boolean updateDetailNumber(ShoppingCart_detail detail){
+        return mapper.updateDetailNumber(detail);
+    }
 }

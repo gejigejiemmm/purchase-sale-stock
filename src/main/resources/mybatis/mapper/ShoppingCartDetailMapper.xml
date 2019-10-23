@@ -33,4 +33,16 @@
         shoppingCart_detail
         where shoppingcart_dno = #{no}
     </select>
+
+    <select id="getOneById" resultMap="shoppingCart_detail">
+        select * from
+        shoppingCart_detail
+        where shoppingcart_did = #{id}
+    </select>
+
+    <update id="updateDetailNumber">
+        update shoppingCart_detail
+        set shoppingcart_dgoodsNumber=#{shoppingcart_dgoodsNumber}
+        where shoppingcart_did = #{shoppingcart_did}
+    </update>
 </mapper>
