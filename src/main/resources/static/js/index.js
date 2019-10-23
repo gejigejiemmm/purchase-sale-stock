@@ -22,4 +22,16 @@ layui.use(['layer', 'form','element','jquery'], function(){
         }
     })
 
+    //ajaxTest
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/bin/getAll",
+        success: function(msg){
+          console.log(msg);
+        },
+        error:function(){
+            console.log(":(");
+        }
+     });
+
 });
