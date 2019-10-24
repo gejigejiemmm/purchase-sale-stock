@@ -45,4 +45,13 @@
         set shoppingcart_dgoodsNumber=#{shoppingcart_dgoodsNumber}
         where shoppingcart_did = #{shoppingcart_did}
     </update>
+
+    <delete id="deleteAll">
+        delete from
+        shoppingCart_detail
+        where shoppingcart_did in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

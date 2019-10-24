@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 @RequestMapping("/shoppingCart")
@@ -71,8 +72,16 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/additem",method = RequestMethod.POST)
     @ApiOperation(value = "在购物车中添加一条记录",httpMethod = "POST")
-    public Msg additem(ShoppingCart_detail detail){
+    public Msg additem(@RequestParam(value = "number", required = true) Integer shoppingcart_dgoodsNumber,
+                       @RequestParam(value = "gid", required = true) Integer shoppingcart_dgoodsId,
+                       @RequestParam(value = "totlePrice", required = true) Integer shoppingcart_dtotlePrice,
+                       @RequestParam(value = "uid", required = true) Integer customer_id){
+        ShoppingCart_detail detail = new ShoppingCart_detail();
         detail.setShoppingcart_dgoodsDate(LocalDateTime.now());
+        detail.setShoppingcart_dgoodsNumber(shoppingcart_dgoodsNumber);
+        detail.setShoppingcart_dno(customer_id+100);
+        detail.setShoppingcart_dgoodsId(shoppingcart_dgoodsId);
+        detail.setShoppingcart_dtotlePrice(shoppingcart_dtotlePrice);
         boolean result = detailService.additem(detail);
         if(result){
             return Msg.success();
@@ -128,10 +137,38 @@ public class ShoppingCartController {
                 return Msg.fail().add("error", "系统繁忙，请稍后重试！");
             }
         }else{
-            return Msg.fail().add("error", "商品数量为零，不可减少！");
+            return Msg.fail().add("error", "系统繁忙，请稍后重试！");
         }
 
     }
+
+
+    /*
+     *  time:2019/10/24 9:00
+     *  author:肖明珂
+     *  target:对应用复选框选中商品的删除
+     *  status:测试
+     *  description：前段需要传回选中商品的id（多个用%链接）
+     */
+    @RequestMapping(value = "/deleteAll",method = RequestMethod.POST)
+    @ApiOperation(value = "对应用复选框选中商品的删除",httpMethod = "POST")
+    private Msg deleteAll(String args){
+        String[] arg = args.split("%");
+        LinkedList<Integer> idList = new LinkedList<Integer>();
+        for(String str : arg){
+            Integer item = Integer.parseInt(str);
+            idList.add(item);
+        }
+        boolean result = detailService.deleteAll(idList);
+        if(result){
+            return Msg.success();
+        }
+        else{
+            return Msg.fail().add("error", "系统繁忙，请稍后重试！");
+        }
+    }
+
+
 
 
 }

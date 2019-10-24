@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -33,5 +34,9 @@ public class ShoppingCartDetailService {
 
     public boolean updateDetailNumber(ShoppingCart_detail detail){
         return mapper.updateDetailNumber(detail);
+    }
+
+    public boolean deleteAll(LinkedList<Integer> list){
+        return mapper.deleteAll(list);
     }
 }
