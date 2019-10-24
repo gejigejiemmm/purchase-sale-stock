@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.ClerkMapper">
+
+<!--private Integer clerkId;
+    private String clerkName;
+    private Integer clerkNo;
+    private String clerkCompany;
+    private String clerkPosition;
+    private String clerkArea;
+    private String clerkSpell;
+    private String clerkBirthday;
+    private String clerkTelphone;
+    private String clerkLocation;   -->
+
+<!--添加销售员信息-->
+    <insert id="addClerk" parameterType="cn.edu.zzuli.purchasesalestock.bean.Clerk">
+        INSERT INTO `employee`(clerk_name,clerk_no,clerk_company,
+                               clerk_position,clerk_area,clerk_spell,clerk_birthday,
+                               clerk_telphone,clerk_location)
+                        VALUES(#{clerkName},#{clerkNo},#{clerkCompany},
+                               #{clerkPosition},#{clerkArea},#{clerkSpell},#{clerkBirthday},
+                               #{clerkTelphone},#{clerkLocation})
+    </insert>
+
+<!-- 根据id删除   -->
+    <delete id="delClerkById" parameterType="cn.edu.zzuli.purchasesalestock.bean.Clerk">
+        DELETE FROM `employee` WHERE clerk_id=#{clerkId}
+
+    </delete>
+
+<!--  根据条件查询  -->
+    <resultMap id="getClerk" type="cn.edu.zzuli.purchasesalestock.bean.Clerk">
+        <id property="clerkId" column="clerk_id"></id>
+        <result property="clerkName" column="clerk_name"></result>
+        <result property="clerkNo" column="clerk_no"></result>
+        <result property="clerkCompany" column="clerk_company"></result>
+        <result property="clerkPosition" column="clerk_position"></result>
+        <result property="clerkArea" column="clerk_area"></result>
+        <result property="clerkSpell" column="clerk_spell"></result>
+        <result property="clerkBirthday" column="clerk_birthday"></result>
+        <result property="clerkTelphone" column="clerk_telphone"></result>
+        <result property="clerkLocation" column="clerk_location"></result>
+    </resultMap>
+    <sql id="getClerk">
+        SELECT * FROM `employee`
+        <where>
+            <if test="clerkId!=null">
+                clerk_id=#{clerkId}
+            </if>
+            <if test="clerkName!=null">
+                AND clerk_name=#{clerkName}
+            </if>
+            <if test="clerkTelphone!=null">
+                AND clerk_telphone=#{clerkTelphone}
+            </if>
+            <if test="clerkSpell!=null">
+                AND clerk_spell=#{clerkSpell}
+            </if>
+            <if test="clerkBirthday!=null">
+                AND clerk_birthday=#{clerkBirthday}
+            </if>
+            <if test="clerkLocation!=null">
+                AND clerk_location=#{clerkLocation}
+            </if>
+            <if test="clerkCompany!=null">
+                AND  clerk_company=#{clerkCompany}
+            </if>
+            <if test="clerkPosition!=null">
+                AND  clerk_position=#{clerkPosition}
+            </if>
+            <if test="clerkArea!=null">
+                AND clerk_area=#{clerkArea}
+            </if>
+        </where>
+    </sql>
+    <select id="getClerk" resultMap="getClerk">
+            <include refid="getClerk"></include>
+    </select>
+
+<!-- 更新clerk信息   -->
+    <!--private Integer clerkId;
+    private String clerkName;
+    private Integer clerkNo;
+    private String clerkCompany;
+    private String clerkPosition;
+    private String clerkArea;
+    private String clerkSpell;
+    private String clerkBirthday;
+    private String clerkTelphone;
+    private String clerkLocation;   -->
+    <sql id="updateClerks">
+        UPDATE `employee`
+        <set>
+            <if test="clerkName!=null">
+                clerk_name=#{clerkName},
+            </if>
+            <if test="clerkNo!=null">
+                clerk_no=#{clerkNo},
+            </if>
+            <if test="clerkCompany!=null">
+                clerk_company=#{clerkCompany},
+            </if>
+            <if test="clerkPosition!=null">
+                clerk_position=#{clerkPosition},
+            </if>
+            <if test="clerkArea!=null">
+                clerk_area=#{clerkArea},
+            </if>
+            <if test="clerkSpell!=null">
+                clerk_spell=#{clerkSpell},
+            </if>
+            <if test="clerkBirthday!=null">
+                clerk_birthday=#{clerkBirthday},
+            </if>
+            <if test="clerkTelphone!=null">
+                clerk_telphone=#{clerkTelphone},
+            </if>
+            <if test="clerkLocation!=null">
+                clerk_location=#{clerkLocation}
+            </if>
+        </set>
+        WHERE clerk_id=#{clerkId}
+    </sql>
+
+    <update id="updateClerk">
+        <include refid="updateClerks"></include>
+    </update>
+
+</mapper>

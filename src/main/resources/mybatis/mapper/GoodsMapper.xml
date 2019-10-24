@@ -57,6 +57,7 @@ goodsProducersId goodsSupplierId;-->
         <result property="goodsProducersId" column="goods_producersId"></result>
         <result property="goodsSupplierId" column="goods_supplierId"></result>
         <result property="goodsCountsInOrder" column="item_goods_count"></result>
+        <result property="goodsCounts" column="goods_counts"></result>
 
     </resultMap>
     <select id="getGoodsByChName" resultMap="goods" >
@@ -101,6 +102,7 @@ goodsProducersId goodsSupplierId;-->
         <result property="goodsImageUrl" column="goods_imageUrl"></result>
         <result property="goodsProducersId" column="goods_producersId"></result>
         <result property="goodsSupplierId" column="goods_supplierId"></result>
+        <result property="goodsCounts" column="goods_counts"></result>
     </resultMap>
     <sql id="getGoods">
         SELECT  * FROM  `goodsInformation`

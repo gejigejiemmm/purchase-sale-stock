@@ -75,7 +75,7 @@ public class GoodsServiceImpl implements GoodsService {
                 "goodsCondition",goods.getGoodsCondition(),"goodsLocation",goods.getGoodsLocation(),"goodsInitPrice",
                 goods.getGoodsInitPrice(),"goodsAvgPrice",goods.getGoodsAvgPrice(),"goodsLowPrice",goods.getGoodsLowPrice(),
                 "goodsSalePrice1",goods.getGoodsSalePrice1(),"goodsSalePrice2",goods.getGoodsSalePrice2(),"goodsPrice",
-                goods.getGoodsPrice(),"goodsImageUrl",goods.getGoodsImageUrl());
+                goods.getGoodsPrice(),"goodsImageUrl",goods.getGoodsImageUrl(),"goodsCounts",goods.getGoodsCounts());
 
         if (goodsMapper.updateGoods(info))
             return true;

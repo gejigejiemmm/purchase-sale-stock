@@ -30,6 +30,7 @@ public class Goods {
     private String goodsImageUrl;
     private String goodsProducersId;
     private String goodsSupplierId;
+    private Integer goodsCounts;
 
     //在订单中的个数
     private Integer goodsCountsInOrder;
@@ -43,7 +44,7 @@ public class Goods {
              String goodsModelId, String goodsUnit, String goodsForm, String goodsCondition,
              String goodsBin, String goodsLocation, String goodsInitPrice, String goodsAvgPrice,
              String goodsLowPrice, String goodsSalePrice1, String goodsSalePrice2, String goodsPrice,
-             String goodsImageUrl, String goodsProducersId, String goodsSupplierId
+             String goodsImageUrl, String goodsProducersId, String goodsSupplierId,Integer goodsCounts
             ) {
         this.goodsId = goodsId;
         this.goodsChName = goodsChName;
@@ -70,5 +71,6 @@ public class Goods {
         this.goodsImageUrl = goodsImageUrl;
         this.goodsProducersId = goodsProducersId;
         this.goodsSupplierId = goodsSupplierId;
+        this.goodsCounts = goodsCounts;
     }
 }

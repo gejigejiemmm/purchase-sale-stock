@@ -1,6 +1,11 @@
 package cn.edu.zzuli.purchasesalestock.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class Clerk {
@@ -12,7 +17,9 @@ public class Clerk {
     private String clerkPosition;
     private String clerkArea;
     private String clerkSpell;
-    private String clerkBirthday;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate clerkBirthday;
     private String clerkTelphone;
     private String clerkLocation;
 
@@ -20,7 +27,10 @@ public class Clerk {
         super();
     }
 
-    public Clerk(Integer clerkId, String clerkName, Integer clerkNo, String clerkCompany, String clerkPosition, String clerkArea, String clerkSpell, String clerkBirthday, String clerkTelphone, String clerkLocation) {
+    public Clerk(Integer clerkId, String clerkName, Integer clerkNo,
+                 String clerkCompany, String clerkPosition, String clerkArea,
+                 String clerkSpell, LocalDate clerkBirthday, String clerkTelphone,
+                 String clerkLocation) {
         this.clerkId = clerkId;
         this.clerkName = clerkName;
         this.clerkNo = clerkNo;
