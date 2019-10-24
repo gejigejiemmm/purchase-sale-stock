@@ -1,5 +1,6 @@
 package cn.edu.zzuli.purchasesalestock.controller;
 
+import cn.edu.zzuli.purchasesalestock.bean.Clerk;
 import cn.edu.zzuli.purchasesalestock.bean.Goods;
 import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import cn.edu.zzuli.purchasesalestock.service.GoodsService;
@@ -65,4 +66,5 @@ public class GoodsController {
         }
         return Msg.fail();
     }
+
 }
