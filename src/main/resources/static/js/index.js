@@ -1,7 +1,6 @@
 //一般直接写在一个js文件中
-layui.use(['layer', 'form','element','jquery'], function(){
-    var layer = layui.layer
-    ,form = layui.form;
+layui.use(['laypage','element','jquery'], function(){
+    var laypage = layui.laypage;
     var element = layui.element;
     var $ = layui.jquery;
     var navBtn = $('.nav-btn');
@@ -26,24 +25,41 @@ layui.use(['layer', 'form','element','jquery'], function(){
         }
     })
 
+    //分页
+    laypage.render({
+        elem: 'test1'
+        ,count: 8 //数据总数，从服务端得到
+        ,jump: function(obj, first){
+            console.log(obj);
+          //obj包含了当前分页的所有参数，比如：
+        //   console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+        //   console.log(obj.limit); //得到每页显示的条数
+          console.log(first);
+          //首次不执行
+          if(!first){
+            //do something
+          }
+        }
+      });
 
     //ajaxTest
     $.ajax({
         type: "GET",
-        url: "http://localhost/goods/getGoods",
+        url: "http://localhost/goods/getGoods?p=2",
         success: function(result){
             loading.hide();
             let lists = result.data.goods.list;
             lists.map(function(item, index){
-                var card = $("<div class='card'></div>");
-                var good_img = $("<img src='http://localhost/images/img" + index + ".jpeg'  />");
+                var card_box = $("<div class='card-box'></div>");
+                var card = $("<a href='javascript:;' class='card'></a>");
+                var good_img = $("<img src='http://localhost/images/img1.jpeg'  />");
                 var good_name = $("<p  class='good-name'>" + item.goodsChName + "</p>")
                 var good_price = $("<p class='good-price'>¥" + item.goodsAvgPrice + "</p>")
-                console.log(item);
                 card.append(good_img);
                 card.append(good_name);
                 card.append(good_price);
-                goods.append(card);
+                card_box.append(card);
+                goods.append(card_box);
 
             })
         },

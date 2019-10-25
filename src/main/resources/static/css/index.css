@@ -1,3 +1,9 @@
+修改文本选中颜色
+span::selection,
+p::selection {
+    color: #fff;
+    background: #393D49;
+}
 .layui-nav{
     /* 顶部nav设置为绝对定位,脱离文档流,实现content直接设置100vh,
     然后box-sizing:border-box,
@@ -46,27 +52,47 @@
 .goods{
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between;
+    justify-content:space-evenly;
     margin: 0px 10px;
     margin-top: 10px;
+}
+
+.card-box{
+    flex-basis: 25%;
+    text-align: center;
+
 }
 
 
 
 .card{
     display: inline-block;
-    flex-basis: 25%;
+    /* flex-basis: 23%; */
+    width: 230px;
     margin: 5px 0px;
-    height: 230px;
+    height: 285px;
     overflow: hidden;
     border-radius: 12px;
+    transition-duration: 0.5s;
     border: 1px solid #f0f0f0;
-    box-shadow: 0px 0px 30px #f0f0f0;
+    box-shadow: 0px 0px 10px #f0f0f0;
 }
+
+.card:hover{
+    box-shadow: 0px 0px 20px gray;
+}
+
+
 
 .card  img{
     width: 100%;
     height: 80%;
+    /* 设置图片无法被选中 */
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    -khtml-user-select: none; 
+    user-select: none;
 }
 .card .good-name,
 .card .good-price{
@@ -109,8 +135,17 @@
     .layui-nav-box li{
         flex: 0 0 25%;
     }
-    
+
+
+    .card-box{
+        flex-basis: 45%;
+    }
     .card{
-        flex-basis: 48%;
+        width: unset;
+        height: 230px;
+    }
+
+    .card:hover{
+        box-shadow: none;
     }
 }
