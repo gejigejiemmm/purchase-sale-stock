@@ -19,7 +19,7 @@ public class Goods {
     private String goodsUnit;
     private String goodsForm;
     private String goodsCondition;
-    private String goodsBin;
+    private Integer goodsBin;
     private String goodsLocation;
     private String goodsInitPrice;
     private String goodsAvgPrice;
@@ -42,7 +42,7 @@ public class Goods {
              String goodsEnName, String goodsTypeId, Integer goodsNo, String goodsCas,
              String goodsPinyin, String goodsMolecularFormula, String goodsBrandId,
              String goodsModelId, String goodsUnit, String goodsForm, String goodsCondition,
-             String goodsBin, String goodsLocation, String goodsInitPrice, String goodsAvgPrice,
+             Integer goodsBin, String goodsLocation, String goodsInitPrice, String goodsAvgPrice,
              String goodsLowPrice, String goodsSalePrice1, String goodsSalePrice2, String goodsPrice,
              String goodsImageUrl, String goodsProducersId, String goodsSupplierId,Integer goodsCounts
             ) {

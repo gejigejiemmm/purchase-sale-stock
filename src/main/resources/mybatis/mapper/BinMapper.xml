@@ -36,6 +36,7 @@
     <sql id="getCounts">
           SELECT  goods_counts  FROM `goodsInformation`
           <where>
+
               <if test="goodsId!=null">
                   goods_id=#{goodsId}
               </if>
@@ -55,5 +56,14 @@
     </sql>
     <select id="getGoodsCounts" resultType="Integer">
         <include refid="getCounts"></include>
+    </select>
+
+    <select id="GoodsInfoInBinById" resultType="java.util.Map">
+        SELECT g.goods_id goodsId, g.goods_counts goodsCount FROM goodsInformation g
+        WHERE goods_bin = #{binId} AND g.goods_id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
     </select>
 </mapper>
