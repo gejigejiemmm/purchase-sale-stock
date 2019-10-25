@@ -8,6 +8,7 @@ p::selection {
     /* 顶部nav设置为绝对定位,脱离文档流,实现content直接设置100vh,
     然后box-sizing:border-box,
     padding:62px 0 */
+    z-index: 100;
     position: absolute;
     left: 0;
     right: 0;
