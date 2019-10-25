@@ -26,7 +26,7 @@ goodsProducersId goodsSupplierId;-->
         ,#{goodsImageUrl},#{goodsProducersId},#{goodsSupplierId})
     </insert>
 
-    <!-- 根据商品中文名称查询 -->
+    <!-- 根据商品id名称查询商品信息 -->
     <resultMap id="goods" type="cn.edu.zzuli.purchasesalestock.bean.Goods">
         <id property="goodsId" column="goods_id" ></id>
         <result property="goodsChName" column="goods_chName"></result>
@@ -58,11 +58,11 @@ goodsProducersId goodsSupplierId;-->
         <result property="goodsSupplierId" column="goods_supplierId"></result>
         <result property="goodsCountsInOrder" column="item_goods_count"></result>
         <result property="goodsCounts" column="goods_counts"></result>
-
     </resultMap>
-    <select id="getGoodsByChName" resultMap="goods" >
-    select * from `goodsInformation` where goods_chName=#{goodsChName}
+    <select id="getGoods" resultMap="goods" >
+    select * from `goodsInformation` where goods_id=#{goodsId}
     </select>
+
     <!-- 根据商品id删除 -->
     <delete id="delGoodsById" parameterType="cn.edu.zzuli.purchasesalestock.bean.Goods" >
 
@@ -105,7 +105,8 @@ goodsProducersId goodsSupplierId;-->
         <result property="goodsCounts" column="goods_counts"></result>
     </resultMap>
     <sql id="getGoods">
-        SELECT  * FROM  `goodsInformation`
+        SELECT  goods_id,goods_chName,goods_trivialName,goods_enName,goods_price,goods_imageUrl
+         FROM  `goodsInformation`
         <where>
             <if test="goodsId!=null">
                 goods_id=#{goodsId}

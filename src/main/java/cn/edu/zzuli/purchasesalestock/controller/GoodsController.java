@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -67,4 +68,15 @@ public class GoodsController {
         return Msg.fail();
     }
 
+    @PostMapping("/getGood")
+    @ApiOperation(value = "根据id得到商品信息",httpMethod = "POST")
+    public List<Goods> getGood(Integer goodsId){
+        List<Goods> goods = new ArrayList<>();
+        if (goodsId!=null){
+            goods=goodsService.getGood(goodsId);
+            if (goods!=null)
+                return goods;
+        }
+        return goods;
+    }
 }

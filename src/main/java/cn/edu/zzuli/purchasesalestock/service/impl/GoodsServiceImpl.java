@@ -10,6 +10,7 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,11 @@ public class GoodsServiceImpl implements GoodsService {
 
         if (goodsMapper.updateGoods(info))
             return true;
-
         return false;
+    }
+
+    @Override
+    public List<Goods> getGood(Integer goodsId) {
+        return goodsMapper.getGoods(goodsId);
     }
 }

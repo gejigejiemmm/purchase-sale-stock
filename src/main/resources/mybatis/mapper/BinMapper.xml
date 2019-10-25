@@ -23,5 +23,37 @@
         bin_address_id FROM bin
     </select>
 
+    <!--  boolean addBin(Bin bin);   -->
+    <insert id="addBin" parameterType="cn.edu.zzuli.purchasesalestock.bean.Bin"
+            useGeneratedKeys="true" keyProperty="binId" >
+        INSERT INTO  `bin`
+        (bin_name,bin_admin_id,bin_tips,bin_address_id)
+        VALUES
+        (#{binName},#{binAdminId},#{binTips},#{binAddressId})
+    </insert>
 
+    <!--  int getGoodsCounts(Map<String, Object> info);  -->
+    <sql id="getCounts">
+          SELECT  goods_counts  FROM `goodsInformation`
+          <where>
+              <if test="goodsId!=null">
+                  goods_id=#{goodsId}
+              </if>
+              <if test="goodsChName!=null">
+                  AND goods_chName=#{goodsChName}
+              </if>
+              <if test="goodsPinyin!=null">
+                  AND  goods_pinyin=#{goodsPinyin}
+              </if>
+              <if test="goodsTrivialName!=null">
+                  AND  goods_trivialName=#{goodsTrivialName}
+              </if>
+              <if test="goodsEnName!=null">
+                  AND  goods_enName=#{goodsEnName}
+              </if>
+          </where>
+    </sql>
+    <select id="getGoodsCounts" resultType="Integer">
+        <include refid="getCounts"></include>
+    </select>
 </mapper>

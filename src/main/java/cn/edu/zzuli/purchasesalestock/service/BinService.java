@@ -11,4 +11,9 @@ import java.util.List;
 public interface BinService {
 
     List<Bin> getBins();
+
+    boolean addBin(Bin bin);
+
+    boolean ifMoreFifty(Integer goodsId, String goodsChName, String goodsPinyin,
+                       String goodsTrivialName, String goodsEnName);
 }

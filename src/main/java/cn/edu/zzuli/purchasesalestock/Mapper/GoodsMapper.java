@@ -20,6 +20,7 @@ public interface GoodsMapper {
 
     boolean updateGoods(Map<String, Object> info);
 
+    List<Goods> getGoods(Integer goodsId);
 
 
 }

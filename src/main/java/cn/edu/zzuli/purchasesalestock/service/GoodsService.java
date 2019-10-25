@@ -19,4 +19,6 @@ public interface GoodsService {
                          Integer goodsLowPrice, Integer goodsSalePrice1, Integer goodsPrice);
 
     boolean updateGoods(Goods goods);
+
+    List<Goods> getGood(Integer goodsId);
 }
