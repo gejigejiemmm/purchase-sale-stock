@@ -3,6 +3,7 @@ package cn.edu.zzuli.purchasesalestock.utils;
 public enum OrderType {
     //配送状态
     BEFORE("商家已接单，请等待配货",100),
+    ALLCATION("配货中",150),
     BEGIN("正在派送中",200),
     END("派送已完成",233),
 

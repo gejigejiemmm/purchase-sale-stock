@@ -3,7 +3,7 @@ package cn.edu.zzuli.purchasesalestock.utils;
 public enum AllocationType {
 
     //配货状态
-    BEFORE_ALLOCATION("尚未开始调货",400),
+    BEFORE_ALLOCATION("开始调货",400),
     NO_GOODS("缺货",404),
     FINISH_ALLOCATION("调货完成",410),
 

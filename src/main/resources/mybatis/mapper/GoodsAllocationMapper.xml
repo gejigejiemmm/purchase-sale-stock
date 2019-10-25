@@ -18,13 +18,27 @@ allocationStatus; allocationFromId; allocationToId; allocationCreateTime; alloca
         <association property="goods" resultMap="cn.edu.zzuli.purchasesalestock.Mapper.GoodsMapper.goods"></association>
     </resultMap>
 
-    <!--  List<GoodsAllocation> getAllocations(); -->
-    <select id="getAllocations" resultMap="allocation">
+    <!--  adetailId; allocationId; allocationType;
+    allocationDesc; goodsAllocation;  -->
+    <resultMap id="detail" type="cn.edu.zzuli.purchasesalestock.bean.GoodsAllocationDetail">
+        <id property="adetailId" column="adetail_id"></id>
+        <result property="allocationId" column="allocation_id"></result>
+        <result property="allocationType" column="allocation_type"></result>
+        <result property="allocationDesc" column="allocation_desc"></result>
+        <association property="goodsAllocation" resultMap="allocation"></association>
+    </resultMap>
+
+    <sql id="get">
         SELECT * FROM goods_allocation a
         JOIN orderitems o
         ON o.item_order_id = a.allocation_order_id
         JOIN goodsInformation g
         ON g.goods_id = o.item_goods_id
+    </sql>
+
+    <!--  List<GoodsAllocation> getAllocations(); -->
+    <select id="getAllocations" resultMap="allocation">
+        <include refid="get"></include>
         <where>
             a.allocation_fromId = #{allocationFromId}
 
@@ -33,6 +47,9 @@ allocationStatus; allocationFromId; allocationToId; allocationCreateTime; alloca
             </if>
             <if test="allocationToId != null">
                 AND allocation_toId = #{allocationToId}
+            </if>
+            <if test="allocationEId != null">
+                AND allocation_eId = #{allocationEId}
             </if>
              <if test="allocationCreateTime != null">
                 AND allocation_createTIme <![CDATA[ >= ]]> #{allocationCreateTime}
@@ -43,5 +60,25 @@ allocationStatus; allocationFromId; allocationToId; allocationCreateTime; alloca
         </where>
 
     </select>
+    <!--  GoodsAllocationDetail getDetail(Integer allocationId);  -->
+    <select id="getDetail" resultMap="detail">
+        <include refid="get"></include>
+        JOIN goods_allocation_detail d
+        ON d.allocation_id = a.allocation_id
+        WHERE d.allocation_id = allocationId
+    </select>
+
+    <!--  boolean addAllocation(GoodsAllocation goodsAllocation);  -->
+    <insert id="addAllocation" parameterType="cn.edu.zzuli.purchasesalestock.bean.GoodsAllocation" 
+            useGeneratedKeys="true" keyProperty="allocationId">
+        INSERT INTO goods_allocation(allocation_eId,allocation_order_id,
+        allocation_status,allocation_fromId,allocation_createTIme)
+        VALUES(#{allocationEId},#{allocationOrderId},#{allocationStatus},#{allocationFromId},#{allocationCreateTime})
+    </insert>
+    <!--  boolean addDetail(GoodsAllocationDetail detail);  -->
+    <insert id="addDetail" parameterType="cn.edu.zzuli.purchasesalestock.bean.GoodsAllocationDetail">
+        INSERT INTO goods_allocation_detail(allocation_id,allocation_type,allocation_desc)
+        VALUES(#{allocationId},#{allocationType},#{allocationDesc})
+    </insert>
 
 </mapper>

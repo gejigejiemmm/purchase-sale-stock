@@ -69,6 +69,13 @@ public class OrderController {
         return Msg.success().add("detail",orderService.getDetail(orderId));
     }
 
+    /**
+     * 从购物车批量西单
+     * 目前有些问题，现在的商品添加是直接拉去购物车获取的
+     * 按道理来讲，应该是要获取 勾选的 商品的信息，这个看前端怎么传，
+     * 鸽子
+     * @return
+     */
     @PostMapping("/addFromShoppingcart")
     @ApiOperation(value = "从购物车批量下单",httpMethod = "POST")
     public Msg addFromShoppingcart(Order order,@RequestParam("orderType") Integer orderType,
