@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.ReturnGoodsMapper">
+
+
+    <!-- 简单的字段映射 -->
+    <resultMap id="ReturnGoods" type="cn.edu.zzuli.purchasesalestock.bean.ReturnGoods">
+        <id property="returnGoodsId" column="returnGoods_id"></id>
+        <result property="returnGoodsNo" column="returnGoods_no"></result>
+        <result property="returnGoodsData" column="returnGoods_data"></result>
+        <result property="returnGoodsFee" column="returnGoods_fee"></result>
+        <result property="returnGoodsOrderId" column="returnGoods_order_id"></result>
+    </resultMap>
+
+    <insert id="addReturnGoods">
+        insert into
+        returngoods
+        (returnGoods_no, returnGoods_data, returnGoods_fee, returnGoods_order_id)
+        values (#{returnGoodsNo}, #{returnGoodsData}, #{returnGoodsFee}, #{returnGoodsOrderId})
+    </insert>
+
+</mapper>

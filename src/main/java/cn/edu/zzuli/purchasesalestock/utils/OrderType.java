@@ -1,6 +1,11 @@
 package cn.edu.zzuli.purchasesalestock.utils;
 
 public enum OrderType {
+
+    //已经退货
+    RETURN("用户已退货", 250),
+
+
     //配送状态
     BEFORE("商家已接单，请等待配货",100),
     ALLCATION("配货中",150),

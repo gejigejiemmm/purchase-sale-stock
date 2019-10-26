@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface OrderMapper {
+public interface OrderMapper{
 
     List<Order> getALlOrders(Map<String, Object> info);
 
@@ -24,4 +24,6 @@ public interface OrderMapper {
     OrderDetail getDetail(Integer orderId);
 
     boolean addOrderItems(@Param("list") List<ShoppingCart_detail> goosDetails,@Param("orderId") Integer orderId);
+
+    public boolean deleteOrderAndDetail(Integer order_id);
 }

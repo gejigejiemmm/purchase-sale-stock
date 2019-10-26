@@ -128,4 +128,10 @@
         </foreach>
     </insert>
 
+    <insert id="deleteOrderAndDetail">
+        delete from
+        order
+
+    </insert>
+
 </mapper>
