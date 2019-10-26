@@ -1,30 +1,10 @@
 //一般直接写在一个js文件中
-layui.use(['laypage','element','jquery','flow'], function(){
-    var laypage = layui.laypage;
-    var element = layui.element;
+layui.use(['jquery','flow'], function(){
     var flow = layui.flow;
     var $ = layui.jquery;
-    var navBtn = $('.nav-btn');
-    var nav = $('.layui-nav');
+
     //错误提示
     var error = $('.error');
-
-    var goods = $('.goods');
-
-    //下拉按钮单机事件
-    navBtn.click(function(){
-        if(nav.hasClass('layui-nav-pc')){
-            nav.removeClass('layui-nav-pc');
-            nav.addClass('layui-nav-mobile');
-            navBtn.removeClass('nav-btn-status2');
-            navBtn.addClass('nav-btn-status1');
-        }else{
-            nav.removeClass('layui-nav-mobile');
-            nav.addClass('layui-nav-pc');
-            navBtn.removeClass('nav-btn-status1');
-            navBtn.addClass('nav-btn-status2');
-        }
-    })
 
     //flow
     flow.load({
@@ -40,10 +20,10 @@ layui.use(['laypage','element','jquery','flow'], function(){
         success: function(res){
           let list = res.data.goods.list;
                     //假设你的列表返回在data集合中
-                    layui.each(res.data.goods.list, function(index, item){
+                    layui.each(list, function(index, item){
                       lis.push(
                         `<div class='card-box'>
-                        <a href='javascript:;' class='card'>
+                        <a href='http://localhost/details.html' class='card'>
                         <img src='http://localhost/images/img2.jpeg'  />
                         <p  class='good-name'>
                               <span>${item.goodsChName}</span>
@@ -56,7 +36,6 @@ layui.use(['laypage','element','jquery','flow'], function(){
                         </a>
                         </div>`);
                     }); 
-
                     //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
                     //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
                     next(lis.join(''), page < res.data.goods.pages);    

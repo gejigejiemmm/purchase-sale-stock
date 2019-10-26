@@ -1,0 +1,84 @@
+.banner-box{
+    width: 800px;
+    height: 380px;
+    display: flex;
+    margin: 50px auto;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+    transition-duration: 0.6s;
+}
+
+.banner-box:hover,
+.info:hover{
+    box-shadow: 0px 0px 20px #d4d7dd;
+}
+
+.banner-left{
+    flex-basis: 50%;
+    line-height: 380px;
+    text-align: center;
+}
+
+.banner-left img{
+    width: 90%;
+    height: 90%;
+    border-radius: 20px;
+}
+
+.banner-right{
+    flex-basis: 50%;
+}
+
+.banner-right-txt1{
+    width: 95%;
+    height: 80px;
+    border: 1px solid #f0f0f0;
+    margin: 15px 0px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+}
+
+.banner-right-txt2{
+    width: 95%;
+    height: 250px;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+}
+
+.info{
+    width: 800px;
+    min-height: 840px;
+    margin: 50px auto;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+    transition-duration: 0.5s;
+}
+
+.banner:hover,
+.info:hover{
+    box-shadow: 0px 0px 30px #f0f0f0;
+}
+
+.help-box{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    top: 88vh;
+    right: 2vw;
+    cursor: pointer;
+    border:1px solid #f0f0f0;
+    transition-duration: 0.4s;
+    box-shadow: 0px 0px 20px #d4d7dd;
+}
+
+.help-box:hover{
+    box-shadow: 0px 0px 40px #d4d7dd;
+}

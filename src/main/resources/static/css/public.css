@@ -1,0 +1,113 @@
+
+/* 修改文本选中颜色 */
+span::selection,
+p::selection {
+    color: #fff;
+    background: #393D49;
+}
+.layui-nav{
+    /* 顶部nav设置为绝对定位,脱离文档流,实现content直接设置100vh,
+    然后box-sizing:border-box,
+    padding:62px 0 */
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 8px #f0f0f0;
+}
+.layui-nav-item{
+    text-align: center;
+    color: black;
+}
+.layui-nav .layui-nav-item a{
+    color: black;
+}
+.layui-nav .layui-nav-item a:hover{
+    color: black;
+}
+.layui-nav-box{
+    display: inline-block;
+    color: black;
+}
+.nav-btn{
+    display: none;
+}
+.layui-nav-mobiie{
+    height: 122px;
+}
+.layui-nav-pc{
+    height: 65px;
+}
+.nav-btn-status1{
+    transform: rotate(180deg);
+}
+.nav-btn-status2{
+    transform: rotate(0deg);
+}
+
+.content{
+    /* 设置为最小height,便于内容扩展 */
+    min-height: 100vh;
+    margin-bottom: -60px;
+    box-sizing: border-box;
+    padding: 62px 2px;
+}
+
+
+
+.error{
+    display: none;
+    text-align: center;    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+}
+
+
+.footer{
+    color: white;
+    text-align: center;
+    line-height: 62px;
+    height: 60px;
+    /* background-color: #393D49; */
+    background-color: #fff;
+    box-shadow: 0 -8px 20px #f0f0f0;
+    color: black;
+}
+
+/* 手机端样式表 */
+@media only screen and (max-width:500px) {
+    .layui-nav{
+        padding: 0px 5px;
+    }
+    /* 下拉按钮显示 */
+    .nav-btn{
+        display: inline-block;
+        line-height: 60px;
+        text-align: center;
+    }
+    .layui-nav-box{
+        display: flex;
+    }
+
+    .layui-nav-box li{
+        flex: 0 0 25%;
+    }
+
+}
+/*iphone SE 350px宽度以下*/
+@media only screen and (max-width: 350px){
+    .layui-nav-item a{
+        font-size: 0.8em;
+    }
+    .layui-btn-sm{
+        height: 25px;
+        line-height: 25px;
+        padding: 0px 5px;
+        font-size: 7px;
+    }
+}
