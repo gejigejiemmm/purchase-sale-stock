@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--Integer saleId, Integer saleType, Integer orderId,
+LocalDateTime saleCreateTime, LocalDateTime saleEndTime,
+Integer saleStatus, Integer saleBinId-->
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.BinMapper">
+
+
+    <resultMap id="sale" type="cn.edu.zzuli.purchasesalestock.bean.Sale">
+        <id property="saleId" column="sale_id"></id>
+        <result property="saleType" column="sale_type"></result>
+        <result property="orderId" column="sale_order_id"></result>
+        <result property="saleCreateTime" column="sale_createTime"></result>
+        <result property="saleEndTime" column="sale_endTime"></result>
+        <result property="saleStatus" column="sale_status"></result>
+        <result property="saleBinId" column="sale_binId"></result>
+    </resultMap>
+
+    <!--    List<Sale> getSales();-->
+    <select id="getSales">
+        SELECT * FROM
+        sale
+    </select>
+
+</mapper>
