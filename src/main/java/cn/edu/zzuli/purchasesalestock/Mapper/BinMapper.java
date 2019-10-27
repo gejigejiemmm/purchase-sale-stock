@@ -17,6 +17,7 @@ public interface BinMapper {
     boolean addBin(Bin bin);
 
     int getGoodsCounts(Map<String, Object> info);
+
     List<Map<Integer,Integer>> GoodsInfoInBinById(List<Integer> list,Integer binId);
 //    List<Goods> getGoods(Goods goods);
 }

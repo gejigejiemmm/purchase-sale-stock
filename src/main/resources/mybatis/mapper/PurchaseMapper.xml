@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.PurchaseMapper">
+
+<!--Integer purchaseId;
+    Integer purchaseOrderId;
+    Integer purchaseEId;
+    Double purchasePrice;
+    Integer purchaseCount;
+    Integer purchaseStatus;-->
+    <insert id="addPurchase" useGeneratedKeys="true" keyProperty="purchaseId" parameterType="cn.edu.zzuli.purchasesalestock.bean.Purchase">
+
+        INSERT INTO `purchase` (purchase_order_id,purchase_eId,purchase_price,
+                               purchase_count,purchase_status)
+                               VALUES
+                               (#{purchaseOrderId},#{purchaseEId},#{purchasePrice},
+                                #{purchaseCount},#{purchaseStatus})
+
+    </insert>
+
+<!--    private Integer pdetailId;
+    private Integer purchaseId;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime purchaseCreateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime purchaseEndTime;
+    private String purchaseSupplierI;-->
+    <insert id="addPurchaseDetail" parameterType="cn.edu.zzuli.purchasesalestock.bean.PurchaseDetail">
+        INSERT INTO `purchase_detail`(purchase_id,purchase_createTime,purchase_endTime,purchase_supplierI)
+        VALUES (#{purchaseId},#{purchaseCreateTime},#{purchaseEndTime},#{purchaseSupplierI})
+    </insert>
+
+<!--private Integer purchaseId;
+    private Integer purchaseOrderId;
+    private Integer purchaseEId;
+    private Double purchasePrice;
+    private Integer purchaseCount;
+    private Integer purchaseStatus;
+    private List<Goods> goods;  -->
+
+<!--private Integer itemId;
+    private Integer itemPurchaseId;
+    private Integer itemOrderId;
+    private Integer itemGoodsId;-->
+    <resultMap id="purchaseItem" type="cn.edu.zzuli.purchasesalestock.bean.PurchaseItem">
+        <id property="itemId" column="item_id"></id>
+        <result property="itemPurchaseId" column="item_purchase_id"></result>
+        <result property="itemOrderId" column="item_order_id"></result>
+        <result property="itemGoodsId" column="item_goods_id"></result>
+        <association property="goods" resultMap="cn.edu.zzuli.purchasesalestock.Mapper.GoodsMapper.goods"></association>
+    </resultMap>
+    <resultMap id="purchase" type="cn.edu.zzuli.purchasesalestock.bean.Purchase">
+        <id property="purchaseId" column="purchase_id"></id>
+        <result property="purchaseOrderId" column="purchase_order_id"></result>
+        <result property="purchaseEId" column="purchase_eId"></result>
+        <result property="purchasePrice" column="purchase_price"></result>
+        <result property="purchaseCount" column="purchase_count"></result>
+        <result property="purchaseStatus" column="purchase_status"></result>
+        <association property="purchaseItem" resultMap="purchaseItem"></association>
+    </resultMap>
+    <select id="getInformation" resultMap="purchase">
+        SELECT *
+        FROM `purchase` p
+        left JOIN `purchase_items` pt
+        on p.purchase_id=pt.item_purchase_id
+        left join `goodsInformation` g
+        on pt.item_goods_id=g.goods_id
+        WHERE p.purchase_id=#{purchaseId}
+
+    </select>
+</mapper>

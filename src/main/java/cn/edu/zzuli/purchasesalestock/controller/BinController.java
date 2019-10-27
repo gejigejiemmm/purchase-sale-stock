@@ -43,27 +43,34 @@ public class BinController {
 
     @PostMapping("/getGood")
     @ApiOperation(value = "得到数量小于50的商品信息",httpMethod = "POST")
-    public List<Goods> getGood(Integer goodsId, String goodsChName, String goodsPinyin,
-                               String goodsTrivialName, String goodsEnName){
+    public List getGood(Integer goodsId, String goodsChName, String goodsPinyin,
+                               String goodsTrivialName, String goodsEnName,Integer goodsBin){
         List<Goods> goods = new ArrayList<>();
-        if (binService.ifMoreFifty(goodsId,goodsChName,goodsPinyin,goodsTrivialName,goodsEnName)){
+        if (binService.ifMoreFifty(goodsId,goodsChName,goodsPinyin,goodsTrivialName,goodsEnName,goodsBin)){
             goods = goodsService.getGood(goodsId);
             return goods;
+        }else {
+            List<String> strs=new ArrayList<String>();
+            strs.add("该商品数量大于50，无需补充");
+            return strs;
         }
-        return null;
+
     }
 
     /**
      * 前端或者后端使用定时器操作！来定时从该接口拿信息 鸽子
      *
-     * 从 仓库里 开始查询 数量小于50的商品信息List<Goods>
-     * 返给前端 这个时候仓管员或者采购员看到了这些补货的商品信息
+     * 从 仓库里 开始查询 数量小于50的商品信息List<Goods>  √
+     * 返给前端 这个时候仓管员或者采购员看到了这些补货的商品信息  √
      *
      * 开始点击 补货（采购）按钮来 进行补货操作
-     * 这个时候 要生成 一个 采购单，和详单
-     * 并且 将这些要补货的商品 id  和 订单id 一一对应在 补货单items表中
      *
-     * 下次查询采购单的时候，把采货单对应的 商品查出来
+     * 这个时候 要生成 一个 采购单，和详单   √
+     *
+     * 并且 将这些要补货的商品 id  和 订单id 一一对应在 补货单items表中  √
+     *
+     * 下次查询采购单的时候，把采购单对应的 商品查出来  √
+     *
      * halo
      */
 

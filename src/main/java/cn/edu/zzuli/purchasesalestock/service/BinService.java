@@ -15,5 +15,5 @@ public interface BinService {
     boolean addBin(Bin bin);
 
     boolean ifMoreFifty(Integer goodsId, String goodsChName, String goodsPinyin,
-                       String goodsTrivialName, String goodsEnName);
+                       String goodsTrivialName, String goodsEnName,Integer goodsBin);
 }

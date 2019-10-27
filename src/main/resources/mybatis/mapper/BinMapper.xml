@@ -36,7 +36,9 @@
     <sql id="getCounts">
           SELECT  goods_counts  FROM `goodsInformation`
           <where>
-
+                <if test="goodsBin">
+                    goods_bin=#{goodsBin}
+                </if>
               <if test="goodsId!=null">
                   goods_id=#{goodsId}
               </if>

@@ -30,12 +30,15 @@ public class BinServiceImpl implements BinService {
         return false;
     }
 
+
+//    判断商品数量是否大于50
     @Override
     public boolean ifMoreFifty(Integer goodsId, String goodsChName, String goodsPinyin,
-                              String goodsTrivialName, String goodsEnName) {
+                              String goodsTrivialName, String goodsEnName,Integer goodsBin) {
         Map<String, Object> info = new HashMap<>();
         BaseUtils.initInfo(info,"goodsId",goodsId,"goodsChName",goodsChName,
-        "goodsPinyin",goodsPinyin,"goodsTrivialName",goodsTrivialName,"goodsEnName",goodsEnName);
+                                      "goodsPinyin",goodsPinyin,"goodsTrivialName",goodsTrivialName,
+                                      "goodsEnName",goodsEnName,"goodsBin",goodsBin);
         Integer counts = binMapper.getGoodsCounts(info);
         if (counts<50){
             return true;
