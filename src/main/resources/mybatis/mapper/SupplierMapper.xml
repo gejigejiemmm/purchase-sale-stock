@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.SupplierMapper">
+
+    <!-- 简单的字段映射 -->
+    <resultMap id="Supplier" type="cn.edu.zzuli.purchasesalestock.bean.Supplier">
+        <id property="supplierId" column="supplier_id"></id>
+        <result property="supplierName" column="supplier_name"></result>
+        <result property="supplierUnit" column="supplier_unit"></result>
+        <result property="supplierNo" column="supplier_no"></result>
+        <result property="supplierSpell" column="supplier_spell"></result>
+        <result property="supplierType" column="supplier_type"></result>
+        <result property="supplierBrand" column="supplier_brand"></result>
+        <result property="supplierLocation" column="supplier_location"></result>
+        <result property="supplierTelphone" column="supplier_telphone"></result>
+    </resultMap>
+
+    <insert id="addSupplier">
+        insert into
+        supplier
+        (supplier_name, supplier_unit, supplier_no, supplier_spell, supplier_type, supplier_brand, supplier_location, supplier_telphone)
+        values (#{supplierName}, #{supplierUnit}, #{supplierNo}, #{supplierSpell}, #{supplierType}, #{supplierBrand}, #{supplierLocation}, #{supplierTelphone})
+    </insert>
+
+    <update id="updateSupplier">
+        update supplier
+        set
+        supplier_name=#{supplierName},
+        supplier_unit=#{supplierUnit},
+        supplier_spell=#{supplierSpell},
+        supplier_type=#{supplierType},
+        supplier_brand=#{supplierBrand},
+        supplier_location=#{supplierLocation},
+        supplier_telphone=#{supplierTelphone}
+        where
+        supplier_id = #{supplierId}
+    </update>
+
+    <select id="getAllSuppliers" resultMap="Supplier">
+        select * from
+        supplier
+        order by supplier_id
+    </select>
+
+    <select id="selectById" resultMap="Supplier">
+        select * from
+        supplier
+        where supplier_id = #{id}
+    </select>
+</mapper>

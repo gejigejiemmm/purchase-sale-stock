@@ -22,6 +22,46 @@ public class ReturnGoods {
         this.returnGoodsOrderId = returnGoodsOrderId;
     }
 
+    public Integer getReturnGoodsId() {
+        return returnGoodsId;
+    }
+
+    public void setReturnGoodsId(Integer returnGoodsId) {
+        this.returnGoodsId = returnGoodsId;
+    }
+
+    public Integer getReturnGoodsNo() {
+        return returnGoodsNo;
+    }
+
+    public void setReturnGoodsNo(Integer returnGoodsNo) {
+        this.returnGoodsNo = returnGoodsNo;
+    }
+
+    public LocalDateTime getReturnGoodsData() {
+        return returnGoodsData;
+    }
+
+    public void setReturnGoodsData(LocalDateTime returnGoodsData) {
+        this.returnGoodsData = returnGoodsData;
+    }
+
+    public double getReturnGoodsFee() {
+        return returnGoodsFee;
+    }
+
+    public void setReturnGoodsFee(double returnGoodsFee) {
+        this.returnGoodsFee = returnGoodsFee;
+    }
+
+    public Integer getReturnGoodsOrderId() {
+        return returnGoodsOrderId;
+    }
+
+    public void setReturnGoodsOrderId(Integer returnGoodsOrderId) {
+        this.returnGoodsOrderId = returnGoodsOrderId;
+    }
+
     public ReturnGoods() {
         super();
     }
