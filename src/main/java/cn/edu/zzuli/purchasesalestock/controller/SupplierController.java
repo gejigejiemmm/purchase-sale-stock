@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
@@ -23,10 +24,18 @@ public class SupplierController {
     @Autowired
     private SupplierServiceImpl supplierService;
 
+    @RequestMapping(value = "/goToPage", method = RequestMethod.GET)
+    public ModelAndView goToPage()
+    {
+        ModelAndView mv = new ModelAndView("supplier");
+        return mv;
+    }
+
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
     @ApiOperation(value = "获取全部供应商",httpMethod = "GET")
     public Msg getAllSuppliers()
     {
+        System.out.println("getAll");
         Collection<Supplier> result = supplierService.getAllSuppliers();
         if(result!=null){
             return Msg.success().add("data", result);
