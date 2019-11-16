@@ -52,4 +52,14 @@ public class SupplierServiceImpl {
     {
         return supplierMapper.selectById(id);
     }
+
+    public Collection<Supplier> getSuppliersByConditins(String supplierType)
+    {
+        return supplierMapper.getSuppliersByConditins(supplierType);
+    }
+
+    public Collection<String> getAllContions()
+    {
+        return supplierMapper.getAllContions();
+    }
 }

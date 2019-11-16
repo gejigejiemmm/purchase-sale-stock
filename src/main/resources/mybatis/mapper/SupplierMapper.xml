@@ -49,4 +49,15 @@
         supplier
         where supplier_id = #{id}
     </select>
+
+    <select id="getAllContions" resultMap="Supplier">
+        select distinct supplier_type from
+        supplier
+    </select>
+
+    <select id="getSuppliersByConditins" resultMap="Supplier">
+        select * from
+        supplier
+        where supplier_type=#{supplierType}
+    </select>
 </mapper>

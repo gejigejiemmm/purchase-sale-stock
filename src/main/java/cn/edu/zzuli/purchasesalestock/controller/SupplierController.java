@@ -98,5 +98,33 @@ public class SupplierController {
         }
     }
 
+    @RequestMapping(value = "/getInitTypes", method = RequestMethod.GET)
+    @ApiOperation(value = "用于获取数据库中供应商的品牌",httpMethod = "GET")
+    public Msg getinitTypes()
+    {
+        Collection<String> result = supplierService.getAllContions();
+        if(result!=null){
+            return Msg.success().add("data", result);
+        }
+        else{
+            return Msg.fail().add("error", "网络异常，请稍后重试");
+        }
+    }
+
+
+    @RequestMapping(value = "/selectByType", method = RequestMethod.GET)
+    @ApiOperation(value = "查询经营不同类别商品的商户信息",httpMethod = "GET")
+    public Msg getinitTypes(@RequestParam(value = "type", required = true) String type)
+    {
+        Collection<Supplier> result = supplierService.getSuppliersByConditins(type);
+        if(result!=null){
+            return Msg.success().add("data", result);
+        }
+        else{
+            return Msg.fail().add("error", "网络异常，请稍后重试");
+        }
+    }
+
+
 
 }

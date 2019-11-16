@@ -17,5 +17,7 @@ public interface SupplierMapper {
 
     public Supplier selectById(Integer id);
 
-    public Collection<Supplier> getSuppliersByConditins();
+    public Collection<Supplier> getSuppliersByConditins(String supplierType);
+
+    public Collection<String> getAllContions();
 }
