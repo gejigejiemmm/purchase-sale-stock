@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="../../static/css/behind/layui.css" media="all">
+	<link rel="stylesheet" href="../../static/css/behind/login.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- 登录部分 -->
+		<div class="content">
+			<div class="avatar">
+				<img src="../../static/images/avatar.jpg" />
+			</div>
+			<h2>欢迎登录</h2>
+			<form id="loginForm" action="/customer/loginin" method="POST">
+				<div class="item">
+					<input type="text" name="username" placeholder="请输入用户名" />
+				</div>
+				<div class="item">
+					<input type="password" name="password" placeholder="请输入密码" />
+				</div>
+				<div class="item item-last">
+					<button class="sub">登录</button>
+				</div>
+				<div class="other">没有账号？<a class="toRegister">注册</a></div>
+			</form>
+		</div>
+
+		<!-- 注册部分 -->
+		<div class="register">
+			<div class="top">
+				<div class="icon"><img src="../../static/images/avatar.jpg" alt=""></div>
+				<h3>欢迎您的到来！</h3>
+			</div>
+			<div class="regis-content">
+				<form>
+					<div class="item">
+						<input type="text" name="username" placeholder="请输入用户名" />
+					</div>
+					<div class="item">
+						<input type="text" name="email" placeholder="请输入邮箱" />
+					</div>
+					<div class="item">
+						<input type="password" name="password" placeholder="请输入密码" />
+					</div>
+					<div class="item">
+						<input type="text" name="teacher" placeholder="请输入导师名称" />
+					</div>
+					<div class="item">
+						<input type="text" name="address" placeholder="请输入地址" />
+					</div>
+					<div class="item item-last">
+						<button class="sub">注册</button>
+					</div>
+					<div class="other">已有账号？<a class="toLogin">登录</a></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="../../static/js/behind/layui.all.js"></script>
+	<script>
+		var $;
+		layui.use('jquery', function () {
+			$ = layui.jquery;
+		});
+
+		$(".toRegister").click(function () {
+			$(".content, .register").addClass('transLeft');
+		})
+
+		$(".toLogin").click(function () {
+			$(".content, .register").removeClass('transLeft');
+		})
+
+		/* 密码强度判断 */
+		function getPasswordStrength(password) {
+			var strength = 0;
+			/* 相当于数组遍历，i是下标，o是数组中的每一项 */
+			$([/.{6,}/, /[0-9]+/, /[a-z]+/, /[A-Z]+/, /[^0-9a-zA-Z]+/]).each(function (i, o) {
+				if (o.test(password)) strength++;
+			});
+			return strength;
+		}
+
+		function showStrength(password) {
+			var strength = getPasswordStrength(password);
+			var status = strength < 3 ? 'low' : (strength < 5 ? 'medium' : 'high');
+			var desc = strength < 3 ? '强度很低' : (strength < 5 ? '中等强度' : '高强度');
+			return [status, desc]
+		}
+
+		$(".register input[name='password']").blur(function () {
+			// 每次判断前先把上一次的清空
+			$(this).siblings("p").remove();
+			var val = $(this).val();
+			const [status, desc] = showStrength(val);
+			var str = "";
+			switch (status) {
+				case 'low':
+					str += "<span class='red'></span>";
+					break;
+				case 'medium':
+					str += "<span class='red'></span><span class='orange'></span>";
+					break;
+				case 'high':
+					str += "<span class='red'></span><span class='orange'></span><span class='primary'></span>";
+					break;
+				default: 
+					str = "";
+					break;
+			}
+			// 添加状态
+			$(this).parent('.item').append('<p>' + str + desc + '</p>').css('marginBottom',"0px");
+		})
+	</script>
+</body>
+
+</html>

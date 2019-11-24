@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>layout 后台大布局 - Layui</title>
+	<link rel="stylesheet" href="../../static/css/behind/layui.css">
+	<link rel="stylesheet" href="../../static/css/behind/layer.css">
+	<link rel="stylesheet" href="../../static/css/behind/display.css">
+	<link rel="stylesheet" href="../../static/css/behind/display-own.css">
+</head>
+
+<body layadmin-themealias="default" class="layui-layout-body">
+	<div id="LAY_app" class="layadmin-tabspage-none">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header nav-header">
+				<!-- 头部区域 -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item layadmin-flexible" lay-unselect="">
+						<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+							<i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+						</a>
+					</li>
+					<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+						<a href="http://www.layui.com/admin/" target="_blank" title="前台">
+							<i class="layui-icon layui-icon-website"></i>
+						</a>
+					</li>
+					<li class="layui-nav-item" lay-unselect="">
+						<a href="javascript:;" layadmin-event="refresh" title="刷新">
+							<i class="layui-icon layui-icon-refresh-3"></i>
+						</a>
+					</li>
+					<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+						<input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search"
+							layadmin-event="serach" lay-action="template/search/keywords=">
+					</li>
+				</ul>
+				<ul class="layui-nav layui-layout-right" lay-filter="">
+					<li class="layui-nav-item">
+						<a href="javascript:;"> <cite>贤心</cite> <span class="layui-nav-more"></span></a>
+						<dl class="layui-nav-child user-info">
+							<dd><a lay-href="set/user/info">基本资料</a></dd>
+							<dd><a lay-href="set/user/password">修改密码</a></dd>
+							<hr>
+							<dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+						</dl>
+					</li>
+
+					<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+						<a href="javascript:;" layadmin-event="about"><i
+								class="layui-icon layui-icon-more-vertical"></i></a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- 侧边菜单 -->
+			<div class="layui-side layui-side-menu">
+				<ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu"
+					lay-filter="layadmin-system-side-menu">
+					<div class="layui-logo"><i class="layui-icon layui-icon-home layui-hide"></i><span>layuiAdmin
+							Pro</span></div>
+					<ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="layadmin-system-side-menu">
+						<li data-name="" data-jump="" class="layui-nav-item layui-nav-itemed"> <a href="javascript:;"
+								lay-tips="主页" lay-direction="2"> <i class="layui-icon layui-icon-home"></i>
+								<cite>主页</cite> <span class="layui-nav-more"></span></a>
+							<dl class="layui-nav-child">
+								<dd data-name="" data-jump="/" class="layui-this"> <a href="javascript:;"
+										lay-href="/">控制台</a> </dd>
+								<dd data-name="homepage1" data-jump="home/homepage1"> <a href="javascript:;"
+										lay-href="home/homepage1">主页一</a>
+								</dd>
+								<dd data-name="homepage2" data-jump="home/homepage2"> <a href="javascript:;"
+										lay-href="home/homepage2">主页二</a>
+								</dd>
+							</dl>
+						</li>
+						<li data-name="component" data-jump="" class="layui-nav-item "> <a href="javascript:;"
+								lay-tips="组件" lay-direction="2"> <i class="layui-icon layui-icon-component"></i>
+								<cite>组件</cite> <span class="layui-nav-more"></span></a>
+							<dl class="layui-nav-child">
+								<dd data-name="grid" data-jump=""> <a href="javascript:;">栅格<span
+											class="layui-nav-more"></span></a>
+									<dl class="layui-nav-child">
+										<dd data-name="list" data-jump=""> <a href="javascript:;"
+												lay-href="component/grid/list">等比例列表排列</a> </dd>
+										<dd data-name="mobile" data-jump=""> <a href="javascript:;"
+												lay-href="component/grid/mobile">按移动端排列</a>
+										</dd>
+										<dd data-name="mobile-pc" data-jump=""> <a href="javascript:;"
+												lay-href="component/grid/mobile-pc">移动桌面端组合</a>
+										</dd>
+										<dd data-name="all" data-jump=""> <a href="javascript:;"
+												lay-href="component/grid/all">全端复杂组合</a> </dd>
+										<dd data-name="stack" data-jump=""> <a href="javascript:;"
+												lay-href="component/grid/stack">低于桌面堆叠排列</a>
+										</dd>
+										<dd data-name="speed-dial" data-jump=""> <a href="javascript:;"
+												lay-href="component/grid/speed-dial">九宫格</a>
+										</dd>
+									</dl>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</ul>
+			</div>
+
+			<div class="layui-body main-body">
+				<div class="body-wrapper">
+					<div class="search-wrapper">
+						<div class="search-content">
+							<input class="search-info layui-input" type="text" placeholder="请输入查询内容" />
+							<button class="search">查询</button>
+						</div>
+					</div>
+					<div class="table-wrapper">
+						<table id="table-info" lay-data="{id: 'table-info'}" lay-filter="test"></table>
+					</div>
+
+					<!-- 模态框 -->
+					<div class="model">
+						<div class="model-wrapper">
+							<div class="model-content">
+								<div class="model-top">
+									<h2>修改信息</h2>
+									<span class="back">X</span>
+								</div>
+								<div class="model-body">
+									<div class="model-item">
+										<lable>用户名：</lable>
+										<input type="text" class="username" name="username" />
+									</div>
+									<div class="model-item">
+										<lable>城市：</lable>
+										<input type="email" class="city" name="city" />
+									</div>
+									<div class="model-item">
+										<lable>签名：</lable>
+										<input type="text" class="sign" name="sign" />
+									</div>
+								</div>
+								<div class="model-footer">
+									<div class="model-opera">
+										<button class="ok">提交</button>
+										<button class="cancel">取消</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 遮罩层，模态框出现时使用 -->
+					<div class="mask"></div>
+				</div>
+
+				<!-- 这个是变为手机端以后点击侧边栏时出现的遮罩层 -->
+				<div class="layadmin-body-shade" layadmin-event="shade"></div>
+			</div>
+
+			<div class="layui-footer">
+				&copy;郑州轻工业大学工程楼333实验室
+			</div>
+
+		</div>
+	</div>
+	<script src="../../static/js/behind/layui.all.js"></script>
+	<script src="../../static/js/behind/back-end-common.js"></script>
+	<script type="text/html" id="barDemo">
+		<a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="check">查看</a>
+		<a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="delete">删除</a>
+	</script>
+	<script src="js/table-request.js"></script>
+</body>
+
+</html>

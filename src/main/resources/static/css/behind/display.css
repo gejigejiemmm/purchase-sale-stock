@@ -1,0 +1,411 @@
+
+::-webkit-input-placeholder {
+	color: #ccc
+}
+
+/* 实现不出现滚动条但是可以滚动 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+	background-color: #f2f2f2;
+	color: #666
+}
+
+[lay-href],
+[lay-tips],
+[layadmin-event] {
+	cursor: pointer
+}
+
+.layui-layout-admin .layui-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	z-index: 998;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-child a {
+	color: #333
+}
+
+.layui-layout-admin .layui-side {
+	width: 220px;
+	top: 0;
+	z-index: 1001
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item,
+.layui-layout-admin .layui-logo {
+	height: 50px;
+	line-height: 50px
+}
+
+.layui-layout-admin .layui-logo {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1002;
+	width: 220px;
+	height: 49px;
+	padding: 0 15px;
+	box-sizing: border-box;
+	overflow: hidden;
+	font-weight: 300;
+	background-repeat: no-repeat;
+	background-position: center center
+}
+
+.layadmin-pagetabs,
+.layui-layout-admin .layui-body,
+.layui-layout-admin .layui-footer,
+.layui-layout-admin .layui-layout-left {
+	left: 220px
+}
+
+.layui-layout-admin .layui-body {
+	position: fixed;
+	top: 90px;
+	bottom: 0
+}
+
+.layui-layout-admin .layui-body .layadmin-tabsbody-item {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.layui-layout-admin .layui-header .layui-nav-img {
+	width: 26px;
+	height: 26px;
+}
+
+.layui-layout-admin .layui-header .layui-nav-child {
+	top: 55px;
+}
+
+.layui-layout-admin .layui-header .layui-layout-right .layui-nav-child {
+	left: auto;
+	right: 0;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-child dd.layui-this,
+.layui-layout-admin .layui-header .layui-nav .layui-nav-child dd.layui-this a {
+	background: 0 0;
+}
+
+.layadmin-pagetabs,
+.layui-layout-admin .layui-body,
+.layui-layout-admin .layui-footer,
+.layui-layout-admin .layui-header .layui-layout-right,
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item,
+.layui-layout-admin .layui-layout-left,
+.layui-layout-admin .layui-logo,
+.layui-layout-admin .layui-side {
+	transition: all .3s;
+	-webkit-transition: all .3s;
+}
+
+.layui-bg-white {
+	background-color: #fff;
+}
+
+.layadmin-loading {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -16px -15px;
+	font-size: 30px;
+	color: #c2c2c2;
+}
+
+.layadmin-link {
+	color: #029789 !important
+}
+
+.layadmin-link:hover {
+	opacity: .8
+}
+
+.layui-layout-admin .layui-layout-left {
+	padding: 0 10px
+}
+
+.layui-layout-admin .layui-layout-left .layui-nav-item {
+	margin: 0 20px
+}
+
+.layui-layout-admin .layui-input-search {
+	display: inline-block;
+	vertical-align: middle;
+	height: 32px;
+	border: none;
+	cursor: text
+}
+
+.layui-layout-admin .layui-layout-left a,
+.layui-layout-admin .layui-layout-right {
+	padding: 0
+}
+
+.layui-header .layui-nav-item .layui-icon {
+	position: relative;
+	top: 1px;
+	font-size: 16px
+}
+
+.layui-header .layui-layout-right .layui-badge-dot {
+	margin-left: 11px
+}
+
+.layui-header .layui-nav .layui-this:after,
+.layui-layout-admin .layui-header .layui-nav-bar {
+	top: 0 !important;
+	bottom: auto;
+	height: 3px;
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, .3)
+}
+
+.layadmin-body-shade {
+	position: fixed;
+	display: none;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .3);
+	z-index: 1000;
+}
+
+.layui-side-menu .layui-side-scroll {
+	width: 240px
+}
+
+.layui-side-menu .layui-nav {
+	width: 220px;
+	margin-top: 50px;
+	background: 0 0
+}
+
+.layui-side-menu .layui-nav .layui-nav-item a {
+	height: 40px;
+	line-height: 40px;
+	padding-left: 45px;
+	padding-right: 30px
+}
+
+.layui-side-menu .layui-nav .layui-nav-item>a {
+	padding-top: 8px;
+	padding-bottom: 8px
+}
+
+.layui-side-menu .layui-nav .layui-nav-item a:hover {
+	background: 0 0
+}
+
+.layui-side-menu .layui-nav .layui-nav-itemed>.layui-nav-child {
+	padding: 5px 0
+}
+
+.layui-side-menu .layui-nav .layui-nav-item .layui-icon {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	margin-top: -19px
+}
+
+.layui-side-menu .layui-nav .layui-nav-child .layui-nav-child {
+	background: 0 0 !important
+}
+
+.layui-side-menu .layui-nav .layui-nav-child .layui-nav-child a {
+	padding-left: 60px
+}
+
+.layui-side-menu .layui-nav .layui-nav-more {
+	right: 15px
+}
+
+@media screen and (max-width:992px) {
+	.layui-layout-admin .layui-side {
+		transform: translate3d(-220px, 0, 0);
+		-webkit-transform: translate3d(-220px, 0, 0);
+		width: 220px;
+	}
+	
+	.layadmin-pagetabs,
+	.layui-layout-admin .layui-header .layui-nav.layui-layout-left,
+	.layui-layout-admin .layui-body,
+	.layui-layout-admin .layui-footer,
+	.layui-layout-admin .layui-layout-left {
+		left: 0;
+	}
+}
+
+.layadmin-side-spread-sm .layadmin-pagetabs,
+.layadmin-side-spread-sm .layui-layout-admin .layui-body,
+.layadmin-side-spread-sm .layui-layout-admin .layui-footer,
+.layadmin-side-spread-sm .layui-layout-admin .layui-layout-left {
+	left: 0;
+	transform: translate3d(220px, 0, 0);
+	-webkit-transform: translate3d(220px, 0, 0)
+}
+
+.layadmin-side-spread-sm .layui-layout-admin .layui-layout-right {
+	transform: translate3d(220px, 0, 0);
+	-webkit-transform: translate3d(220px, 0, 0)
+}
+
+.layadmin-side-spread-sm .layui-side {
+	transform: translate3d(0, 0, 0);
+	-webkit-transform: translate3d(0, 0, 0)
+}
+
+.layadmin-side-spread-sm .layadmin-body-shade {
+	display: block;
+}
+
+ 
+
+.layui-layout-admin .layui-header {
+	border-bottom: 1px solid #f6f6f6;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+
+.layui-layout-admin .layui-header a,
+.layui-layout-admin .layui-header a cite {
+	color: #333;
+}
+
+.layui-layout-admin .layui-header a:hover {
+	color: #000;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+	border-top-color: #666;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-mored {
+	border-color: transparent transparent #666;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-this:after,
+.layui-layout-admin .layui-header .layui-nav-bar {
+	height: 2px;
+	background-color: #20222A;
+}
+
+.layui-layout-admin .layui-logo {
+	background-color: #20222A;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
+}
+
+.layui-layout-admin .layui-logo,
+.layui-layout-admin .layui-logo a {
+	color: #fff;
+	color: rgba(255, 255, 255, .8);
+}
+
+.layui-side-menu {
+	box-shadow: 1px 0 2px 0 rgba(0, 0, 0, .05);
+}
+
+.layui-layout-admin .layui-footer {
+	padding: 10px 0;
+	text-align: center;
+	box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, .05);
+}
+
+.layui-side-menu {
+	background-color: #20222A;
+	color: #fff;
+}
+
+.layui-layout-admin .layui-footer {
+	background-color: #fff;
+}
+
+.layadmin-header {
+	display: none;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.layadmin-header .layui-breadcrumb {
+	padding: 0 15px;
+}
+
+
+@-webkit-keyframes layui-rl {
+	from {
+		-webkit-transform: translate3d(100%, 0, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes layui-rl {
+	from {
+		transform: translate3d(100%, 0, 0);
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.layui-anim-rl {
+	-webkit-animation-name: layui-rl;
+	animation-name: layui-rl;
+}
+
+@-webkit-keyframes layui-lr {
+	from {
+		-webkit-transform: translate3d(0 0, 0);
+		opacity: 1;
+	}
+
+	to {
+		-webkit-transform: translate3d(100%, 0, 0);
+		opacity: 1;
+	}
+}
+
+@keyframes layui-lr {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		transform: translate3d(100%, 0, 0);
+	}
+}
+
+@media screen and (max-width:768px) {
+	.layadmin-panel-selection {
+		margin: 0;
+		width: auto;
+	}
+
+	.layui-body .layui-nav .layui-nav-item {
+		display: block;
+	}
+
+	.layui-layout-admin .layui-body .layadmin-tabsbody-item {
+		-webkit-overflow-scrolling: touch;
+		overflow: auto;
+	}
+}
