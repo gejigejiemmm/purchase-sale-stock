@@ -15,8 +15,8 @@ public enum OrderType {
     //支付状态
     TEACHER_AND_NO_PAY("导师代付（暂未支付）",300),
     ALI_PAY("支付宝支付",333),
-    SUM_PAY("超过额度结算",335);
-
+    SUM_PAY("超过额度结算",335),
+    FINSH_PAY("完成支付，等待接单", 360);
 
 
     private String msg;

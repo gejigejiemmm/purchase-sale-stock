@@ -72,4 +72,18 @@ public class CustomerController{
         }
     }
 
+    @GetMapping(value = "/loginin")
+    @ApiOperation(value = "登录请求", httpMethod = "POST")
+    public Msg loginin(@RequestParam(value = "name", required = true) String cusstomerName,
+                       @RequestParam(value = "name", required = true) String cusstomerPassword)
+    {
+        Customer cc = service.selectByName(cusstomerName);
+        if(cusstomerPassword.equals(cc.getCustomerPassword())){
+            return Msg.success();
+        }
+        else{
+            return Msg.fail();
+        }
+    }
+
 }

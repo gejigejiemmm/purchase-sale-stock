@@ -17,12 +17,14 @@ import java.util.List;
 @RequestMapping("/purchase")
 @Api(tags = "采购单接口")
 public class PurchaseController {
+
     @Autowired
     PurchaseService purchaseService;
+
     @PostMapping("/addPurchase")
     @ApiOperation(value = "添加采购信息",httpMethod = "POST")
     public Msg addPurchase(Purchase purchase){
-        if (purchaseService.addPurchase(purchase))
+        if(purchaseService.addPurchase(purchase))
             return Msg.success();
         return Msg.fail();
     }

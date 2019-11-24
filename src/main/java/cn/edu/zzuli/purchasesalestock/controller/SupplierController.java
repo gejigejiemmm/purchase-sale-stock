@@ -124,7 +124,4 @@ public class SupplierController {
             return Msg.fail().add("error", "网络异常，请稍后重试");
         }
     }
-
-
-
 }

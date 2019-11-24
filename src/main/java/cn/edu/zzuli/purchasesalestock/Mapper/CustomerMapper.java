@@ -16,4 +16,6 @@ public interface CustomerMapper {
     public Integer selectNumber();
 
     public Customer selectByNo(Integer no);
+
+    public Customer selectByName(String name);
 }

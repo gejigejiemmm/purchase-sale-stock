@@ -31,4 +31,9 @@ public class CustomerserviceImpl {
     public Customer selectByNo(Integer no) {
         return mapper.selectByNo(no);
     }
+
+    public Customer selectByName(String name)
+    {
+        return mapper.selectByName(name);
+    }
 }

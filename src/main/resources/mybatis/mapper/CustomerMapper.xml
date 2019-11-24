@@ -29,14 +29,13 @@
     <insert id="saveCustomer">
         insert into
         customer
-        (customer_name, customer_gradle, customer_record, customer_mentor, customer_college, customer_institute, customer_pay_form,
+        (customer_name, customer_password, customer_gradle, customer_record, customer_mentor, customer_college, customer_institute, customer_pay_form,
           customer_no, customer_spell, customer_location, customer_location_standby1, customer_location_standby2, customer_telphone,
           customer_company, customer_warehouse, customer_inviter)
-        values (#{customerName}, #{customerGradle}, #{customerRecord}, #{customerMentor}, #{customerCollege}, #{customerInstitute}, #{customerPayForm},
+        values (#{customerName}, #{customerPassword}, #{customerGradle}, #{customerRecord}, #{customerMentor}, #{customerCollege}, #{customerInstitute}, #{customerPayForm},
           #{customerNo}, #{customerSpell}, #{customerLocation}, #{customerLocationStandby1}, #{customerLocationStandby2}, #{customerTelphone},
           #{customerCompany}, #{customerWarehouse}, #{customerInviter});
     </insert>
-
 
     <select id="selectById" resultMap="customer">
         select * from
@@ -53,6 +52,12 @@
         select * from
         customer
         where customer_no = #{no}
+    </select>
+
+    <select id="selectByName" resultMap="customer">
+        select * from
+        customer
+        where customer_name = #{customerName}
     </select>
 
 

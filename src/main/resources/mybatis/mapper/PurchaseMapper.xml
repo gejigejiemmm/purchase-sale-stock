@@ -17,7 +17,6 @@
                                VALUES
                                (#{purchaseOrderId},#{purchaseEId},#{purchasePrice},
                                 #{purchaseCount},#{purchaseStatus})
-
     </insert>
 
 <!--    private Integer pdetailId;
@@ -62,6 +61,8 @@
         <result property="purchaseStatus" column="purchase_status"></result>
         <association property="purchaseItem" resultMap="purchaseItem"></association>
     </resultMap>
+
+
     <select id="getInformation" resultMap="purchase">
         SELECT *
         FROM `purchase` p
