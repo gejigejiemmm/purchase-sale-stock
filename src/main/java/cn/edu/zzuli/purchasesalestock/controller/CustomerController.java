@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
@@ -70,6 +71,14 @@ public class CustomerController{
         else{
             return Msg.fail().add("error", "服务器错误，请联系系统管理员");
         }
+    }
+
+    @GetMapping(value = "/loginPage")
+    @ApiOperation(value = "前往登录页面", httpMethod = "GET")
+    public ModelAndView loginPage()
+    {
+        ModelAndView mv = new ModelAndView("/behind/login");
+        return mv;
     }
 
     @PostMapping(value = "/loginin")
