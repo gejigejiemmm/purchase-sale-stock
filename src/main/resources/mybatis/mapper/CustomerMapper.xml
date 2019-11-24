@@ -8,6 +8,7 @@
     <resultMap id="customer" type="cn.edu.zzuli.purchasesalestock.bean.Customer">
         <id property="customerId" column="customer_id"></id>
         <result property="customerName" column="customer_name"></result>
+        <result property="customerPassword" column="customer_password"></result>
         <result property="customerGradle" column="customer_gradle"></result>
         <result property="customerRecord" column="customer_record"></result>
         <result property="customerMentor" column="customer_mentor"></result>
