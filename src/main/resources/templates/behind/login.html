@@ -18,9 +18,9 @@
 				<img src="../../static/images/avatar.jpg" />
 			</div>
 			<h2>欢迎登录</h2>
-			<form id="loginForm" action="/customer/loginin" method="POST">
+			<form id="loginForm" action="/customer/loginin" method="post">
 				<div class="item">
-					<input type="text" name="username" placeholder="请输入用户名" />
+					<input type="text" name="name" placeholder="请输入用户名" />
 				</div>
 				<div class="item">
 					<input type="password" name="password" placeholder="请输入密码" />
@@ -41,7 +41,7 @@
 			<div class="regis-content">
 				<form>
 					<div class="item">
-						<input type="text" name="username" placeholder="请输入用户名" />
+						<input type="text" name="name" placeholder="请输入用户名" />
 					</div>
 					<div class="item">
 						<input type="text" name="email" placeholder="请输入邮箱" />
@@ -119,6 +119,7 @@
 			// 添加状态
 			$(this).parent('.item').append('<p>' + str + desc + '</p>').css('marginBottom',"0px");
 		})
+
 	</script>
 </body>
 

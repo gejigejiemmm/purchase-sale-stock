@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Map;
+
 
 
 @RestController
@@ -35,10 +38,9 @@ public class SupplierController {
     @ApiOperation(value = "获取全部供应商",httpMethod = "GET")
     public Msg getAllSuppliers()
     {
-        System.out.println("getAll");
         Collection<Supplier> result = supplierService.getAllSuppliers();
         if(result!=null){
-            return Msg.success().add("data", result);
+            return Msg.success().add("data", result).add("count", result.size());
         }
         else{
             return Msg.fail().add("error", "网络异常，请稍后重试");

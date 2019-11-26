@@ -1,22 +1,13 @@
-
 layui.use('table', function () {
     var table = layui.table;
 
     //第一个实例
     table.render({
         elem: '#table-info'
-        , height: 500//数据接口
-        , url: '../supplier/getall'
+        , height: 500
+        , url: '../supplier/getall' //数据接口
         // 分页 curr起始页，groups连续显示的页码，默认每页显示的条数
         , page: true
-        , parseData: function(res){ //res 即为原始返回的数据
-            return {
-                "code": res.code, //解析接口状态
-                "msg": res.msg, //解析提示文本
-                "count": res.msg.length, //解析数据长度
-                "data": res.msg //解析数据列表
-            };
-        }
         , limit: 5
         , cols: [[ //表头
             { field: 'supplierId', title: 'ID', width: 80, sort: true, fixed: 'left' }

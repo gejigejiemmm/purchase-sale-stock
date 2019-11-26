@@ -83,16 +83,18 @@ public class CustomerController{
 
     @PostMapping(value = "/loginin")
     @ApiOperation(value = "登录请求", httpMethod = "POST")
-    public Msg loginin(@RequestParam(value = "name", required = true) String customerName,
+    public ModelAndView loginin(@RequestParam(value = "name", required = true) String customerName,
                        @RequestParam(value = "password", required = true) String customerPassword)
     {
+        ModelAndView mv = new ModelAndView();
         Customer cc = service.selectByName(customerName);
-        System.out.println(cc.toString());
         if(customerPassword.equals(cc.getCustomerPassword())){
-            return Msg.success();
+            mv.setViewName("/behind/display");
+            return mv;
         }
         else{
-            return Msg.fail();
+            mv.setViewName("/behind/login");
+            return mv;
         }
     }
 
