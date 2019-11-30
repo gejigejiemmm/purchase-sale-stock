@@ -60,4 +60,10 @@
         supplier
         where supplier_type=#{supplierType}
     </select>
+
+    <select id="getSuppliersByLimte" resultMap="Supplier">
+        select * from
+        supplier
+        limit #{offset}, #{limit}
+    </select>
 </mapper>

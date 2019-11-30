@@ -3,6 +3,7 @@ package cn.edu.zzuli.purchasesalestock.service.impl;
 
 import cn.edu.zzuli.purchasesalestock.Mapper.SupplierMapper;
 import cn.edu.zzuli.purchasesalestock.bean.Supplier;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,4 +63,11 @@ public class SupplierServiceImpl {
     {
         return supplierMapper.getAllContions();
     }
+
+    public Collection<Supplier> getSuppliersByLimte(@Param("page") Integer page, @Param("limte")Integer limte)
+    {
+        Integer offset = (page-1)*limte;
+        return supplierMapper.getSuppliersByLimte(offset, limte);
+    }
+
 }

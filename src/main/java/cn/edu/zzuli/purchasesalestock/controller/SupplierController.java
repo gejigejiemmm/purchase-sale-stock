@@ -126,4 +126,18 @@ public class SupplierController {
             return Msg.fail().add("error", "网络异常，请稍后重试");
         }
     }
+
+    @RequestMapping(value = "/getSuppliersBylimte", method = RequestMethod.GET)
+    @ApiOperation(value = "分页查询供应商信息",httpMethod = "GET")
+    public Msg getSuppliersBylimte(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                   @RequestParam(value = "limte", required = false, defaultValue = "10") Integer limte)
+    {
+        Collection<Supplier> result = supplierService.getSuppliersByLimte(page, limte);
+        if(result != null){
+            return Msg.success().add("data", result);
+        }
+        else{
+            return Msg.fail().add("error", "网络异常，请稍后重试");
+        }
+    }
 }

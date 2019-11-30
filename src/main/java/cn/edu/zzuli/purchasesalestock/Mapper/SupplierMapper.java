@@ -3,6 +3,7 @@ package cn.edu.zzuli.purchasesalestock.Mapper;
 
 import cn.edu.zzuli.purchasesalestock.bean.Supplier;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;
 
@@ -20,4 +21,6 @@ public interface SupplierMapper {
     public Collection<Supplier> getSuppliersByConditins(String supplierType);
 
     public Collection<String> getAllContions();
+
+    public Collection<Supplier> getSuppliersByLimte(@Param("offset") Integer offset, @Param("limit")Integer limit);
 }
