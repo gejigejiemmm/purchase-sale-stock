@@ -26,4 +26,6 @@ public interface SupplierMapper {
 
     public Boolean deleteSupplier(Integer id);
 
+    public Collection<Supplier> getSuppliersByConditinsForCount(String supplierType);
+
 }

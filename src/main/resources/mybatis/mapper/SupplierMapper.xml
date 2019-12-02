@@ -62,6 +62,12 @@
         limit #{offset}, #{limte}
     </select>
 
+    <select id="getSuppliersByConditinsForCount" resultMap="Supplier">
+        select * from
+        supplier
+        where supplier_type=#{supplierType}
+    </select>
+
     <select id="getSuppliersByLimte" resultMap="Supplier">
         select * from
         supplier

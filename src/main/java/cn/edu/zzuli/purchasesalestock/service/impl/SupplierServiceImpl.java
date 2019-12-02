@@ -76,4 +76,9 @@ public class SupplierServiceImpl {
         return supplierMapper.deleteSupplier(id);
     }
 
+    public Collection<Supplier> getSuppliersByConditinsForCount(String supplierType)
+    {
+        return supplierMapper.getSuppliersByConditinsForCount(supplierType);
+    }
+
 }

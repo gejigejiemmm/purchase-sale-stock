@@ -121,7 +121,8 @@ public class SupplierController {
     {
         Collection<Supplier> result = supplierService.getSuppliersByConditins(type, page, limte);
         if(result!=null){
-            return Msg.success().add("data", result);
+            Integer count = supplierService.getSuppliersByConditinsForCount(type).size();
+            return Msg.success().add("data", result).add("count", count);
         }
         else{
             return Msg.fail().add("error", "网络异常，请稍后重试");
