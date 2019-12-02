@@ -59,6 +59,7 @@
         select * from
         supplier
         where supplier_type=#{supplierType}
+        limit #{offset}, #{limte}
     </select>
 
     <select id="getSuppliersByLimte" resultMap="Supplier">
@@ -66,4 +67,10 @@
         supplier
         limit #{offset}, #{limit}
     </select>
+
+    <delete id="deleteSupplier">
+        delete from
+        supplier
+        where supplier_id=#{id}
+    </delete>
 </mapper>

@@ -54,9 +54,10 @@ public class SupplierServiceImpl {
         return supplierMapper.selectById(id);
     }
 
-    public Collection<Supplier> getSuppliersByConditins(String supplierType)
+    public Collection<Supplier> getSuppliersByConditins(@Param("supplierType")String supplierType, @Param("page")Integer page, @Param("limte")Integer limte)
     {
-        return supplierMapper.getSuppliersByConditins(supplierType);
+        Integer offset = (page-1)*limte;
+        return supplierMapper.getSuppliersByConditins(supplierType, offset, limte);
     }
 
     public Collection<String> getAllContions()
@@ -68,6 +69,11 @@ public class SupplierServiceImpl {
     {
         Integer offset = (page-1)*limte;
         return supplierMapper.getSuppliersByLimte(offset, limte);
+    }
+
+    public Boolean deleteSupplier(Integer id)
+    {
+        return supplierMapper.deleteSupplier(id);
     }
 
 }

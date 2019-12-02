@@ -3,6 +3,7 @@ package cn.edu.zzuli.purchasesalestock.controller;
 
 import cn.edu.zzuli.purchasesalestock.bean.Supplier;
 import cn.edu.zzuli.purchasesalestock.service.impl.SupplierServiceImpl;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.Api;
 import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import io.swagger.annotations.ApiOperation;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.Map;
 
 
 
@@ -116,9 +115,11 @@ public class SupplierController {
 
     @RequestMapping(value = "/selectByType", method = RequestMethod.GET)
     @ApiOperation(value = "查询经营不同类别商品的商户信息",httpMethod = "GET")
-    public Msg getinitTypes(@RequestParam(value = "type", required = true) String type)
+    public Msg getinitTypes(@RequestParam(value = "type", required = true) String type,
+                            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                            @RequestParam(value = "limte", required = false, defaultValue = "10") Integer limte)
     {
-        Collection<Supplier> result = supplierService.getSuppliersByConditins(type);
+        Collection<Supplier> result = supplierService.getSuppliersByConditins(type, page, limte);
         if(result!=null){
             return Msg.success().add("data", result);
         }
@@ -135,6 +136,19 @@ public class SupplierController {
         Collection<Supplier> result = supplierService.getSuppliersByLimte(page, limte);
         if(result != null){
             return Msg.success().add("data", result);
+        }
+        else{
+            return Msg.fail().add("error", "网络异常，请稍后重试");
+        }
+    }
+
+    @RequestMapping(value = "/deleteSupplier", method = RequestMethod.POST)
+    @ApiOperation(value = "删除供应商",httpMethod = "POST")
+    public Msg deleteSupplier(@RequestParam(value = "id", required = true) Integer id)
+    {
+        Boolean result = supplierService.deleteSupplier(id);
+        if(result){
+            return Msg.success();
         }
         else{
             return Msg.fail().add("error", "网络异常，请稍后重试");

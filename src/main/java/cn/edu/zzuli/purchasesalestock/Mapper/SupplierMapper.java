@@ -18,9 +18,12 @@ public interface SupplierMapper {
 
     public Supplier selectById(Integer id);
 
-    public Collection<Supplier> getSuppliersByConditins(String supplierType);
+    public Collection<Supplier> getSuppliersByConditins(@Param("supplierType")String supplierType, @Param("offset")Integer offset, @Param("limte")Integer limte);
 
     public Collection<String> getAllContions();
 
     public Collection<Supplier> getSuppliersByLimte(@Param("offset") Integer offset, @Param("limit")Integer limit);
+
+    public Boolean deleteSupplier(Integer id);
+
 }
