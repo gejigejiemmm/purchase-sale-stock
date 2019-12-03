@@ -3,11 +3,6 @@
 	color: #ccc
 }
 
-/* 实现不出现滚动条但是可以滚动 */
-::-webkit-scrollbar {
-  display: none;
-}
-
 html {
 	background-color: #f2f2f2;
 	color: #666
@@ -240,7 +235,7 @@ html {
 		-webkit-transform: translate3d(-220px, 0, 0);
 		width: 220px;
 	}
-	
+
 	.layadmin-pagetabs,
 	.layui-layout-admin .layui-header .layui-nav.layui-layout-left,
 	.layui-layout-admin .layui-body,
@@ -250,30 +245,10 @@ html {
 	}
 }
 
-.layadmin-side-spread-sm .layadmin-pagetabs,
-.layadmin-side-spread-sm .layui-layout-admin .layui-body,
-.layadmin-side-spread-sm .layui-layout-admin .layui-footer,
-.layadmin-side-spread-sm .layui-layout-admin .layui-layout-left {
-	left: 0;
-	transform: translate3d(220px, 0, 0);
-	-webkit-transform: translate3d(220px, 0, 0)
-}
-
-.layadmin-side-spread-sm .layui-layout-admin .layui-layout-right {
-	transform: translate3d(220px, 0, 0);
-	-webkit-transform: translate3d(220px, 0, 0)
-}
-
-.layadmin-side-spread-sm .layui-side {
-	transform: translate3d(0, 0, 0);
-	-webkit-transform: translate3d(0, 0, 0)
-}
 
 .layadmin-side-spread-sm .layadmin-body-shade {
 	display: block;
 }
-
- 
 
 .layui-layout-admin .layui-header {
 	border-bottom: 1px solid #f6f6f6;
@@ -344,54 +319,6 @@ html {
 
 .layadmin-header .layui-breadcrumb {
 	padding: 0 15px;
-}
-
-
-@-webkit-keyframes layui-rl {
-	from {
-		-webkit-transform: translate3d(100%, 0, 0);
-	}
-
-	to {
-		-webkit-transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes layui-rl {
-	from {
-		transform: translate3d(100%, 0, 0);
-	}
-
-	to {
-		transform: translate3d(0, 0, 0);
-	}
-}
-
-.layui-anim-rl {
-	-webkit-animation-name: layui-rl;
-	animation-name: layui-rl;
-}
-
-@-webkit-keyframes layui-lr {
-	from {
-		-webkit-transform: translate3d(0 0, 0);
-		opacity: 1;
-	}
-
-	to {
-		-webkit-transform: translate3d(100%, 0, 0);
-		opacity: 1;
-	}
-}
-
-@keyframes layui-lr {
-	from {
-		transform: translate3d(0, 0, 0);
-	}
-
-	to {
-		transform: translate3d(100%, 0, 0);
-	}
 }
 
 @media screen and (max-width:768px) {

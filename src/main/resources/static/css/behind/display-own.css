@@ -1,6 +1,9 @@
-body {
+html,body {
     height: 100%;
+    font-size: 16px;
 }
+
+::-webkit-scrollbar {}
 
 .nav-header {
     z-index: 1000 !important;
@@ -9,7 +12,6 @@ body {
 .main-body {
     max-height: 600px;
     bottom: 70px !important;
-    overflow: scroll !important;
 }
 
 .body-wrapper {
@@ -18,33 +20,15 @@ body {
     position: relative;
     left: 0;
     top: 0;
-} 
+}
 
 .table-wrapper, .search-wrapper {
     width: 80%;
     margin: 0 auto;
-    min-width: 600px;
 }
 
-.layui-table-cell {
-    height: auto;
-    line-height: 38px;
-}
-
-.layui-border-box {
-    box-sizing: content-box;
-    overflow-x: scroll;
-}
-
-.layui-table-body {
-    overflow-x: scroll;
-}
-
-.layui-table-page {
-    height: 52px;
-    box-sizing: content-box;
-    padding: 0;
-    display:flex;
+.search-content {
+    display: flex;
     align-items: center;
 }
 
@@ -55,7 +39,24 @@ body {
     display: inline-block;
 }
 
-.search {
+.selectQuery {
+    width: 120px;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #e6e6e6;
+    padding-left: 5px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.selectQuery option {
+    color: #666;
+}
+
+.search, .addSupplier {
+    width: 60px;
     padding: 0 10px;
     height: 36px;
     line-height: 36px;
@@ -64,19 +65,24 @@ body {
     background: #1E9FFF;
     color: #fff;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
-/* 模态框 */
+.addSupplier {
+    margin: 0 8px;
+}
+
+    /* 模态框 */
 .model {
-    width: 400px;
-    height: 300px;
-    position: absolute;
+    width: 25rem;
+    height: 29.5rem;
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    padding: 10px 10px 5px;
-    border-radius: 5px;
+    padding: 0.625rem 0.625rem 0.3125rem;
+    border-radius: 0.3125rem;
     z-index: 1005;
     display: none;
 }
@@ -92,21 +98,21 @@ body {
 }
 
 .model-top {
-    height: 40px;
-    line-height: 40px;
+    height: 2.5rem;
+    line-height: 2.5rem;
     display: flex;
     align-items: center;
-    padding-bottom: 5px;
+    padding-bottom: 0.3125rem;
     border-bottom: 1px solid #eee;
 }
 
 .model-top h2 {
     flex: 1;
-    font-size: 18px;
+    font-size: 1.1rem;
 }
 
 .model span {
-    width: 40px;
+    width: 2.5rem;
     height: 100%;
     text-align: center;
     border-radius: 50%;
@@ -119,7 +125,7 @@ body {
 }
 
 .model-body {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -128,9 +134,8 @@ body {
 }
 
 .model-item {
-    width: 300px;
-    height: 40px;
-    margin-bottom: 10px;
+    height: 2.5rem;
+    margin-bottom: 0.625rem;
     display: flex;
     align-items: center;
 }
@@ -143,33 +148,37 @@ body {
 
 .model-item input {
     outline: none;
-    width: 240px;
-    height: 38px;
-    line-height: 38px;
-    padding-left: 10px;
+    width: 15rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    padding-left: 0.625rem;
     box-sizing: border-box;
     border: 1px solid #eee;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
+}
+
+.model-item input.err {
+    border-color: red;
 }
 
 .model-footer {
-    margin-top: 10px;
-    height: 50px;
-    line-height: 50px;
+    margin-top: 0.625rem;
+    height: 3.125rem;
+    line-height: 3.125rem;
 }
 
 .model-opera {
     text-align: right;
-    width: 300px;
+    width: 18.75rem;
     margin: 0 auto;
 }
 
 .model-footer button {
-    padding: 0 10px;
+    padding: 0 0.625rem;
     background: #1E9FFF;
     color: #fff;
-    height: 36px;
-    line-height: 36px;
+    height: 2.25rem;
+    line-height: 2.25rem;
     outline: none;
     border: 1px solid #1E9FFF;
     border-radius: 3px;
@@ -177,16 +186,259 @@ body {
 }
 
 .model-opera .ok {
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .mask {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 1002;
     display: none;
+}
+
+/* 表格样式 */
+.table-wrapper {
+    margin-top: 20px;
+    overflow-x: scroll !important;
+}
+
+#table-info {
+    display: block;
+    min-width: 1150px;
+}
+
+table, tr, td, th {
+    border-collapse: collapse;
+    border: 1px solid #e6e6e6;
+}
+
+#table-info thead,
+#table-info tr {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+table tr th, table tr td {
+    height: 46px;
+}
+
+table tr th, table tr td {
+    width: 80px;
+}
+
+table tr th:nth-child(2), table tr td:nth-child(2) {
+    width: 120px;
+}
+
+table tr th:nth-child(3), table tr td:nth-child(3) {
+    width: 198px !important;
+}
+
+table tr th:nth-child(5), table tr td:nth-child(5) {
+    width: 120px;
+}
+
+table tr th:nth-child(6), table tr td:nth-child(6) {
+    width: 120px;
+}
+
+table tr th:nth-child(7), table tr td:nth-child(7) {
+    width: 120px;
+}
+
+table tr th:nth-child(8), table tr td:nth-child(8) {
+    width: 120px;
+}
+
+table tr th:nth-child(9), table tr td:nth-child(9) {
+    width: 120px;
+}
+
+table tr th:last-child, table tr td:last-child {
+    width: 240px !important;
+}
+
+table .operation button {
+    border: 1px solid #eee;
+    padding: 0 12px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: 5px;
+    color: #eee;
+}
+
+table .operation button:nth-child(2) {
+    margin: 0 5px;
+}
+
+table .operation button.check {
+    background: #1E9FFF;
+}
+
+table .operation button.edit {
+    background: rgb(223, 77, 51)
+}
+
+table .operation button.delete {
+    background: rgb(219, 19, 19);
+}
+
+/* 分页条 */
+.table-wrapper .pagination {
+    width: 600px;
+    margin: 10px 0;
+}
+
+.pagination-content {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.pagination-content>div {
+    margin: 0 5px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.pagination-content .total-num {
+    width: 60px;
+}
+
+.pagination-content .total-num span {
+    margin: 0 2px;
+}
+
+.pagination-content .jump {
+    width: 115px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.pagination-content .jump input {
+    width: 36px;
+    height: 26px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding-left: 8px;
+    box-sizing: border-box;
+    margin: 0 4px;
+}
+
+.pagination-content .jump .jumpBtn {
+    width: 36px;
+    height: 26px;
+    border: 1px solid #1E9FFF;
+    border-radius: 3px;
+    background: #1E9FFF;
+    color: #eee;
+    margin-left: 8px;
+    font-size: 0.7rem;
+}
+
+.pagination-content .num-select select {
+    width: 71px;
+    height: 28px;
+    border-radius: 3px;
+}
+
+.pagination-content .num-carousel {
+    padding: 0 5px;
+}
+
+.pagination-content .num-carousel .carousel-wrap {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.pagination-content .num-carousel .carousel-wrap .leftArrow {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.pagination-content .num-carousel .carousel-wrap .rightArrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.pagination-content .num-carousel .carousel-wrap span {
+    display: inline-block;
+    text-align: center;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 2px;
+    color: #000;
+    cursor: pointer;
+}
+
+.pagination-content .num-carousel .carousel-wrap .numContent {
+    position: absolute;
+    left: 15px;
+    top: 0;
+}
+
+.pagination-content .num-carousel .carousel-wrap .numContent span.cur {
+    background: #1E9FFF;
+    color: #eee;
+}
+
+@media screen and (max-width:768px) {
+    html,body {
+        font-size: 10px;
+    }
+
+    .table-wrapper {
+        width: auto;
+    }
+
+    #table-info {
+        min-width: 1200px;
+        overflow: scroll;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    body {
+        font-size: 12px;
+    }
+
+    .search-wrapper, .search-content {
+        min-width: 800px;
+        overflow: scroll;
+    }
+
+    .search-info {
+        width: 120px;
+    }
+
+    .selectQuery {
+        width: 80px;
+    }
+
+    .table-wrapper {
+        width: auto;
+    }
+
+    #table-info {
+        min-width: 1200px;
+        overflow: scroll;
+    }
 }
