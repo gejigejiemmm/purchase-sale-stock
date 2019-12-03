@@ -1,11 +1,10 @@
 package cn.edu.zzuli.purchasesalestock.service;
 
-import cn.edu.zzuli.purchasesalestock.bean.Msg;
-import cn.edu.zzuli.purchasesalestock.bean.Order;
-import cn.edu.zzuli.purchasesalestock.bean.OrderDetail;
+import cn.edu.zzuli.purchasesalestock.bean.*;
 import com.github.pagehelper.PageInfo;
 import io.swagger.models.auth.In;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,4 +25,6 @@ public interface OrderService {
 
     boolean addFromShoppingcart(Order order,Integer orderType,String orderIphone,
                                 String orderCuslocation,Integer goodsId, Integer goodsCounts);
+
+    List<Bin>  getAddress(HttpSession session);
 }

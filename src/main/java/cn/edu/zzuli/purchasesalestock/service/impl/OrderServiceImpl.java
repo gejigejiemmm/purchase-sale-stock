@@ -1,5 +1,7 @@
 package cn.edu.zzuli.purchasesalestock.service.impl;
 
+import cn.edu.zzuli.purchasesalestock.Mapper.AddressMapper;
+import cn.edu.zzuli.purchasesalestock.Mapper.BinMapper;
 import cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper;
 import cn.edu.zzuli.purchasesalestock.Mapper.ShoppingCartDetailMapper;
 import cn.edu.zzuli.purchasesalestock.bean.*;
@@ -8,10 +10,12 @@ import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
 import cn.edu.zzuli.purchasesalestock.utils.OrderType;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +27,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderMapper orderMapper;
+
+    @Autowired
+    BinMapper binMapper;
 
     @Autowired
     ShoppingCartDetailMapper shoppingCartDetailMapper;
@@ -168,5 +175,25 @@ public class OrderServiceImpl implements OrderService {
         //此 orderType 为结算方式
         detail.setOrderType(orderType);
         return true;
+    }
+
+    /**
+     * 获取当前用户默认的首地址
+     *
+     * 可能（这个区域，虽然按道理来讲， 他们现在的规模就一个，但他们说要扩大规模，所以。。。我还是用list了）
+     * 并不只是一个仓库
+     * @return
+     */
+    public List<Bin> getAddress(HttpSession session) {
+        //获取当前用户的状态
+        Customer customer = (Customer)session.getAttribute("customer");
+        if (customer == null){
+            return  null;
+        }
+
+        //获取地址
+        List<Bin> bins = binMapper.getAddressById(1);
+        System.out.println(bins);
+        return bins;
     }
 }

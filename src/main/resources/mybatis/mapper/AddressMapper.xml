@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+ addressId,  addressCity,  addressTown,  addressVillage,  addressDetail
+-->
+<mapper namespace="cn.edu.zzuli.purchasesalestock.Mapper.AddressMapper">
+
+    <resultMap id="address" type="cn.edu.zzuli.purchasesalestock.bean.Address">
+        <id property="addressId" column="adress_id"></id>
+        <result property="addressCity" column="adress_city"></result>
+        <result property="addressTown" column="adress_town"></result>
+        <result property="addressVillage" column="adress_village"></result>
+        <result property="addressDetail" column="adress_detail"></result>
+    </resultMap>
+
+
+
+
+
+</mapper>

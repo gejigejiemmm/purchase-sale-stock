@@ -50,6 +50,7 @@ public class PurchaseImpl implements PurchaseService {
         List list = purchaseMapper.getInformation(purchaseId);
         if (list!=null){
             return list;
-        }return null;
+        }
+        return null;
     }
 }

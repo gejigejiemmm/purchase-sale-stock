@@ -31,7 +31,7 @@ public class BinServiceImpl implements BinService {
     }
 
 
-//    判断商品数量是否大于50
+    //判断商品数量是否大于50
     @Override
     public boolean ifMoreFifty(Integer goodsId, String goodsChName, String goodsPinyin,
                               String goodsTrivialName, String goodsEnName,Integer goodsBin) {
@@ -44,9 +44,6 @@ public class BinServiceImpl implements BinService {
             return true;
         }
         return false;
-
-
-
     }
 
 }

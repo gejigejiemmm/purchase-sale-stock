@@ -11,6 +11,8 @@ public class Bin {
     private String binTips;
     private String binAddressId;
 
+    private Address address;
+
     public Bin(){}
 
     public Bin(Integer binId, String binName, Integer binAdminId, String binTips, String binAddressId) {

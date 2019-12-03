@@ -1,7 +1,6 @@
 package cn.edu.zzuli.purchasesalestock.controller;
 
-import cn.edu.zzuli.purchasesalestock.bean.Msg;
-import cn.edu.zzuli.purchasesalestock.bean.Order;
+import cn.edu.zzuli.purchasesalestock.bean.*;
 import cn.edu.zzuli.purchasesalestock.service.OrderService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -10,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -56,11 +57,12 @@ public class OrderController {
         //判断 用户id是否传入
         if(order.getOrderId() != null){
             orderService.updateOrder(order);
-            return Msg.success();
-        }
+            return
+        Msg.success();
+    }
 
         return Msg.fail();
-    }
+}
 
 
     @GetMapping("/detail")
@@ -70,7 +72,7 @@ public class OrderController {
     }
 
     /**
-     * 从购物车批量西单
+     * 从购物车批量下单
      * 目前有些问题，现在的商品添加是直接拉去购物车获取的
      * 按道理来讲，应该是要获取 勾选的 商品的信息，这个看前端怎么传，
      * 鸽子
@@ -79,11 +81,39 @@ public class OrderController {
     @PostMapping("/addFromShoppingcart")
     @ApiOperation(value = "从购物车批量下单",httpMethod = "POST")
     public Msg addFromShoppingcart(Order order,@RequestParam("orderType") Integer orderType,
-                         String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
+                                   String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
         if(orderService.addFromShoppingcart(order,orderType,orderIphone,orderCuslocation,goodsId,goodsCounts)) {
             return Msg.success();
         }
         return Msg.fail();
     }
+
+
+    /**
+     * 目前这样想：
+     * （根据ip获取地理位置失败，可以获取ip但不知道ip的所属位置，有第三方库，但是均不支持商用，商用要交钱。。。）
+     *
+     * 用户在点击商品页面的时候，前端发送 Ajax请求到这里来查询，用户的所属仓库
+     *
+     * 这里可以获取，用户信息设置的第一个收货信息，根据该信息获取最近仓库（去数据库查与之匹配的仓库）
+     *
+     * 如果收货位置不准确或没有匹配项，用户也可以自己选择离自己最近的发货位置（很low，但目前毫无办法确定最近仓库）
+     *
+     * @return
+     */
+    @GetMapping("/getUserAddress")
+    @ApiOperation(value = "获取用户当前默认首地址对应的仓库和地址,返回200状态码让用户自己输入",httpMethod = "GET")
+    public Msg getUserAddress(HttpSession session){
+        //获取该用户最近（百分九十是默认的首地址）地址
+        List<Bin> bins = orderService.getAddress(session);
+
+        //这个时候，就让用户自己输入吧！
+        if (bins == null || bins.size() == 0){
+            return Msg.fail();
+        }
+
+        return Msg.success().add("bins",bins);
+    }
+
 
 }

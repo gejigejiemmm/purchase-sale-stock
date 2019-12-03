@@ -1,5 +1,6 @@
 package cn.edu.zzuli.purchasesalestock.Mapper;
 
+import cn.edu.zzuli.purchasesalestock.bean.Address;
 import cn.edu.zzuli.purchasesalestock.bean.Bin;
 import cn.edu.zzuli.purchasesalestock.bean.Goods;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +21,6 @@ public interface BinMapper {
 
     List<Map<Integer,Integer>> GoodsInfoInBinById(List<Integer> list,Integer binId);
 //    List<Goods> getGoods(Goods goods);
+
+    List<Bin> getAddressById(Integer addressId);
 }

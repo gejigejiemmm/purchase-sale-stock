@@ -68,4 +68,31 @@
         </foreach>
 
     </select>
+
+
+    <resultMap id="binAndaddress" type="cn.edu.zzuli.purchasesalestock.bean.Bin">
+        <id property="binId" column="bin_id"></id>
+        <result property="binName" column="bin_name"></result>
+        <result property="binAdminId" column="bin_admin_id"></result>
+        <result property="binTips" column="bin_tips"></result>
+        <result property="binAddressId" column="bin_address_id"></result>
+        <association property="address" resultMap="cn.edu.zzuli.purchasesalestock.Mapper.AddressMapper.address"></association>
+    </resultMap>
+
+    <!--  List<Address> getAddressById(Integer addressId);  -->
+    <select id="getAddressById" resultMap="binAndaddress">
+        SELECT
+            b.bin_id,
+            b.bin_name,
+            a.adress_id,
+            a.adress_city,
+            a.adress_town,
+            a.adress_village,
+            a.adress_detail
+        FROM
+            adress a
+            RIGHT JOIN bin b ON b.bin_address_id = a.adress_id
+        WHERE
+            a.adress_id = #{addressId}
+    </select>
 </mapper>
