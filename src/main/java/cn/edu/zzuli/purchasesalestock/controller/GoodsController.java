@@ -79,4 +79,18 @@ public class GoodsController {
         }
         return goods;
     }
+//    随机得到5条商品信息
+    @PostMapping("/getGoodRand")
+    @ApiOperation(value = "随机得到商品信息",httpMethod = "POST")
+    public List<Goods>  getGoodsRand(){
+        List<Goods> goods = new ArrayList<>();
+        goods = goodsService.getGoodsRand();
+        if (goods!=null){
+//            for (Goods good:goods){
+//                System.out.println(good.getGoodsChName());
+//            }
+            return goods;
+        }
+        return goods;
+    }
 }

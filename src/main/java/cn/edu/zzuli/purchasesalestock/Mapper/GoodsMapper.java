@@ -22,5 +22,7 @@ public interface GoodsMapper {
 
     List<Goods> getGoods(Integer goodsId);
 
+    List<Goods> getGoodsRand();//随机获取商品信息
+
 
 }

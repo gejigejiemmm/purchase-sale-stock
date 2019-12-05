@@ -222,4 +222,39 @@ goodsProducersId goodsSupplierId;-->
     <update id="updateGoods">
         <include refid="updateGoods"></include>
     </update>
+<!--  随机获取商品信息  -->
+    <resultMap id="getGoodRand" type="cn.edu.zzuli.purchasesalestock.bean.Goods">
+        <id property="goodsId" column="goods_id" ></id>
+        <result property="goodsChName" column="goods_chName"></result>
+        <result property="goodsTrivialName" column="goods_trivialName"></result>
+        <result property="goodsEnName" column="goods_enName"></result>
+        <result property="goodsTypeId" column="goods_typeId"></result>
+        <result property="goodsNo" column="goods_no"></result>
+        <result property="goodsCas" column="goods_cas"></result>
+
+        <result property="goodsPinyin" column="goods_pinyin"></result>
+        <result property="goodsMolecularFormula" column="goods_molecularFormula"></result>
+        <result property="goodsBrandId" column="goods_brandId"></result>
+        <result property="goodsModelId" column="goods_modelId"></result>
+
+        <result property="goodsUnit" column="goods_unit"></result>
+        <result property="goodsForm" column="goods_form"></result>
+        <result property="goodsCondition" column="goods_condition"></result>
+        <result property="goodsBin" column="goods_bin"></result>
+        <result property="goodsLocation" column="goods_location"></result>
+        <result property="goodsInitPrice" column="goods_initPrice"></result>
+        <result property="goodsAvgPrice" column="goods_avgPrice"></result>
+        <result property="goodsLowPrice" column="goods_lowPrice"></result>
+
+        <result property="goodsSalePrice1" column="goods_salePrice1"></result>
+        <result property="goodsSalePrice2" column="goods_salePrice2"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsImageUrl" column="goods_imageUrl"></result>
+        <result property="goodsProducersId" column="goods_producersId"></result>
+        <result property="goodsSupplierId" column="goods_supplierId"></result>
+        <result property="goodsCounts" column="goods_counts"></result>
+    </resultMap>
+    <select id="getGoodsRand" resultMap="getGoodRand">
+        SELECT * FROM `goodsInformation`  ORDER BY rand() LIMIT 5
+    </select>
 </mapper>

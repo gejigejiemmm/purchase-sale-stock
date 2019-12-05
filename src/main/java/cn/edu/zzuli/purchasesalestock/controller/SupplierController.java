@@ -73,8 +73,7 @@ public class SupplierController {
                            @RequestParam(value = "type", required = true) String supplierType,
                            @RequestParam(value = "brand", required = true) String supplierBrand,
                            @RequestParam(value = "location", required = true) String supplierLocation,
-                           @RequestParam(value = "phone", required = true) String supplierTelphone,
-                              @RequestParam(value = "id", required = true) Integer id)
+                           @RequestParam(value = "phone", required = true) String supplierTelphone, @RequestParam(value = "id", required = true) Integer id)
     {
         boolean result = supplierService.updateSupplier(supplierName, supplierUnit, supplierSpell, supplierType, supplierBrand, supplierLocation,supplierTelphone,id);
         if(result){

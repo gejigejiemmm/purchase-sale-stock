@@ -87,4 +87,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> getGood(Integer goodsId) {
         return goodsMapper.getGoods(goodsId);
     }
+
+    @Override
+    public List<Goods> getGoodsRand() {
+        return goodsMapper.getGoodsRand();
+    }
 }

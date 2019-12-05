@@ -21,4 +21,6 @@ public interface GoodsService {
     boolean updateGoods(Goods goods);
 
     List<Goods> getGood(Integer goodsId);
+
+    List<Goods> getGoodsRand();
 }
