@@ -1,3 +1,4 @@
+
 .banner-box{
     width: 800px;
     height: 380px;
@@ -92,14 +93,18 @@
 .banner-right-info-box{
     width: 95%;
     /* height: 269px; */
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 16px;
     height: 115px;
     display: flex;
     margin: 15px 0px;
-    align-items: center;
     justify-content: space-around;
     border: 1px solid #f0f0f0;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #f0f0f0;
+    overflow: hidden;
+
 }
 
 .banner-right-btn-box *{
@@ -154,12 +159,36 @@
 
 .info{
     width: 800px;
-    min-height: 840px;
+    /* width: 53rem; */
+    min-height: 240px;
     margin: 50px auto;
+    padding-bottom: 1rem;
     border: 1px solid #f0f0f0;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #f0f0f0;
     transition-duration: 0.5s;
+}
+
+.info-top-box{
+    width: 90%;
+    height: 45px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 14px;
+    margin: 20px auto;
+    background-color: #e4f2f0;
+}
+.info-table th{
+    text-align: center;
+}
+.info-table{
+    width: 90%;
+    text-align: center;
+    margin: 0px auto;
+
+    border-left: none;
+    border-radius: none;
 }
 
 .banner:hover,
@@ -180,10 +209,35 @@
     right: 2vw;
     cursor: pointer;
     border:1px solid #f0f0f0;
+    background-color: #ffffff;
     transition-duration: 0.4s;
     box-shadow: 0px 0px 20px #d4d7dd;
 }
 
 .help-box:hover{
     box-shadow: 0px 0px 40px #d4d7dd;
+}
+
+@media only screen and  (max-width:500px){
+    .banner-box{
+        width: 90vw;
+        flex-flow: column;
+        height: unset;
+    }
+    .banner-right-txt1-box,
+    .banner-right-info-box,
+    .banner-right-btn-box,
+    .banner-right-btn-box2{
+        width: unset;
+    }
+    .banner-right{
+        padding: 0 15px;
+        padding-bottom: 15px;
+    }
+
+    .info{
+        width: 90vw;
+    }
+
+
 }

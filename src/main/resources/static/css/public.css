@@ -5,6 +5,9 @@ span::selection,
     color: #fff;
     background: #393D49;
 }
+html{
+    font-size: 15px;
+}
 
 .layui-nav{
     /* 顶部nav设置为绝对定位,脱离文档流,实现content直接设置100vh,

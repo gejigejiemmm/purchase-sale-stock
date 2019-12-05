@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -8,87 +9,134 @@
   <link rel="stylesheet" href="../static/css/public.css">
   <link rel="stylesheet" href="../static/css/details.css">
 </head>
+
 <body>
-<div class="container">
-        <ul class="layui-nav layui-nav-pc" lay-filter="">
-                <!-- layui-nav-box内包括的是该页面在手机端逐行显示的nav部分。 -->
-                <div class="layui-nav-box ">
-                        <li class="layui-nav-item layui-this"><a href="">选项一</a></li>
-                        <li class="layui-nav-item "><a href="">选项二</a></li>
-                        <li class="layui-nav-item"><a href="">选项三</a></li>
-                        <li class='nav-btn nav-btn-status2'><i class="layui-icon layui-icon-triangle-d"style="font-size: 22px;"></i>   </li>
-                </div>
-                <div class="layui-nav-box">
-                        <li class="layui-nav-item"><a href="javascript:;">选项四</a></li>
-                        <li class="layui-nav-item"><a href="">选项五</a></li>
-                        <li class="layui-nav-item"><a href="javascript:;">选项六</a></li>
-                        <li class="layui-nav-item"><a href="">选项七</a></li>
-                </div>
-              </ul>
+  <div class="container">
+    <ul class="layui-nav layui-nav-pc" lay-filter="">
+      <!-- layui-nav-box内包括的是该页面在手机端逐行显示的nav部分。 -->
+      <div class="layui-nav-box ">
+        <li class="layui-nav-item layui-this"><a href="">选项一</a></li>
+        <li class="layui-nav-item "><a href="">选项二</a></li>
+        <li class="layui-nav-item"><a href="">选项三</a></li>
+        <li class='nav-btn nav-btn-status2'><i class="layui-icon layui-icon-triangle-d" style="font-size: 22px;"></i>
+        </li>
+      </div>
+      <div class="layui-nav-box">
+        <li class="layui-nav-item"><a href="javascript:;">选项四</a></li>
+        <li class="layui-nav-item"><a href="">选项五</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">选项六</a></li>
+        <li class="layui-nav-item"><a href="">选项七</a></li>
+      </div>
+    </ul>
 
-              <div class="content" >
-                <div class="error">
-                    <i class="layui-icon layui-icon-face-surprised "style="font-size:40px;color: #393D49;"></i>
-                    <p>非常抱歉,获取商品信息失败了,请刷新再试.</p> 
-                </div>
+    <div class="content">
+      <div class="error">
+        <i class="layui-icon layui-icon-face-surprised " style="font-size:40px;color: #393D49;"></i>
+        <p>非常抱歉,获取商品信息失败了,请刷新再试.</p>
+      </div>
 
-                <div class="banner-box">
-                    <div class="banner-left">
-                          <img class="detailImg" src="/images/img2.jpeg" alt="">
-                    </div>
-                    <div class="banner-right">
-                          <div class="banner-right-txt1-box">
-                            <div class="banner-right-txt1-price">
-                              <!-- $399 -->
-                            </div>
-                            <div class="banner-right-txt1-name">
-                              <!-- 和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版 -->
-                            </div>
-                          </div>
-                          
-                          <div class="banner-right-info-box">
-                            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
-                            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
-                            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
-                            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
-                            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
-                            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
-                            
-                          </div>
+      <div class="banner-box">
+        <div class="banner-left">
+          <img class="detailImg" src="/images/img2.jpeg" alt="">
+        </div>
+        <div class="banner-right">
+          <div class="banner-right-txt1-box">
+            <div class="banner-right-txt1-price">
+              <!-- $399 -->
+            </div>
+            <div class="banner-right-txt1-name">
+              <!-- 和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版 -->
+            </div>
+          </div>
 
-                          <div class="banner-right-btn-box">
-                            <button type="button" class="layui-btn layui-btn-normal">-</button>
-                            <div class="banner-right-btn-input-box">
-                              <input type="text" name="title" required  lay-verify="required" placeholder="数量" autocomplete="off" class="layui-input">
-                            </div>
-                            <button type="button" class="layui-btn layui-btn-normal">+</button>
-                          </div>
-                          <div class="banner-right-btn-box2">
-                            <button type="button" class="layui-btn layui-btn-normal">添加至购物车</button>
-                            <button type="button" class="layui-btn layui-btn-normal">购买</button>
-                          </div>
+          <div class="banner-right-info-box">
+            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
+            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
+            和其正新年贺岁大礼包尊享版新年贺岁大礼包尊享版
+          </div>
 
-                    </div>
-                </div>
+          <div class="banner-right-btn-box">
+            <button type="button" class="layui-btn layui-btn-normal detail-sub-btn">-</button>
+            <div class="banner-right-btn-input-box">
+              <input value='1' type="text" name="title" required lay-verify="required" placeholder="数量"
+                autocomplete="off" class="layui-input goodCountInput">
+            </div>
+            <button type="button" class="layui-btn layui-btn-normal detail-add-btn">+</button>
+          </div>
+          <div class="banner-right-btn-box2">
+            <button type="button" class="layui-btn layui-btn-normal">
+              <!-- <i class="layui-icon layui-icon-cart-simple" style="font-size: 30px; color: #1E9FFF;"></i>   -->
+              添加至购物车
+            </button>
+            <button type="button" class="layui-btn layui-btn-normal">
+              <!-- <i class="layui-icon layui-icon-ok-circle" style="font-size: 30px; color: #1E9FFF;"></i>   -->
+              购买
 
-                <div class="info">
+            </button>
+          </div>
 
-                </div>
-               
-                <div class="help-box">
-                  ?
-                </div>
-              </div>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="info-top-box">
+          详细参数
+        </div>
+
+        <table class="layui-table info-table" lay-even lay-skin="nob">
+          <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+          </colgroup>
+          <thead>
+            <th>名称</th>
+            <th>参数</th>
+          </thead>
+          <tbody class="info-table-tbody">
+            <tr>
+              <td>商品英文名</td>
+              <td class="info-table-td"></td>
+            </tr>
+            <tr>
+              <td>商品俗名</td>
+              <td class="info-table-td"></td>
+            </tr>
+            <tr>
+              <td>化学方程表达式</td>
+              <td class="info-table-td"></td>
+            </tr>
+            <tr>
+              <td>商品形态</td>
+              <td class="info-table-td"></td>
+            </tr>
+            <tr>
+              <td>计量单位</td>
+              <td class="info-table-td"></td>
+            </tr>
+            <tr>
+              <td>存储条件</td>
+              <td class="info-table-td"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="help-box">
+        ?
+      </div>
+    </div>
 
 
-              <div class="footer">
-                        &copy;郑州轻工业大学
-              </div>
-</div>
+    <div class="footer">
+      &copy;郑州轻工业大学
+    </div>
+  </div>
 
- 
-<script src="../static/layui/layui.js"></script>
-<script src="../static/js/public.js"></script>
-<script src='../static/js/details.js'></script>
+
+  <script src="../static/layui/layui.js"></script>
+  <script src="../static/js/public.js"></script>
+  <script src='../static/js/details.js'></script>
 </body>
+
 </html>
