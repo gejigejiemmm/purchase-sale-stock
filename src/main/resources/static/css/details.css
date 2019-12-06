@@ -30,22 +30,127 @@
     flex-basis: 50%;
 }
 
-.banner-right-txt1{
+.banner-right-txt1-box{
     width: 95%;
-    height: 80px;
-    border: 1px solid #f0f0f0;
+    height: 60px;
     margin: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+    /* border-radius: 20px; */
+}
+
+.banner-right-txt1-price{
+    /* width: 30%; */
+    flex-basis: 28%;
+    height: 60px;
+    display: inline-block;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+    line-height: 60px;
+    text-align: center;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.banner-right-txt1-name{
+    height: 60px;
+    /* padding-left:5px;
+    padding-right: 5px; */
+    border: 1px solid #f0f0f0;
+    display: inline-block;
+    box-shadow: 0px 0px 10px #f0f0f0;
+    border-radius: 20px;
+    /* width: 68%; */
+    flex-basis: 70%;
+    box-sizing: border-box;
+    line-height: 60px;
+    text-align: center;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+
+/* 商品详情页面操作按钮的盒子 */
+.banner-right-btn-box
+{
+    width: 95%;
+    /* height: 269px; */
+    height: 60px;
+    display: flex;
+    margin: 15px 0px;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #f0f0f0;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #f0f0f0;
 }
 
-.banner-right-txt2{
+.banner-right-info-box{
     width: 95%;
-    height: 250px;
+    /* height: 269px; */
+    height: 115px;
+    display: flex;
+    margin: 15px 0px;
+    align-items: center;
+    justify-content: space-around;
     border: 1px solid #f0f0f0;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #f0f0f0;
 }
+
+.banner-right-btn-box *{
+    display: inline-block;
+}
+
+.banner-right-btn-box button{
+    flex-basis: 15%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.banner-right-btn-box button:nth-of-type(1),
+.banner-right-btn-box2 button:nth-of-type(1){
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.banner-right-btn-box button:nth-of-type(2),
+.banner-right-btn-box2 button:nth-of-type(2){
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.banner-right-btn-input-box{
+    flex-basis: 55%;
+    text-align: center;
+}   
+
+.banner-right-btn-input-box input{
+    width: 50%;
+    padding: 0;
+    text-align: center;
+}
+
+.banner-right-btn-box2{
+    width: 95%;
+    /* height: 269px; */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+}
+
+.banner-right-btn-box2 button{
+    flex-basis: 45%;
+}
+
+
 
 .info{
     width: 800px;

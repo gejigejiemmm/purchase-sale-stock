@@ -1,10 +1,11 @@
 
 /* 修改文本选中颜色 */
 span::selection,
-p::selection {
+*::selection {
     color: #fff;
     background: #393D49;
 }
+
 .layui-nav{
     /* 顶部nav设置为绝对定位,脱离文档流,实现content直接设置100vh,
     然后box-sizing:border-box,
