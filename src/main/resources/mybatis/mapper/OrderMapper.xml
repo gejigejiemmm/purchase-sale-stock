@@ -134,4 +134,17 @@
 
     </insert>
 
+
+    <!--  public List<Goods> getOrdersItmesId(Integer orderId);  -->
+    <select id="getOrdersItmesId" resultMap="cn.edu.zzuli.purchasesalestock.Mapper.GoodsMapper.goods">
+        SELECT
+            item_goods_id as goods_id,
+			item_goods_count as goods_counts
+        FROM
+            orderitems
+        WHERE
+            item_order_id = #{orderId}
+
+    </select>
+
 </mapper>

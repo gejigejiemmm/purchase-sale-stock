@@ -161,7 +161,7 @@ public class OrderServiceImpl implements OrderService {
      */
     public boolean initOrderInfo(Order order,Integer orderType,String orderIphone,
                         String orderCuslocation,OrderDetail detail ){
-        //因为这个时候 订单还没开始  配货所以甚至订单状态为 BEFORE  (订单状态)
+        //因为这个时候 订单还没开始  配货所以设置订单状态为 BEFORE  (订单状态)
         order.setOrderStatus(OrderType.BEFORE.getStatus());
         //先添加订单，以便获取订单id
         if(!orderMapper.addOrder(order)) {

@@ -23,4 +23,13 @@ public interface BinMapper {
 //    List<Goods> getGoods(Goods goods);
 
     List<Bin> getAddressById(Integer addressId);
+
+    /**
+     * 减少仓库中对应的库存
+     * @param binId 仓库编号
+     * @param list 订单中所有的 商品id
+     * @return
+     */
+    boolean deleteGoodsCount(Integer binId, List<Integer> list);
+
 }

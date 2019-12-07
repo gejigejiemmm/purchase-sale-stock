@@ -95,4 +95,17 @@
         WHERE
             a.adress_id = #{addressId}
     </select>
+
+
+    <!--  boolean deleteGoodsCount(Integer binId, List<Integer> goodsId);  -->
+    <update id="deleteGoodsCount">
+        UPDATE goodsInformation g
+        SET g.goods_counts = g.goods_counts - 1
+        WHERE
+            g.goods_bin = #{binId}
+            AND g.goods_id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
 </mapper>

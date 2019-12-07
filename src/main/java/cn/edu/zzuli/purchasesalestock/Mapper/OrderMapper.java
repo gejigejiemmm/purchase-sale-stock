@@ -1,9 +1,6 @@
 package cn.edu.zzuli.purchasesalestock.Mapper;
 
-import cn.edu.zzuli.purchasesalestock.bean.Msg;
-import cn.edu.zzuli.purchasesalestock.bean.Order;
-import cn.edu.zzuli.purchasesalestock.bean.OrderDetail;
-import cn.edu.zzuli.purchasesalestock.bean.ShoppingCart_detail;
+import cn.edu.zzuli.purchasesalestock.bean.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -26,4 +23,8 @@ public interface OrderMapper{
     boolean addOrderItems(@Param("list") List<ShoppingCart_detail> goosDetails,@Param("orderId") Integer orderId);
 
     public boolean deleteOrderAndDetail(Integer order_id);
+
+
+    //获取该订单的 商品信息
+    public List<Goods> getOrdersItmesId(Integer orderId);
 }
