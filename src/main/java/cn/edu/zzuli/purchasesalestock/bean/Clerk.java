@@ -5,7 +5,6 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 public class Clerk {
@@ -17,6 +16,8 @@ public class Clerk {
     private String clerkPosition;
     private String clerkArea;
     private String clerkSpell;
+    private String clerkPassword;
+
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate clerkBirthday;
@@ -27,10 +28,7 @@ public class Clerk {
         super();
     }
 
-    public Clerk(Integer clerkId, String clerkName, Integer clerkNo,
-                 String clerkCompany, String clerkPosition, String clerkArea,
-                 String clerkSpell, LocalDate clerkBirthday, String clerkTelphone,
-                 String clerkLocation) {
+    public Clerk(Integer clerkId, String clerkName, Integer clerkNo, String clerkCompany, String clerkPosition, String clerkArea, String clerkSpell, String clerkPassword, LocalDate clerkBirthday, String clerkTelphone, String clerkLocation) {
         this.clerkId = clerkId;
         this.clerkName = clerkName;
         this.clerkNo = clerkNo;
@@ -38,10 +36,9 @@ public class Clerk {
         this.clerkPosition = clerkPosition;
         this.clerkArea = clerkArea;
         this.clerkSpell = clerkSpell;
+        this.clerkPassword = clerkPassword;
         this.clerkBirthday = clerkBirthday;
         this.clerkTelphone = clerkTelphone;
         this.clerkLocation = clerkLocation;
     }
-
-
 }

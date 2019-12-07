@@ -4,24 +4,27 @@ import cn.edu.zzuli.purchasesalestock.Mapper.ClerkMapper;
 import cn.edu.zzuli.purchasesalestock.bean.Clerk;
 import cn.edu.zzuli.purchasesalestock.service.ClerkService;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class ClerkServiceImpl implements ClerkService {
+
     @Autowired
     ClerkMapper clerkMapper;
+
     @Override
-    public boolean addClerk(String clerkName, Integer clerkNo, String clerkCompany, String clerkPosition,
-                            String clerkArea, String clerkSpell, LocalDate clerkBirthday, String clerkTelphone,
-                            String clerkLocation ) {
-        if (clerkMapper.addClerk(clerkName,clerkNo,clerkCompany,clerkPosition,clerkArea,clerkSpell,clerkBirthday,clerkTelphone,clerkLocation))
+    public boolean addClerk(@Param("clerkName") String clerkName, @Param("clerkNo") Integer clerkNo, @Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition,
+                            @Param("clerkArea") String clerkArea, @Param("clerkSpell") String clerkSpell, @Param("clerkBirthday") LocalDate clerkBirthday, @Param("clerkTelphone") String clerkTelphone,
+                            @Param("clerkLocation") String clerkLocation, @Param("clerkPassword") String clerkPassword) {
+        if (clerkMapper.addClerk(clerkName,clerkNo,clerkCompany,clerkPosition,clerkArea,clerkSpell,clerkBirthday,clerkTelphone,clerkLocation, clerkPassword))
             return true;
         return false;
     }
@@ -34,25 +37,50 @@ public class ClerkServiceImpl implements ClerkService {
     }
 
     @Override
-    public List<Clerk> getClerk(Integer clerkId, String clerkName, String clerkCompany,
-                                String clerkPosition, String clerkArea, String clerkSpell,
-                                String clerkBirthday, String clerkTelphone, String clerkLocation) {
-        Map<String, Object> info = new HashMap<>();
-        BaseUtils.initInfo(info, "clerkId", clerkId, "clerkName", clerkName, "clerkCompany", clerkCompany,
-                "clerkPosition", clerkPosition, "clerkArea", clerkArea, "clerkSpell", clerkSpell,
-                "clerkBirthday", clerkBirthday, "clerkTelphone", clerkTelphone, "clerkLocation", clerkLocation);
-        List<Clerk> clerk = clerkMapper.getClerk(info);
-        return clerk;
+    public Collection<Clerk> getClerkByConsitionsByLimit(@Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition, @Param("clerkArea") String clerkArea,
+                                      @Param("page") Integer page, @Param("limit") Integer limit)
+    {
+        Integer offset = (page-1)*limit;
+        Collection<Clerk> result = clerkMapper.getClerkByConsitionsByLimit(clerkCompany, clerkPosition, clerkArea, offset, limit);
+        for(Clerk cc : result){
+            cc.setClerkPassword(null);
+        }
+        return result;
     }
 
     @Override
-    public boolean updateClerk(Clerk clerk) {
-        Map<String, Object> info = new HashMap<>();
-        BaseUtils.initInfo(info, "clerkId", clerk.getClerkId(), "clerkName",clerk.getClerkName(),"clerkNo", clerk.getClerkNo(), "clerkCompany", clerk.getClerkCompany(),
-                "clerkPosition", clerk.getClerkPosition(), "clerkArea", clerk.getClerkArea(), "clerkSpell", clerk.getClerkSpell(),
-                "clerkBirthday", clerk.getClerkBirthday(), "clerkTelphone", clerk.getClerkTelphone(), "clerkLocation", clerk.getClerkLocation());
-        if (clerkMapper.updateClerk(info))
-            return true;
-        return false;
+    public boolean updateClerk(@Param("clerkId") Integer clerkId, @Param("clerkName") String clerkName, @Param("clerkCompany") String clerkCompany,
+                               @Param("clerkPosition") String clerkPosition, @Param("clerkArea") String clerkArea,
+                               @Param("clerkSpell") String clerkSpell, @Param("clerkBirthday") LocalDate clerkBirthday,
+                               @Param("clerkTelphone") String clerkTelphone, @Param("clerkLocation") String clerkLocation, @Param("clerkPassword") String clerkPassword)
+    {
+        return clerkMapper.updateClerk(clerkId, clerkName, clerkCompany, clerkPosition, clerkArea, clerkSpell, clerkBirthday, clerkTelphone, clerkLocation, clerkPassword);
+    }
+
+    @Override
+    public Collection<Clerk> getClerksByLimit(@Param("page") Integer page, @Param("limit")Integer limit)
+    {
+        Integer offset = (page-1)*limit;
+        Collection<Clerk> result = clerkMapper.getClerksByLimit(offset, limit);
+        for(Clerk cc : result){
+            cc.setClerkPassword(null);
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<Clerk> getAllClerks()
+    {
+        Collection<Clerk> result = clerkMapper.getAllClerks();
+        for(Clerk cc : result){
+            cc.setClerkPassword(null);
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<Clerk> getClerkByConsitions(@Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition, @Param("clerkArea") String clerkArea)
+    {
+        return clerkMapper.getClerkByConsitions(clerkCompany, clerkPosition, clerkArea);
     }
 }

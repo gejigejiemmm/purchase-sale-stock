@@ -73,6 +73,7 @@ public class CustomerController{
         }
     }
 
+    /*
     @GetMapping(value = "/loginPage")
     @ApiOperation(value = "前往登录页面", httpMethod = "GET")
     public ModelAndView loginPage()
@@ -97,5 +98,5 @@ public class CustomerController{
             return mv;
         }
     }
-
+    */
 }

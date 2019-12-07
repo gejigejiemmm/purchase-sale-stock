@@ -13,26 +13,11 @@
     private String clerkSpell;
     private String clerkBirthday;
     private String clerkTelphone;
-    private String clerkLocation;   -->
+    private String clerkLocation;
+    private String clerkPassword-->
 
-<!--添加销售员信息-->
-    <insert id="addClerk" parameterType="cn.edu.zzuli.purchasesalestock.bean.Clerk">
-        INSERT INTO `employee`(clerk_name,clerk_no,clerk_company,
-                               clerk_position,clerk_area,clerk_spell,clerk_birthday,
-                               clerk_telphone,clerk_location)
-                        VALUES(#{clerkName},#{clerkNo},#{clerkCompany},
-                               #{clerkPosition},#{clerkArea},#{clerkSpell},#{clerkBirthday},
-                               #{clerkTelphone},#{clerkLocation})
-    </insert>
-
-<!-- 根据id删除   -->
-    <delete id="delClerkById" parameterType="cn.edu.zzuli.purchasesalestock.bean.Clerk">
-        DELETE FROM `employee` WHERE clerk_id=#{clerkId}
-
-    </delete>
-
-<!--  根据条件查询  -->
-    <resultMap id="getClerk" type="cn.edu.zzuli.purchasesalestock.bean.Clerk">
+<!--  简单的字段映射  -->
+    <resultMap id="Clerk" type="cn.edu.zzuli.purchasesalestock.bean.Clerk">
         <id property="clerkId" column="clerk_id"></id>
         <result property="clerkName" column="clerk_name"></result>
         <result property="clerkNo" column="clerk_no"></result>
@@ -43,7 +28,26 @@
         <result property="clerkBirthday" column="clerk_birthday"></result>
         <result property="clerkTelphone" column="clerk_telphone"></result>
         <result property="clerkLocation" column="clerk_location"></result>
+        <result property="clerkPassword" column="clerk_password"></result>
     </resultMap>
+
+    <!--添加销售员信息-->
+    <insert id="addClerk" parameterType="cn.edu.zzuli.purchasesalestock.bean.Clerk">
+        INSERT INTO `employee` (clerk_name,clerk_no,clerk_company,
+                               clerk_position,clerk_area,clerk_spell,clerk_birthday,
+                               clerk_telphone,clerk_location, clerk_password)
+                        VALUES(#{clerkName},#{clerkNo},#{clerkCompany},
+                               #{clerkPosition},#{clerkArea},#{clerkSpell},#{clerkBirthday},
+                               #{clerkTelphone},#{clerkLocation},#{clerkPassword})
+    </insert>
+
+    <!-- 根据id删除   -->
+    <delete id="delClerkById" parameterType="cn.edu.zzuli.purchasesalestock.bean.Clerk">
+        DELETE FROM `employee` WHERE clerk_id=#{clerkId}
+
+    </delete>
+
+
     <sql id="getClerk">
         SELECT * FROM `employee`
         <where>
@@ -76,29 +80,45 @@
             </if>
         </where>
     </sql>
-    <select id="getClerk" resultMap="getClerk">
-            <include refid="getClerk"></include>
+
+    <select id="getClerkByConsitionsByLimit" resultMap="Clerk">
+        select * from
+        employee
+        <where>
+            <if test="clerkCompany!=null">
+                clerk_company=#{clerkCompany}
+            </if>
+            <if test="clerkPosition!=null">
+                AND  clerk_position=#{clerkPosition}
+            </if>
+            <if test="clerkArea!=null">
+                AND clerk_area=#{clerkArea}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
     </select>
 
-<!-- 更新clerk信息   -->
-    <!--private Integer clerkId;
-    private String clerkName;
-    private Integer clerkNo;
-    private String clerkCompany;
-    private String clerkPosition;
-    private String clerkArea;
-    private String clerkSpell;
-    private String clerkBirthday;
-    private String clerkTelphone;
-    private String clerkLocation;   -->
+    <select id="getClerkByConsitions" resultMap="Clerk">
+        select * from
+        employee
+        <where>
+            <if test="clerkCompany!=null">
+                clerk_company=#{clerkCompany}
+            </if>
+            <if test="clerkPosition!=null">
+                AND  clerk_position=#{clerkPosition}
+            </if>
+            <if test="clerkArea!=null">
+                AND clerk_area=#{clerkArea}
+            </if>
+        </where>
+    </select>
+
     <sql id="updateClerks">
         UPDATE `employee`
         <set>
             <if test="clerkName!=null">
                 clerk_name=#{clerkName},
-            </if>
-            <if test="clerkNo!=null">
-                clerk_no=#{clerkNo},
             </if>
             <if test="clerkCompany!=null">
                 clerk_company=#{clerkCompany},
@@ -121,6 +141,9 @@
             <if test="clerkLocation!=null">
                 clerk_location=#{clerkLocation}
             </if>
+            <if test="clerkPassword!=null">
+                clerk_password=#{clerkPassword}
+            </if>
         </set>
         WHERE clerk_id=#{clerkId}
     </sql>
@@ -128,5 +151,16 @@
     <update id="updateClerk">
         <include refid="updateClerks"></include>
     </update>
+
+    <select id="getClerksByLimit" resultMap="Clerk">
+        select * from employee
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="getAllClerks" resultMap="Clerk">
+        select * from employee
+    </select>
+
+
 
 </mapper>
