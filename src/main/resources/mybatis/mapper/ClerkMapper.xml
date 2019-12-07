@@ -139,7 +139,7 @@
                 clerk_telphone=#{clerkTelphone},
             </if>
             <if test="clerkLocation!=null">
-                clerk_location=#{clerkLocation}
+                clerk_location=#{clerkLocation},
             </if>
             <if test="clerkPassword!=null">
                 clerk_password=#{clerkPassword}
@@ -161,6 +161,7 @@
         select * from employee
     </select>
 
-
-
+    <select id="getClerkByNo" resultMap="Clerk">
+        select * from employee where clerk_no = #{clerkNo}
+    </select>
 </mapper>

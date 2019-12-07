@@ -83,4 +83,10 @@ public class ClerkServiceImpl implements ClerkService {
     {
         return clerkMapper.getClerkByConsitions(clerkCompany, clerkPosition, clerkArea);
     }
+
+    @Override
+    public Clerk getClerkByNo(Integer clerkNo)
+    {
+        return clerkMapper.getClerkByNo(clerkNo);
+    }
 }

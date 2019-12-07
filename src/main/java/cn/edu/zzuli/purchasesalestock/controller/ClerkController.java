@@ -97,6 +97,24 @@ public class ClerkController {
         return mv;
     }
 
+
+    @PostMapping("login_clerk")
+    @ApiOperation(value = "登录验证", httpMethod = "POST")
+    public Msg Login_clerk(@RequestParam(value = "username", required = true) Integer clerkNo,
+                           @RequestParam(value = "password", required = true) String password)
+    {
+        Clerk cc = clerkService.getClerkByNo(clerkNo);
+        if(cc==null){
+            return Msg.fail().add("error", "用户不存在！");
+        }
+        else if(password.equals(cc.getClerkPassword())){
+            return Msg.success();
+        }
+        else{
+            return Msg.fail().add("error", "密码错误！");
+        }
+    }
+
     @GetMapping(value = "/getClerksByLimit")
     @ApiOperation(value = "雇员的分页查询", httpMethod = "GET")
     public Msg getClerksByLimit(@RequestParam(value = "page", defaultValue = "1", required = false) Integer page,

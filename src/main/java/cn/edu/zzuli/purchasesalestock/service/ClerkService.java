@@ -22,4 +22,6 @@ public interface ClerkService {
     Collection<Clerk> getAllClerks();
 
     Collection<Clerk> getClerkByConsitions(String clerkCompany, String clerkPosition, String clerkArea);
+
+    Clerk getClerkByNo(Integer clerkNo);
 }
