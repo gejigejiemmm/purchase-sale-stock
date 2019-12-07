@@ -42,10 +42,13 @@ public class OrderController {
     }
 
     @PostMapping("/add")
-    @ApiOperation(value = "用户单点下单",httpMethod = "POST")
+    @ApiOperation(value = "用户单点下单，customerId 和 teaId 为必须传，没有可null",httpMethod = "POST")
     public Msg addOrders(Order order,@RequestParam("orderType") Integer orderType,
-                         String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
-        if(orderService.addOrdersAndDetail(order,orderType,orderIphone,orderCuslocation,goodsId,goodsCounts)) {
+                         String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts,
+                         @RequestParam(value = "customerId") Integer customerId,
+                         @RequestParam(value = "teaId") Integer teaId) {
+        if(orderService.addOrdersAndDetail(order,orderType,orderIphone,orderCuslocation,
+                goodsId,goodsCounts,customerId,teaId)) {
             return Msg.success();
         }
         return Msg.fail();
@@ -79,10 +82,13 @@ public class OrderController {
      * @return
      */
     @PostMapping("/addFromShoppingcart")
-    @ApiOperation(value = "从购物车批量下单",httpMethod = "POST")
+    @ApiOperation(value = "从购物车批量下单,customerId 和 teaId 为必须传，没有可null",httpMethod = "POST")
     public Msg addFromShoppingcart(Order order,@RequestParam("orderType") Integer orderType,
-                                   String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts) {
-        if(orderService.addFromShoppingcart(order,orderType,orderIphone,orderCuslocation,goodsId,goodsCounts)) {
+                                   String orderIphone, String orderCuslocation,Integer goodsId, Integer goodsCounts,
+                                   @RequestParam(value = "customerId") Integer customerId,
+                                   @RequestParam(value = "teaId") Integer teaId) {
+        if(orderService.addFromShoppingcart(order,orderType,orderIphone,orderCuslocation,
+                goodsId,goodsCounts,customerId,teaId)) {
             return Msg.success();
         }
         return Msg.fail();

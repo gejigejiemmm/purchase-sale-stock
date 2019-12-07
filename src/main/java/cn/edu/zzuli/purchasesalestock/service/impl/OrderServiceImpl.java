@@ -1,9 +1,6 @@
 package cn.edu.zzuli.purchasesalestock.service.impl;
 
-import cn.edu.zzuli.purchasesalestock.Mapper.AddressMapper;
-import cn.edu.zzuli.purchasesalestock.Mapper.BinMapper;
-import cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper;
-import cn.edu.zzuli.purchasesalestock.Mapper.ShoppingCartDetailMapper;
+import cn.edu.zzuli.purchasesalestock.Mapper.*;
 import cn.edu.zzuli.purchasesalestock.bean.*;
 import cn.edu.zzuli.purchasesalestock.service.OrderService;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
@@ -12,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +28,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     BinMapper binMapper;
+
+    @Autowired
+    TeacherMapper teacherMapper;
 
     @Autowired
     ShoppingCartDetailMapper shoppingCartDetailMapper;
@@ -89,14 +90,19 @@ public class OrderServiceImpl implements OrderService {
      */
     @Transactional
     public boolean addOrdersAndDetail(Order order,Integer orderType,String orderIphone,
-                                      String orderCuslocation,Integer goodsId, Integer goodsCounts) {
+                                      String orderCuslocation,Integer goodsId, Integer goodsCounts,
+                                      Integer customerId,Integer teaId) {
         if(order != null && orderType != null && goodsId != null) {
             OrderDetail detail = new OrderDetail();
             if(!(initOrderInfo(order,orderType,orderIphone,orderCuslocation,detail))){
                 return false;
             }
 
-            //减少用户存款 ---没必要？毕竟单点？ 考虑一下
+            //减少用户存款,判断是否有导师，如果有的话就扣导师的余额（预付金）
+            if (teaId != null){
+                teacherMapper.updateBalance(teaId,order.getOrderPrices());
+                //teaId == null 的话支付宝付款 鸽子halo
+            }
 
             //根据 该用户收款位置 所对应的仓库  鸽子halo
             //去对应的仓库减库存，修改订单的所属仓库  这应该放在配货的时候修改！！！！！！！
@@ -130,11 +136,18 @@ public class OrderServiceImpl implements OrderService {
      */
     @Transactional
     public boolean addFromShoppingcart(Order order,Integer orderType,String orderIphone,
-                                       String orderCuslocation,Integer goodsId, Integer goodsCounts) {
+                                       String orderCuslocation,Integer goodsId, Integer goodsCounts,
+                                       Integer customerId,Integer teaId) {
         if(order != null && orderType != null) {
             OrderDetail detail = new OrderDetail();
             if (!(initOrderInfo(order, orderType, orderIphone, orderCuslocation, detail))) {
                 return false;
+            }
+
+            //减少用户存款,判断是否有导师，如果有的话就扣导师的余额（预付金）
+            if (teaId != null){
+                teacherMapper.updateBalance(teaId,order.getOrderPrices());
+                //teaId == null 的话支付宝付款 鸽子halo
             }
 
             //从用户购物车里获取所有商品信息

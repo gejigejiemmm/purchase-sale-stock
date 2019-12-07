@@ -2,9 +2,12 @@ package cn.edu.zzuli.purchasesalestock;
 
 import cn.edu.zzuli.purchasesalestock.Mapper.BinMapper;
 import cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper;
+import cn.edu.zzuli.purchasesalestock.Mapper.TeacherMapper;
 import cn.edu.zzuli.purchasesalestock.bean.Goods;
 import cn.edu.zzuli.purchasesalestock.bean.Order;
+import cn.edu.zzuli.purchasesalestock.bean.Teacher;
 import cn.edu.zzuli.purchasesalestock.utils.AllocationType;
+import org.apache.ibatis.annotations.Update;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +76,23 @@ public class PurchaseSaleStockApplicationTests {
         binMapper.deleteGoodsCount(binId,goodsId);
 
     }
+
+    @Autowired
+    TeacherMapper teacherMapper;
+
+    @Test
+    public void Teacher(){
+
+
+        List<Teacher> teachers = teacherMapper.getTeachers();
+        System.out.println(teachers);
+
+
+        Boolean isSpend = teacherMapper.updateBalance(1, 30.0);
+        System.out.println(isSpend);
+        Teacher teacherById = teacherMapper.getTeacherById(1);
+        System.out.println(teacherById);
+    }
+
 
 }
