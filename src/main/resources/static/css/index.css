@@ -1,4 +1,19 @@
+#index-content{
+    /* 对index首页的content进行最低高度限制默认出现滚动条，从而可以出发滚动流加载 */
+    min-height: 110vh;
+}
 
+/* 重写layui flow流加载的下拉加载按钮样式 */
+.layui-flow-more a cite{
+    padding: 0 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    /* color: #333; */
+    box-shadow: 0px 0px 20px #e5dfdf;
+    letter-spacing: 2px;
+    background-color: #ffffff;
+    font-style: normal;
+}
 .goods{
     display: flex;
     flex-wrap: wrap;

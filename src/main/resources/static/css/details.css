@@ -1,4 +1,6 @@
 
+
+/* 以下下下下下下下是头部banner部分 */
 .banner-box{
     width: 800px;
     height: 380px;
@@ -155,14 +157,16 @@
     flex-basis: 45%;
 }
 
+/* 以上上上上上上上上是头部banner部分 */
 
+/* 以下下下下下下下开始为该页面中部的info商品详细信息部分 */
 
 .info{
     width: 800px;
     /* width: 53rem; */
     min-height: 240px;
     margin: 50px auto;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
     border: 1px solid #f0f0f0;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #f0f0f0;
@@ -177,7 +181,8 @@
     line-height: 45px;
     border-radius: 14px;
     margin: 20px auto;
-    background-color: #e4f2f0;
+    color: white;
+    background-color: #1E9FFF;
 }
 .info-table th{
     text-align: center;
@@ -189,6 +194,64 @@
 
     border-left: none;
     border-radius: none;
+}
+
+/* 以上上上上上开始始为该页面中部的info商品详细信息部分 */
+
+
+/* .recommend{
+    width: 800px;
+    height: 250px;
+    margin: 30px auto;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+} */
+
+.recommend{
+    /* display: inline-block; */
+    /* position: absolute; */
+    width: 100vw;
+    overflow-x: auto;
+}
+/* 隐藏.recommend的滚动条 */
+.recommend::-webkit-scrollbar {
+    display:none
+}
+.recommend-container{
+    width: 1020px;
+    height: 230px;
+    padding-left: 15px;
+    margin: 20px auto;
+}
+.recommend-good{
+    width: 210px;
+    height: 210px;
+    vertical-align: middle;
+    margin: 0px 5px;
+    display: inline-block;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #f0f0f0;
+}
+
+.recommend-refresh-btn{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    margin-left: 10px;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+    border:1px solid #f0f0f0;
+    background-color: #ffffff;
+    transition-duration: 0.4s;
+    box-shadow: 0px 0px 20px #d4d7dd;
 }
 
 .banner:hover,

@@ -2,6 +2,8 @@
 layui.use(['jquery','flow'], function(){
     var flow = layui.flow;
     var $ = layui.jquery;
+    
+    
 
     //错误提示
     var error = $('.error');
@@ -9,12 +11,10 @@ layui.use(['jquery','flow'], function(){
     //layui的流动加载组件
     flow.load({
       elem: '#content' //指定列表容器
-      ,mb:150
+      ,mb:100
       ,isAuto:true
       ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
       var lis = [];
-
-
 
     //开局一个ajax请求获取商品信息
     $.ajax({
@@ -56,10 +56,7 @@ layui.use(['jquery','flow'], function(){
       }
     });
 
-    //为动态生成的卡片绑定的单击函数
-    function toDeatil(goodId){
-      alert(goodId);
-    }
+
 
 
 });

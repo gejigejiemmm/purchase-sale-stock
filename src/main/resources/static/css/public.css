@@ -9,6 +9,7 @@ html{
     font-size: 15px;
 }
 
+
 .layui-nav{
     /* 顶部nav设置为绝对定位,脱离文档流,实现content直接设置100vh,
     然后box-sizing:border-box,
@@ -55,6 +56,8 @@ html{
 .content{
     /* 设置为最小height,便于内容扩展 */
     min-height: 100vh;
+    /* 禁止content出现横向滚动条 */
+    overflow-x: hidden;
     margin-bottom: -60px;
     box-sizing: border-box;
     padding: 62px 2px;

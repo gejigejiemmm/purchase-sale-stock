@@ -6,11 +6,18 @@ layui.use(['jquery'], function(){
     var detailPrice = document.querySelector(".banner-right-txt1-price");
     var detailName = document.querySelector(".banner-right-txt1-name");
     var infoTableTd = document.querySelectorAll(".info-table-td");    
+
+
     search.splice(0, 9);
     search = search.join("");
 
     //调用规定商品数量input输入格式检查函数
     inputHandle();
+
+    //利用better-scroll插件实现推荐商品的滚动回弹功能
+    let bs = new BScroll(".recommend", {
+        scrollX:true,
+    })
 
     //根据goodsId获取商品详情
     $.ajax({
