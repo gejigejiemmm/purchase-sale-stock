@@ -221,20 +221,53 @@
 }
 .recommend-container{
     width: 1020px;
-    height: 230px;
+    height: 250px;
     padding-left: 15px;
     margin: 20px auto;
 }
 .recommend-good{
     width: 210px;
-    height: 210px;
+    height: 100%;
     vertical-align: middle;
+    overflow: hidden;
     margin: 0px 5px;
     display: inline-block;
     border: 1px solid #f0f0f0;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #f0f0f0;
 }
+
+.recommend-good img{
+    width: 100%; 
+    height: 80%;
+}
+
+.recommend-good-info{
+    display: flex;
+    height: 20%;
+}
+
+.recommend-good-price,
+.recommend-good-name{
+    font-size: 16px;
+    /* 行高为50px因为 .recommend-good的height * (100% - img的80%height) = 250 * 20% */
+    line-height: 50px;
+    /* 单行文字省略效果 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.recommend-good-price{
+    text-align: right;
+    flex-basis: 30%;
+}
+
+.recommend-good-name{
+    flex-basis: 70%;
+    text-align: center;
+
+}
+
 
 .recommend-refresh-btn{
     font-size: 28px;
