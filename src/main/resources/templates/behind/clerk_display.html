@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="/static/css/behind/layui.css">
+    <link rel="stylesheet" href="/static/css/behind/layer.css">
+    <link rel="stylesheet" href="/static/css/behind/display.css">
+    <link rel="stylesheet" href="/static/css/behind/supplier_display.css">
+    <link rel="stylesheet" href="/static/css/behind/clerk_display.css">
+</head>
+<body layadmin-themealias="default" class="layui-layout-body">
+    <div id="LAY_app" class="layadmin-tabspage-none">
+        <div class="layui-layout layui-layout-admin">
+            <th:block th:include="/behind/_fragments::header" />
+
+            <div class="layui-body main-body">
+                <div class="body-wrapper">
+                    <div class="search-wrapper">
+                        <div class="search-content">
+                            <button class="addClerk addBtn">添加</button>
+                            <select class="selectQuery">
+                                <option value="经理">经理</option>
+                                <option value="业务员">业务员</option>
+                                <option value="采购员">采购员</option>
+                                <option value="仓管员">仓管员</option>
+                                <option value="派送员">派送员</option>
+                            </select>
+                            <button class="search">查询</button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="table-info">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>职员名称</th>
+                                <th>职员编号</th>
+                                <th>职员公司</th>
+                                <th>职员职位</th>
+                                <th>职员区域</th>
+                                <th>职员英文名</th>
+                                <th>职员生日</th>
+                                <th>职员电话</th>
+                                <th>职员地区</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class='tbody'></tbody>
+                        </table>
+                        <th:block th:include="/behind/_fragments::pagination" />
+                    </div>
+
+                    <!-- 模态框 -->
+                    <div class="model">
+                        <div class="model-wrapper">
+                            <div class="model-content">
+                                <div class="model-top">
+                                    <h2>修改信息</h2>
+                                    <span class="back">X</span>
+                                </div>
+                                <div class="model-body">
+                                    <div class="model-item" style="display: none">
+                                        <lable>职员id：</lable>
+                                        <input type="text" class="clerkId" name="clerkId"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员名称：</lable>
+                                        <input type="text" class="clerkName" name="clerkName"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员公司：</lable>
+                                        <input type="email" class="clerkCompany" name="clerkCompany"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员职位：</lable>
+                                        <input type="text" class="clerkPosition" name="clerkPosition"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员区域：</lable>
+                                        <input type="text" class="clerkArea" name="clerkArea"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员英文名：</lable>
+                                        <input type="text" class="clerkSpell" name="clerkSpell"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员生日：</lable>
+                                        <input type="text" class="clerkBirthday" name="clerkBirthday"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员电话：</lable>
+                                        <input type="text" class="clerkTelphone" name="clerkTelphone"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员地址：</lable>
+                                        <input type="text" class="clerkLocation" name="clerkLocation"/>
+                                    </div>
+                                    <div class="model-item">
+                                        <lable>职员密码：</lable>
+                                        <input type="text" class="clerkPassword" name="clerkPassword"/>
+                                    </div>
+                                </div>
+                                <div class="model-footer">
+                                    <div class="model-opera">
+                                        <button class="ok addok">提交</button>
+                                        <button class="cancel">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 遮罩层，模态框出现时使用 -->
+                    <div class="mask"></div>
+                </div>
+
+                <!-- 这个是变为手机端以后点击侧边栏时出现的遮罩层 -->
+                <div class="layadmin-body-shade" layadmin-event="shade"></div>
+            </div>
+
+            <div class="layui-footer">
+                &copy;郑州轻工业大学工程楼333实验室
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/behind/layui.all.js"></script>
+    <script src="/static/js/behind/back-end-common.js"></script>
+    <script src="/static/js/behind/clerk_display.js"></script>
+    <script src="/static/js/behind/pagination.js"></script>
+</body>
+</html>

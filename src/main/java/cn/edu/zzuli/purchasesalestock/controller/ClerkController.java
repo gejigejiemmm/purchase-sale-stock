@@ -45,11 +45,10 @@ public class ClerkController {
         if (clerkService.delClerkById(clerkId))
             return Msg.success();
         return Msg.fail();
-
     }
 
-    @PostMapping("/getClerkByConsitionsByLimit")
-    @ApiOperation(value = "根据传入条件查询销售员(分页)",httpMethod = "POST")
+    @GetMapping("/getClerkByConsitionsByLimit")
+    @ApiOperation(value = "根据传入条件查询销售员(分页)",httpMethod = "GET")
     public Msg getClerk(@RequestParam(value = "clerkCompany",required = false) String clerkCompany,
                         @RequestParam(value = "clerkPosition",required = false) String clerkPosition,
                         @RequestParam(value = "clerkArea",required = false) String clerkArea,
@@ -80,6 +79,8 @@ public class ClerkController {
                            @RequestParam(value = "clerkLocation",required = false)String clerkLocation,
                            @RequestParam(value = "clerkPassword",required = false)String clerkPassword)
     {
+
+        System.out.println(clerkBirthday);
         boolean result = clerkService.updateClerk(clerkId, clerkName, clerkCompany, clerkPosition, clerkArea, clerkSpell, clerkBirthday, clerkTelphone, clerkLocation, clerkPassword);
         if(result) {
             return Msg.success();

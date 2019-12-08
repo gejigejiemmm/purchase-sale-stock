@@ -1,6 +1,7 @@
 html,body {
     height: 100%;
     font-size: 16px;
+    min-width: 550px;
 }
 
 ::-webkit-scrollbar {}
@@ -47,7 +48,7 @@ html,body {
     padding-left: 5px;
     box-sizing: border-box;
     border-radius: 3px;
-    margin-right: 5px;
+    margin: 0 5px;
     display: inline-block;
 }
 
@@ -55,7 +56,7 @@ html,body {
     color: #666;
 }
 
-.search, .addSupplier {
+.search, .addBtn {
     width: 60px;
     padding: 0 10px;
     height: 36px;
