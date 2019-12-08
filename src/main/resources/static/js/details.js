@@ -6,6 +6,7 @@ layui.use(['jquery'], function () {
     var detailPrice = document.querySelector(".banner-right-txt1-price");
     var detailName = document.querySelector(".banner-right-txt1-name");
     var infoTableTd = document.querySelectorAll(".info-table-td");
+    var recommendGood = document.querySelectorAll(".recommend-good");
     var recommendGoodPrice = document.querySelectorAll(".recommend-good-price");
     var recommendGoodName = document.querySelectorAll(".recommend-good-name");
     var recommendBtn = document.querySelector(".recommend-refresh-btn");
@@ -96,6 +97,13 @@ layui.use(['jquery'], function () {
                 res.forEach((item, index) => {
                     recommendGoodName[index].innerHTML = item.goodsChName;
                     recommendGoodPrice[index].innerHTML = item.goodsInitPrice;
+                    let goodsId = item.goodsId;
+
+                    //顺势为每个recommendGood绑定单机跳转页面事件
+                    recommendGood[index].onclick = function(){
+                        location.assign(`/details.html?goodsId=${goodsId}`);
+                    }
+                    console.log(recommendGood[index]);
                 })
             },
             error: function (err) {

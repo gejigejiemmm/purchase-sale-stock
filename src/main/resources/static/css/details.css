@@ -214,6 +214,7 @@
     /* position: absolute; */
     width: 100vw;
     overflow-x: auto;
+    margin-bottom: 30px;
 }
 /* 隐藏.recommend的滚动条 */
 .recommend::-webkit-scrollbar {
@@ -228,6 +229,7 @@
 .recommend-good{
     width: 210px;
     height: 100%;
+    cursor: pointer;
     vertical-align: middle;
     overflow: hidden;
     margin: 0px 5px;
