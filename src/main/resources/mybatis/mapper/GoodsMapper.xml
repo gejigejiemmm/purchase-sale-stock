@@ -255,6 +255,6 @@ goodsProducersId goodsSupplierId;-->
         <result property="goodsCounts" column="goods_counts"></result>
     </resultMap>
     <select id="getGoodsRand" resultMap="getGoodRand">
-        SELECT * FROM `goodsInformation`  ORDER BY rand() LIMIT 5
+        SELECT * FROM `goodsInformation`  ORDER BY rand() LIMIT 4
     </select>
 </mapper>
