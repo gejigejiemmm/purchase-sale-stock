@@ -18,6 +18,10 @@ public class ClerkServiceImpl implements ClerkService {
     @Autowired
     ClerkMapper clerkMapper;
 
+    /*
+     * 生成员工编号的规则：当前日期串加上当前数据库总人数和1000的模
+     * 员工编号和密码用于登录
+     */
     @Override
     public boolean addClerk(@Param("clerkName") String clerkName, @Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition,
                             @Param("clerkArea") String clerkArea, @Param("clerkSpell") String clerkSpell, @Param("clerkBirthday") LocalDate clerkBirthday, @Param("clerkTelphone") String clerkTelphone,
@@ -89,7 +93,7 @@ public class ClerkServiceImpl implements ClerkService {
     }
 
     @Override
-    public Clerk getClerkByNo(Integer clerkNo)
+    public Clerk getClerkByNo(String clerkNo)
     {
         return clerkMapper.getClerkByNo(clerkNo);
     }

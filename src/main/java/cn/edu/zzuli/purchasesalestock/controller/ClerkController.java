@@ -98,9 +98,10 @@ public class ClerkController {
     }
 
 
+    //登录使用的是职员编号
     @PostMapping("login_clerk")
     @ApiOperation(value = "登录验证", httpMethod = "POST")
-    public Msg Login_clerk(@RequestParam(value = "username", required = true) Integer clerkNo,
+    public Msg Login_clerk(@RequestParam(value = "username", required = true) String clerkNo,
                            @RequestParam(value = "password", required = true) String password)
     {
         Clerk cc = clerkService.getClerkByNo(clerkNo);
