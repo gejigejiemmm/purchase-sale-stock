@@ -76,4 +76,19 @@ public class BaseUtils {
         }
     }
 
+    /**
+     * Description: 初始化一个四位随机码，用于业务员业绩划分
+     *
+     * @Title: Key
+     *
+     * @param
+     * @param
+     */
+    public static Double getKey()
+    {
+        Double target = (Math.random()*9+1)*1000;
+        return target;
+    }
+
+
 }

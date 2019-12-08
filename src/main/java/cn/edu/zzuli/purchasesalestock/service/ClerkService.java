@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 public interface ClerkService {
-    boolean addClerk(String clerkName, Integer clerkNo, String clerkCompany, String clerkPosition,
+    boolean addClerk(String clerkName, String clerkCompany, String clerkPosition,
                      String clerkArea, String clerkSpell, LocalDate clerkBirthday, String clerkTelphone,
                      String clerkLocation, String clerkPassword);
 

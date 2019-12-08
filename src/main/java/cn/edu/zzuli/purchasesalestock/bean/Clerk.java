@@ -11,7 +11,7 @@ public class Clerk {
 
     private Integer clerkId;
     private String clerkName;
-    private Integer clerkNo;
+    private String clerkNo;
     private String clerkCompany;
     private String clerkPosition;
     private String clerkArea;
@@ -28,7 +28,7 @@ public class Clerk {
         super();
     }
 
-    public Clerk(Integer clerkId, String clerkName, Integer clerkNo, String clerkCompany, String clerkPosition, String clerkArea, String clerkSpell, String clerkPassword, LocalDate clerkBirthday, String clerkTelphone, String clerkLocation) {
+    public Clerk(Integer clerkId, String clerkName, String clerkNo, String clerkCompany, String clerkPosition, String clerkArea, String clerkSpell, String clerkPassword, LocalDate clerkBirthday, String clerkTelphone, String clerkLocation) {
         this.clerkId = clerkId;
         this.clerkName = clerkName;
         this.clerkNo = clerkNo;

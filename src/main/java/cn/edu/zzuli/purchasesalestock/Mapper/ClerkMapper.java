@@ -9,7 +9,7 @@ import java.util.Collection;
 
 @Mapper
 public interface ClerkMapper {
-    boolean addClerk(@Param("clerkName") String clerkName, @Param("clerkNo") Integer clerkNo, @Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition,
+    boolean addClerk(@Param("clerkName") String clerkName, @Param("clerkNo") String clerkNo, @Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition,
                      @Param("clerkArea") String clerkArea, @Param("clerkSpell") String clerkSpell, @Param("clerkBirthday") LocalDate clerkBirthday, @Param("clerkTelphone") String clerkTelphone,
                      @Param("clerkLocation") String clerkLocation, @Param("clerkPassword") String clerkPassword);
 

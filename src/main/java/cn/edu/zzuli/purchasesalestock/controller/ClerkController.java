@@ -20,9 +20,8 @@ public class ClerkController {
     ClerkService clerkService;
 
     @PostMapping("/addClerk")
-    @ApiOperation(value = "添加销售员",httpMethod = "POST")
+    @ApiOperation(value = "添加职员",httpMethod = "POST")
     public Msg addClerk(@RequestParam(value = "clerkName",required = false)String clerkName,
-                        @RequestParam(value = "clerkNo",required = false)Integer clerkNo,
                         @RequestParam(value = "clerkCompany",required = false)String clerkCompany,
                         @RequestParam(value = "clerkPosition",required = false)String clerkPosition,
                         @RequestParam(value = "clerkArea",required = false)String clerkArea,
@@ -33,7 +32,7 @@ public class ClerkController {
                         @RequestParam(value = "clerkTelphone",required = false) String clerkTelphone,
                         @RequestParam(value = "clerkLocation",required = false)String clerkLocation,
                         @RequestParam(value = "clerkPassword",required = false)String clerkPassword){
-        if (clerkService.addClerk(clerkName,clerkNo,clerkCompany,clerkPosition,
+        if (clerkService.addClerk(clerkName,clerkCompany,clerkPosition,
             clerkArea,clerkSpell,clerkBirthday,clerkTelphone,clerkLocation, clerkPassword))
             return Msg.success();
         return Msg.fail();
