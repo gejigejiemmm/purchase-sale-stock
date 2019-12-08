@@ -100,7 +100,16 @@ public class GoodsAllocationServiceImpl implements GoodsAllocationService {
         return false;
     }
 
+    @Override
+    public boolean finishAllocation(Integer binId, Integer allocationId) {
 
+        if (allocationMapper.updateGoodsAllocationStatus(binId,allocationId,
+                AllocationType.FINISH_ALLOCATION.getStatus())){
+            return true;
+        }
+
+        return false;
+    }
 
 
     /**

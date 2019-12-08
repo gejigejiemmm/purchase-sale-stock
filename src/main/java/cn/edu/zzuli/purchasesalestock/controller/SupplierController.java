@@ -37,6 +37,9 @@ public class SupplierController {
     public Msg getAllSuppliers()
     {
         Collection<Supplier> result = supplierService.getAllSuppliers();
+        for (Supplier s:result){
+            System.out.println(s);
+        }
         if(result!=null){
             return Msg.success().add("data", result).add("count", result.size());
         }

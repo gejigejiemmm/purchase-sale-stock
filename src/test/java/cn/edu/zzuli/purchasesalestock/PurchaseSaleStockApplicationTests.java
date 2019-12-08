@@ -2,19 +2,25 @@ package cn.edu.zzuli.purchasesalestock;
 
 import cn.edu.zzuli.purchasesalestock.Mapper.BinMapper;
 import cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper;
+import cn.edu.zzuli.purchasesalestock.Mapper.SendMapper;
 import cn.edu.zzuli.purchasesalestock.Mapper.TeacherMapper;
 import cn.edu.zzuli.purchasesalestock.bean.Goods;
 import cn.edu.zzuli.purchasesalestock.bean.Order;
+import cn.edu.zzuli.purchasesalestock.bean.Send;
 import cn.edu.zzuli.purchasesalestock.bean.Teacher;
 import cn.edu.zzuli.purchasesalestock.utils.AllocationType;
+import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
+import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Update;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +34,10 @@ public class PurchaseSaleStockApplicationTests {
 
 
     @Autowired
+    @Lazy
     BinMapper binMapper;
 
+    @Lazy
     @Autowired
     OrderMapper orderMapper;
 
@@ -78,6 +86,7 @@ public class PurchaseSaleStockApplicationTests {
     }
 
     @Autowired
+    @Lazy
     TeacherMapper teacherMapper;
 
     @Test
@@ -94,5 +103,18 @@ public class PurchaseSaleStockApplicationTests {
         System.out.println(teacherById);
     }
 
+    @Autowired
+    @Lazy
+    SendMapper sendMapper;
+
+    @Test
+    public void testSendMapper(){
+        Map<String,Object> info = new HashMap<>();
+        BaseUtils.initInfo(info,"sendBinId",1,"sendToUId",1,"sendEId",1,"sendStatus",400,
+            "sendId",1,"sendCreateTime","2019-12-08 20:51:28","sendEndTime","2019-12-10 22:05:33");
+        List<Send> sends = sendMapper.getSends(info);
+        System.out.println(sends);
+
+    }
 
 }

@@ -13,4 +13,6 @@ public interface GoodsAllocationService {
     GoodsAllocationDetail getDetail(Integer allocationId);
 
     boolean addAllicationsAndDetail(GoodsAllocation goodsAllocation, Integer allocationType, String stallocationDesc);
+
+    boolean finishAllocation(Integer binId, Integer allocationId);
 }

@@ -36,8 +36,10 @@ public class GoodsAllocationController {
     @ApiOperation(value = "条件查询商品调拨信息，binId必传，默认为出库单，传入allocationToId则为入库单",httpMethod = "GET")
     public Msg getAllocations(@RequestParam(value = "binId",required = true) Integer allocationFromId,
                               Integer allocationStatus, Integer allocationToId,Integer allocationEId,
-                              @RequestParam(value = "allocationCreateTime",required = false) @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime allocationCreateTime,
-                              @RequestParam(value = "allocationEndTime",required = false) @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime allocationEndTime){
+                              @RequestParam(value = "allocationCreateTime",required = false)
+                                  @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime allocationCreateTime,
+                              @RequestParam(value = "allocationEndTime",required = false)
+                                  @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime allocationEndTime){
         List<GoodsAllocation> allocations =
                 allocationService.getGoodsAllocations(allocationFromId,allocationStatus, allocationToId,allocationEId,allocationCreateTime,allocationEndTime);
         if(allocations != null){
@@ -74,6 +76,19 @@ public class GoodsAllocationController {
         if(allocationService.addAllicationsAndDetail(goodsAllocation,allocationType,allocationDesc)){
             return Msg.success();
         }
+        return Msg.fail();
+    }
+
+
+    @PostMapping("/finishAllocation")
+    @ApiOperation("/完成配货，需要传入binId 和 allocationId")
+    public Msg finishAllocation(@RequestParam(value = "binId") Integer binId,
+                                @RequestParam(value = "allocationId")Integer allocationId){
+
+        if (allocationService.finishAllocation(binId,allocationId)){
+            return Msg.success();
+        }
+
         return Msg.fail();
     }
 

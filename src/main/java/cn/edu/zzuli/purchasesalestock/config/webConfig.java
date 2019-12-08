@@ -42,7 +42,7 @@ public class webConfig implements WebMvcConfigurer {
 
     /**
      * 允许跨域访问,
-     * 如果前端不实用框架，该配置注掉
+     * 如果前端不使用框架，该配置注掉
      * @param registry
 
     @Override
