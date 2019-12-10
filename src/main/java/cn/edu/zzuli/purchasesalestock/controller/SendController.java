@@ -41,4 +41,14 @@ public class SendController {
     }
 
 
+    @GetMapping("/detail")
+    @ApiOperation(value = "获取派送单详情，需要传入sendId",httpMethod = "GET")
+    public  Msg getDetail(@RequestParam(value = "sendId",required = true) Integer sendId){
+
+
+
+        return Msg.success();
+    }
+
+
 }

@@ -2,6 +2,7 @@ package cn.edu.zzuli.purchasesalestock.service.impl;
 
 import cn.edu.zzuli.purchasesalestock.Mapper.SendMapper;
 import cn.edu.zzuli.purchasesalestock.bean.Send;
+import cn.edu.zzuli.purchasesalestock.bean.SendDetail;
 import cn.edu.zzuli.purchasesalestock.service.SendService;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class SendServiceImpl implements SendService {
         "sendId",sendId,"sendStatus",sendStatus,"sendCreateTime",sendCreateTime,"sendEndTime",sendEndTime);
         List<Send> sends = sendMapper.getSends(info);
         return sends;
+    }
+
+    @Override
+    public SendDetail getDetail(Integer sendId) {
+        return sendMapper.getDetail(sendId);
     }
 
 }

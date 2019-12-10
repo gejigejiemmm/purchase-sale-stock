@@ -1,6 +1,7 @@
 package cn.edu.zzuli.purchasesalestock.service;
 
 import cn.edu.zzuli.purchasesalestock.bean.Send;
+import cn.edu.zzuli.purchasesalestock.bean.SendDetail;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -11,4 +12,6 @@ public interface SendService {
     List<Send> getSends(Integer sendBinId, Integer sendEId,Integer sendToUId,
                         Integer sendId,Integer sendStatus,LocalDateTime sendCreateTime,
                         LocalDateTime sendEndTime);
+
+    SendDetail getDetail(Integer sendId);
 }
