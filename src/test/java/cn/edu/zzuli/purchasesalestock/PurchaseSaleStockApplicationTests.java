@@ -106,11 +106,14 @@ public class PurchaseSaleStockApplicationTests {
 
     @Test
     public void testSendMapper(){
-//        Map<String,Object> info = new HashMap<>();
+        Map<String,Object> info = new HashMap<>();
 //        BaseUtils.initInfo(info,"sendBinId",1,"sendToUId",1,"sendEId",1,"sendStatus",400,
 //            "sendId",1,"sendCreateTime","2019-12-08 20:51:28","sendEndTime","2019-12-10 22:05:33");
 //        List<Send> sends = sendMapper.getSends(info);
 //        System.out.println(sends);
+        BaseUtils.initInfo(info,"sendId",1,"sendStatus",401,"sendEndTime","2019-12-11 22:05:33");
+
+        sendMapper.updateSend(info);
 //
         SendDetail detail = sendMapper.getDetail(1);
         System.out.println(detail);

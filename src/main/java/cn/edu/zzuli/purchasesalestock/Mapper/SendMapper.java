@@ -34,6 +34,23 @@ public interface SendMapper {
     @ResultMap("send")
     Send getSendById(Integer sendId);
 
+    //添加派送单
+    @Insert("INSERT INTO\n" +
+            "send(send_toUId,send_eId,send_startTime,send_endTime,send_status,send_binId)\n" +
+            "VALUES(#{sendToUId},#{sendEId},#{sendCreateTime},#{sendEndTime},#{sendStatus},#{sendBinId})")
+    @Options(useGeneratedKeys=true,keyProperty = "sendId",keyColumn = "send_id")//返回新添加的主键
+    boolean addSend(Send send);
+
+
+    //添加派送单详情
+    @Insert("INSERT INTO send_detail(send_id,send_order_id) VALUES(#{sendId},#{sendId})")
+    boolean addSendDetail(Integer sendId,Integer orderId);
+
+    //条件修改派送单
+    @UpdateProvider(type = SendProvider.class,method = "updateByInfo")
+    boolean updateSend(Map<String,Object> info);
+
+
     //级联的results,一对一，使用 @One注解来级联
     @Results(
             id = "detail",

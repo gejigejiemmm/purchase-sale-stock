@@ -2,6 +2,7 @@ package cn.edu.zzuli.purchasesalestock.controller;
 
 import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import cn.edu.zzuli.purchasesalestock.bean.Send;
+import cn.edu.zzuli.purchasesalestock.bean.SendDetail;
 import cn.edu.zzuli.purchasesalestock.service.SendService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,9 +46,8 @@ public class SendController {
     @ApiOperation(value = "获取派送单详情，需要传入sendId",httpMethod = "GET")
     public  Msg getDetail(@RequestParam(value = "sendId",required = true) Integer sendId){
 
-
-
-        return Msg.success();
+        SendDetail detail = sendService.getDetail(sendId);
+        return Msg.success().add("detail",detail);
     }
 
 

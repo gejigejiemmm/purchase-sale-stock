@@ -36,4 +36,28 @@ public class SendProvider {
 
     }
 
+
+    //条件修改
+    public String updateByInfo(Map<String,Object> info){
+        SQL sql = new SQL();
+        sql.UPDATE("send");
+
+        if (info.get("sendStatus") != null){
+            sql.SET("send_status = #{sendStatus}");
+        }
+
+        if (info.get("sendEndTime") != null){
+            sql.SET("send_endTime = #{sendEndTime}");
+        }
+
+        if (info.get("sendEId") != null){
+            sql.SET("send_eId = #{sendEId}");
+        }
+
+        sql.WHERE("send_id = #{sendId}");
+
+
+        return sql.toString();
+    }
+
 }
