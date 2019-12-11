@@ -24,4 +24,6 @@ public interface ClerkService {
     Collection<Clerk> getClerkByConsitions(String clerkCompany, String clerkPosition, String clerkArea);
 
     Clerk getClerkByNo(String clerkNo);
+
+    Clerk getClerkByPhone(String clerkTelphone);
 }

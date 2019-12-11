@@ -97,4 +97,10 @@ public class ClerkServiceImpl implements ClerkService {
     {
         return clerkMapper.getClerkByNo(clerkNo);
     }
+
+    @Override
+    public Clerk getClerkByPhone(String clerkTelphone)
+    {
+        return clerkMapper.getClerkByPhone(clerkTelphone);
+    }
 }

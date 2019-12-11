@@ -30,4 +30,6 @@ public interface ClerkMapper {
     Collection<Clerk> getClerkByConsitions(@Param("clerkCompany") String clerkCompany, @Param("clerkPosition") String clerkPosition, @Param("clerkArea") String clerkArea);
 
     Clerk getClerkByNo(String clerkNo);
+
+    Clerk getClerkByPhone(String clerkTelphone);
 }
