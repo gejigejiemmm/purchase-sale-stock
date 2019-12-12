@@ -1,9 +1,6 @@
 package cn.edu.zzuli.purchasesalestock;
 
-import cn.edu.zzuli.purchasesalestock.Mapper.BinMapper;
-import cn.edu.zzuli.purchasesalestock.Mapper.OrderMapper;
-import cn.edu.zzuli.purchasesalestock.Mapper.SendMapper;
-import cn.edu.zzuli.purchasesalestock.Mapper.TeacherMapper;
+import cn.edu.zzuli.purchasesalestock.Mapper.*;
 import cn.edu.zzuli.purchasesalestock.bean.*;
 import cn.edu.zzuli.purchasesalestock.utils.AllocationType;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
@@ -118,6 +115,16 @@ public class PurchaseSaleStockApplicationTests {
         SendDetail detail = sendMapper.getDetail(1);
         System.out.println(detail);
 
+    }
+
+    @Lazy
+    @Autowired
+    CustomerMapper customerMapper;
+
+    @Test
+    public void testCustomer(){
+        Customer 范向辉 = customerMapper.getCustomerByName("范向辉");
+        System.out.println(范向辉);
     }
 
 }

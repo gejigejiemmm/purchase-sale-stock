@@ -4,6 +4,7 @@ import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import cn.edu.zzuli.purchasesalestock.bean.Send;
 import cn.edu.zzuli.purchasesalestock.bean.SendDetail;
 import cn.edu.zzuli.purchasesalestock.service.SendService;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,15 @@ public class SendController {
 
     @GetMapping("/get")
     @ApiOperation(value = "条件获取派送单信息，binId必须，其他非必须",httpMethod = "GET")
-    public Msg get(@RequestParam(value = "binId")Integer sendBinId, Integer sendEId,Integer sendToUId,
+    public Msg get(@RequestParam(value = "p",defaultValue = "1",required = false)Integer p,
+                   @RequestParam(value = "binId")Integer sendBinId, Integer sendEId,Integer sendToUId,
                    Integer sendId,Integer sendStatus,
                    @RequestParam(value = "sendCreateTime",required = false)
                        @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime sendCreateTime,
                    @RequestParam(value = "sendEndTime",required = false)
                        @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime sendEndTime){
 
-        List<Send> sends = sendService.getSends(sendBinId, sendEId, sendToUId, sendId, sendStatus, sendCreateTime, sendEndTime);
+        PageInfo sends = sendService.getSends(p,sendBinId, sendEId, sendToUId, sendId, sendStatus, sendCreateTime, sendEndTime);
         if (sends != null){
             return Msg.success().add("sends",sends);
         }

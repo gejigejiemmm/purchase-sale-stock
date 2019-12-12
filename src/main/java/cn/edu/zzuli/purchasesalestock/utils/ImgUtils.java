@@ -40,6 +40,9 @@ public class ImgUtils {
         if (type.equals("jpeg")){
             imageFile = imageFile.replaceAll("data:image/jpeg;base64,", "");
         }
+        if (type.equals("jpg")){
+            imageFile = imageFile.replaceAll("data:image/jpg;base64,", "");
+        }
         BASE64Decoder decoder = new BASE64Decoder();
         // Base64解码
         byte[] imageByte = null;

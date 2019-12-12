@@ -5,6 +5,8 @@ import cn.edu.zzuli.purchasesalestock.bean.Send;
 import cn.edu.zzuli.purchasesalestock.bean.SendDetail;
 import cn.edu.zzuli.purchasesalestock.service.SendService;
 import cn.edu.zzuli.purchasesalestock.utils.BaseUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +22,18 @@ public class SendServiceImpl implements SendService {
     SendMapper sendMapper;
 
     @Override
-    public List<Send> getSends(Integer sendBinId, Integer sendEId, Integer sendToUId,
-                               Integer sendId, Integer sendStatus, LocalDateTime sendCreateTime,
-                               LocalDateTime sendEndTime) {
+    public PageInfo getSends(Integer p, Integer sendBinId, Integer sendEId, Integer sendToUId,
+                             Integer sendId, Integer sendStatus, LocalDateTime sendCreateTime,
+                             LocalDateTime sendEndTime) {
         Map<String,Object> info = new HashMap<>();
+        PageHelper.startPage(p,8);
         BaseUtils.initInfo(info,"sendBinId",sendBinId,"sendEId",sendEId,"sendToUId",sendToUId,
         "sendId",sendId,"sendStatus",sendStatus,"sendCreateTime",sendCreateTime,"sendEndTime",sendEndTime);
+
         List<Send> sends = sendMapper.getSends(info);
-        return sends;
+        //分页信息
+        PageInfo pageInfo = new PageInfo(sends);
+        return pageInfo;
     }
 
     @Override

@@ -63,7 +63,7 @@ upload:
 # 看着单调---,还是彩色的好玩
 logging:
   level:
-    cn.edu.zzuli.purchasesalestock.Mapper: debug
+    cn.edu.zzuli.purchasesalestock.Mapper: warn
 #  path: /code/log/
 #  pattern:
 #    console: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'

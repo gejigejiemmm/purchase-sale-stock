@@ -3,6 +3,7 @@ package cn.edu.zzuli.purchasesalestock.controller;
 import cn.edu.zzuli.purchasesalestock.bean.Clerk;
 import cn.edu.zzuli.purchasesalestock.bean.Msg;
 import cn.edu.zzuli.purchasesalestock.service.ClerkService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/clerk")
+@Api(tags = "职员接口")
 public class ClerkController {
 
     @Autowired
