@@ -165,7 +165,7 @@
         select * from employee where clerk_no = #{clerkNo}
     </select>
 
-    <select id="getClerkByPhone">
+    <select id="getClerkByPhone" resultMap="Clerk">
         select * from employee where clerk_telphone = #{clerkTelphone}
     </select>
 </mapper>

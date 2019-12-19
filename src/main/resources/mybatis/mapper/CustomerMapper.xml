@@ -27,14 +27,14 @@
     </resultMap>
 
     <!-- 添加成员所用的方法 -->
-    <insert id="saveCustomer">
+    <insert id="saveCustomer" >
         insert into
         customer
         (customer_name, customer_password, customer_gradle, customer_record, customer_mentor, customer_college, customer_institute, customer_pay_form,
-          customer_no, customer_spell, customer_location, customer_location_standby1, customer_location_standby2, customer_telphone,
+          customer_no, customer_spell, customer_location, customer_telphone,
           customer_company, customer_warehouse, customer_inviter)
         values (#{customerName}, #{customerPassword}, #{customerGradle}, #{customerRecord}, #{customerMentor}, #{customerCollege}, #{customerInstitute}, #{customerPayForm},
-          #{customerNo}, #{customerSpell}, #{customerLocation}, #{customerLocationStandby1}, #{customerLocationStandby2}, #{customerTelphone},
+          #{customerNo}, #{customerSpell}, #{customerLocation}, #{customerTelphone},
           #{customerCompany}, #{customerWarehouse}, #{customerInviter});
     </insert>
 

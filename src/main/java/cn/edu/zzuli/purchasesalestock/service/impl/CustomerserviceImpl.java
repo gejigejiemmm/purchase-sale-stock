@@ -56,7 +56,7 @@ public class CustomerserviceImpl {
         Integer num = mapper.selectNumber() % 1000;
         customerNo = customerNo + num.toString();
         customer.setCustomerNo(customerNo); //用户编号的生成
-        mapper.saveCustomer(customerName, customerGradle, customerRecord, customerMentor, customerCollege, customerInstitute, customerPayForm, customerSpell, customerLocation, customerTelphone, customerCompany, customerPassword, customerNo);
+        mapper.saveCustomer(customer);
         return customerNo;
     }
 
